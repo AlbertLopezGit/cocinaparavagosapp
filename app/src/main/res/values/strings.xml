@@ -1,0 +1,5 @@
+<resources>
+    <string name="app_name">CocinaParaVagos</string>
+    <string name="navigation_drawer_open">Abrir menu de navegacion</string>
+    <string name="navigation_drawer_close">Abrir menu de navegacion</string>
+</resources>
