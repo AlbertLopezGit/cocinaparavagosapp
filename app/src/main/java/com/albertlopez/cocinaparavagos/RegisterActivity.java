@@ -1,9 +1,6 @@
 package com.albertlopez.cocinaparavagos;
 
-import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
-
-import android.os.Build;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
@@ -12,6 +9,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Toast;
 
+import com.albertlopez.cocinaparavagos.bbdd.UserCreator;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -19,7 +17,6 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
 import java.util.HashMap;
 import java.util.Map;
 
@@ -29,8 +26,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     Button btnRegistrar;
 
     RequestQueue requestQueue;
-
-    private static final String Url1 ="http://80.32.104.188:8220/usuario";
+    UserCreator userCreator;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,6 +41,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         mail = findViewById(R.id.editTextTextEmail);
 
         btnRegistrar = findViewById(R.id.buttonRegistrar);
+        btnRegistrar.setOnClickListener(this);
 
         btnRegistrar.setOnClickListener(this);
         requestQueue = Volley.newRequestQueue(this);
@@ -55,46 +52,42 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
     @Override
     public void onClick(View v) {
         int id = v.getId();
+        userCreator = new UserCreator();
 
         if (id == R.id.buttonRegistrar){
             String nombre = name.getText().toString().trim();
             String pass = password.getText().toString().trim();
+            String passRepeat = repeatPassword.getText().toString().trim();
             String email = mail.getText().toString().trim();
 
-            createUser(nombre,pass,email);
+            //metodo para controlar todos los requisitos para registrar usuario
+            if (!checkOptionsRegister(pass,passRepeat)) {
+                return;}
+
+            userCreator.createUser(nombre,pass,email,requestQueue,this);
         }
     }
 
-    private void createUser(final String nombre,final String pass,final String email) {
-        StringRequest stringRequest = new StringRequest(
-                Request.Method.POST,
-                Url1,
-                new Response.Listener<String>() {
-                    @Override
-                    public void onResponse(String response) {
-                        Toast.makeText(RegisterActivity.this,"Correcto",Toast.LENGTH_SHORT).show();
-                        //Log.d("Alba", response);
-                    }
-                } ,
-                new Response.ErrorListener() {
-                    @Override
-                    public void onErrorResponse(VolleyError error) {
-                        Toast.makeText(RegisterActivity.this,"Error",Toast.LENGTH_SHORT).show();
-                    }
-                }
-        ){
-            @Override
-            protected Map<String, String> getParams() throws AuthFailureError {
-                Map<String, String> params = new HashMap<>();
-                params.put("NICKNAME",nombre);
-                params.put("PASS",pass);
-                params.put("CORREOELECTRONICO",email);
-                return params;
-            }
-        };
+    private boolean checkOptionsRegister(String pass, String passRepeat) {
+        if (!pass.equals(passRepeat)) {
+            Toast.makeText(RegisterActivity.this,
+                "La contraseña y repetir contraseña no coinciden.",Toast.LENGTH_SHORT)
+                .show();return false;
+        } else if (pass.length() < 5) {
+            Toast.makeText(RegisterActivity.this,
+                    "La contraseña debe tener 5 caracteres como mínimo.",Toast.LENGTH_SHORT)
+                    .show();return false;
+        }
 
-        requestQueue.add(stringRequest);
+        return true;
     }
+
+    public void msgErrorUsuarioDuplicado(String email){
+        Toast.makeText(RegisterActivity.this,
+                "Ese correo ya está en uso. Prueba con otro. "+email+"",Toast.LENGTH_SHORT)
+                .show();
+    }
+
 
 
     @Override
