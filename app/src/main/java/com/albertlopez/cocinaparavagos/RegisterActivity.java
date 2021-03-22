@@ -5,6 +5,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Build;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
@@ -29,7 +30,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     RequestQueue requestQueue;
 
-    private static final String Url1 ="http://80.32.104.188:8220/usuario.php";
+    private static final String Url1 ="http://80.32.104.188:8220/usuario";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,8 +39,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN,
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
-        btnRegistrar.setOnClickListener(this);
-
         name = findViewById(R.id.editTextTextPersonName);
         password = findViewById(R.id.editTextTextPassword);
         repeatPassword = findViewById(R.id.editTextTextConfirmPassword);
@@ -47,6 +46,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         btnRegistrar = findViewById(R.id.buttonRegistrar);
 
+        btnRegistrar.setOnClickListener(this);
         requestQueue = Volley.newRequestQueue(this);
 
 
@@ -63,7 +63,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
             createUser(nombre,pass,email);
         }
-
     }
 
     private void createUser(final String nombre,final String pass,final String email) {
@@ -74,12 +73,13 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     @Override
                     public void onResponse(String response) {
                         Toast.makeText(RegisterActivity.this,"Correcto",Toast.LENGTH_SHORT).show();
+                        //Log.d("Alba", response);
                     }
                 } ,
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        Toast.makeText(RegisterActivity.this,"Error",Toast.LENGTH_SHORT).show();
                     }
                 }
         ){
@@ -95,8 +95,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
         requestQueue.add(stringRequest);
     }
-
-
 
 
     @Override
