@@ -21,10 +21,15 @@ import com.android.volley.toolbox.Volley;
 import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
+import java.util.regex.Matcher;
+import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText name,password,repeatPassword,mail;
+    EditText name;
+    EditText password;
+    EditText repeatPassword;
+    EditText mail;
     Button btnRegistrar;
 
     RequestQueue requestQueue;
@@ -62,7 +67,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             String email = mail.getText().toString().trim();
 
             //metodo para controlar todos los requisitos para registrar usuario
-            if (!checkOptionsRegister(pass,passRepeat)) {
+            if (!checkOptionsRegister(pass,passRepeat,nombre,email)) {
                 return;}
 
             try {
@@ -73,15 +78,28 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         }
     }
 
-    private boolean checkOptionsRegister(String pass, String passRepeat) {
-        if (!pass.equals(passRepeat)) {
+    //metodos que comprueban que los datos son validos
+    private boolean checkOptionsRegister(String pass, String passRepeat,String nombre,String email) {
+        if (nombre.length() < 1) {
+            Toast.makeText(RegisterActivity.this,
+                    "El nombre no puede estar vacío ",Toast.LENGTH_SHORT)
+                    .show();
+            return false;
+        } else if (!checkEmailCorrect(email)) {
+            Toast.makeText(RegisterActivity.this,
+                    "El email ingresado es inválido.",Toast.LENGTH_SHORT)
+                    .show();
+            return false;
+        } else if (!pass.equals(passRepeat)) {
             Toast.makeText(RegisterActivity.this,
                 "La contraseña y repetir contraseña no coinciden.",Toast.LENGTH_SHORT)
-                .show();return false;
+                .show();
+            return false;
         } else if (pass.length() < 5) {
             Toast.makeText(RegisterActivity.this,
                     "La contraseña debe tener 5 caracteres como mínimo.",Toast.LENGTH_SHORT)
-                    .show();return false;
+                    .show();
+            return false;
         }
 
         return true;
@@ -99,6 +117,14 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 .show();
         finish();
     }
+
+    //metodo para comprobar el que correo es valido
+    private boolean checkEmailCorrect(String email) {
+        Pattern pattern = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
+        Matcher mather = pattern.matcher(email);
+        return mather.find();
+    }
+
 
 
     @Override
