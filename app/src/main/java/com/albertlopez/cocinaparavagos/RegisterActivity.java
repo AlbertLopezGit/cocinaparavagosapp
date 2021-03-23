@@ -17,6 +17,8 @@ import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
+
+import java.security.NoSuchAlgorithmException;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -46,7 +48,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         btnRegistrar.setOnClickListener(this);
         requestQueue = Volley.newRequestQueue(this);
 
-
     }
 
     @Override
@@ -64,7 +65,11 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             if (!checkOptionsRegister(pass,passRepeat)) {
                 return;}
 
-            userCreator.createUser(nombre,pass,email,requestQueue,this);
+            try {
+                userCreator.createUser(nombre,pass,email,requestQueue,this);
+            } catch (NoSuchAlgorithmException e) {
+                e.printStackTrace();
+            }
         }
     }
 
@@ -88,6 +93,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 .show();
     }
 
+    public void exit(){
+        Toast.makeText(RegisterActivity.this,
+                "Registro Completado ",Toast.LENGTH_SHORT)
+                .show();
+        finish();
+    }
 
 
     @Override
