@@ -1,24 +1,20 @@
 package com.albertlopez.cocinaparavagos.model;
 
+import com.google.gson.annotations.SerializedName;
+
 public class Ingredients {
-    String nombre;
-    String clasificacion;
-    String tipo;
+    @SerializedName("NOMBREINGREDIENTE")
+    private String nombreIngrediente;
+    @SerializedName("CLASIFICACIONINGREDIENTE")
+    private String clasificacionIngredientes;
+    @SerializedName("INGREDIENTEBASE")
+    private int ingredienteBase;
 
-    public Ingredients(String nombre,String clasificacion, String tipo){
-        nombre = nombre;
-        clasificacion = clasificacion;
-        tipo = tipo;
-    }
+    public Ingredients(String nombreIngrediente, String clasificacionIngredientes, int ingredienteBase) {
+        this.nombreIngrediente = nombreIngrediente;
+        this.clasificacionIngredientes = clasificacionIngredientes;
+        this.ingredienteBase = ingredienteBase;
 
-    public String getNombre() {
-        return nombre;
-    }
-    public String getClasificacion() {
-        return clasificacion;
-    }
-    public String getTipo() {
-        return tipo;
     }
 
 }
