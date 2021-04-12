@@ -26,7 +26,6 @@ import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
-
     EditText name;
     EditText password;
     EditText repeatPassword;
