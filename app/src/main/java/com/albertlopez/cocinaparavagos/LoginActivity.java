@@ -10,9 +10,13 @@ import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
 
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
+
 public class LoginActivity extends AppCompatActivity {
 
     Button register;
+    Button login;
     ImageView capibara;
     SoundPool sp;
     int sound;
@@ -36,6 +40,17 @@ public class LoginActivity extends AppCompatActivity {
                 openRegisterActivity();
             }
         });
+
+        login.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                //DEBE IR A LA PAGINA DEL USUARIO EN CONCRETO, A SUS
+            }
+        });
+
+
+
+
 
         capibara.setOnClickListener(new View.OnClickListener() {
             @Override
