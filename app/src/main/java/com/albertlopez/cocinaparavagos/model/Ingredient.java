@@ -2,7 +2,7 @@ package com.albertlopez.cocinaparavagos.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Ingredients {
+public class Ingredient {
     @SerializedName("NOMBREINGREDIENTE")
     private String nombreIngrediente;
     @SerializedName("CLASIFICACIONINGREDIENTE")
@@ -10,7 +10,10 @@ public class Ingredients {
     @SerializedName("INGREDIENTEBASE")
     private int ingredienteBase;
 
-    public Ingredients(String nombreIngrediente, String clasificacionIngredientes, int ingredienteBase) {
+    public Ingredient() {
+    }
+
+    public Ingredient(String nombreIngrediente, String clasificacionIngredientes, int ingredienteBase) {
         this.nombreIngrediente = nombreIngrediente;
         this.clasificacionIngredientes = clasificacionIngredientes;
         this.ingredienteBase = ingredienteBase;

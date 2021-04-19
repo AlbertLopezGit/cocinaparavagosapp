@@ -1,26 +1,28 @@
 package com.albertlopez.cocinaparavagos.manager;
 
+import com.albertlopez.cocinaparavagos.model.Ingredient;
+import com.google.gson.Gson;
 
-import com.albertlopez.cocinaparavagos.model.Ingredients;
 
-import java.util.ArrayList;
-import java.util.List;
+import org.json.JSONArray;
+import org.json.JSONException;
+import org.json.JSONObject;
+
 
 public class ManagerIngredients {
-    private List<Ingredients> results;
+    Gson gson = new Gson();
 
-    public ManagerIngredients(ArrayList<Ingredients> results){
-        this.results = results;
-    }
+    public void addIngredientsBase(String response) throws JSONException {
+        JSONArray jsonResponse = new JSONArray(response);
 
-    public IngredientsList getFirstLevelThemes() {
-        IngredientsList ingredients = new IngredientsList();
-        for(Ingredients ingredient : results) {
-            if (ingredient.getNombreIngrediente() == null) {
-                ingredients.add(ingredient);
-            }
+        for (int i = 0; i < jsonResponse.length() ; i++) {
+            JSONObject ingrediente = jsonResponse.getJSONObject(i);
+            Ingredient ingredient = gson.fromJson(String.valueOf(ingrediente),Ingredient.class);
         }
-        return ingredients;
+
+
+
+
     }
 
 
