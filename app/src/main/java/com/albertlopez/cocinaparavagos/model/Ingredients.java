@@ -17,4 +17,27 @@ public class Ingredients {
 
     }
 
+    public String getNombreIngrediente() {
+        return nombreIngrediente;
+    }
+
+    public void setNombreIngrediente(String nombreIngrediente) {
+        this.nombreIngrediente = nombreIngrediente;
+    }
+
+    public String getClasificacionIngredientes() {
+        return clasificacionIngredientes;
+    }
+
+    public void setClasificacionIngredientes(String clasificacionIngredientes) {
+        this.clasificacionIngredientes = clasificacionIngredientes;
+    }
+
+    public int getIngredienteBase() {
+        return ingredienteBase;
+    }
+
+    public void setIngredienteBase(int ingredienteBase) {
+        this.ingredienteBase = ingredienteBase;
+    }
 }
