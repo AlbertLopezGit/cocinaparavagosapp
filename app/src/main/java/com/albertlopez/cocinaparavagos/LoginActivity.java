@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
 
         register = findViewById(R.id.btnRegister);
         capibara = findViewById(R.id.capibaraImg);
-
+        login = findViewById(R.id.buttonLogin);
         sp = new SoundPool(1, AudioManager.STREAM_MUSIC,1);
         sound = sp.load(this,R.raw.capibarasound, 1);
 
@@ -47,9 +47,6 @@ public class LoginActivity extends AppCompatActivity {
                 //DEBE IR A LA PAGINA DEL USUARIO EN CONCRETO, A SUS
             }
         });
-
-
-
 
 
         capibara.setOnClickListener(new View.OnClickListener() {
