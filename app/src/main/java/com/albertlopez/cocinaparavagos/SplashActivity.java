@@ -1,28 +1,25 @@
 package com.albertlopez.cocinaparavagos;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.content.Intent;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
 import android.view.View;
 import android.widget.TextView;
-
+import android.widget.Toast;
 import com.albertlopez.cocinaparavagos.bbdd.Bbdd;
 import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
-import com.albertlopez.cocinaparavagos.manager.ManagerUser;
+import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-import com.google.gson.Gson;
-
-import org.json.JSONArray;
 import org.json.JSONException;
-import org.json.JSONObject;
+
+import java.util.ArrayList;
 
 
 public class SplashActivity extends AppCompatActivity implements Runnable{
@@ -31,6 +28,7 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
     Handler handler;
     int stepCounter;
     ManagerIngredients managerIngredient;
+    boolean errorNetwork; //si no conecta con el server el booleano queda como true y no deja pasar al menu principal
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -45,18 +43,14 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
-
-
         setContentView(R.layout.activity_splash);
 
+        errorNetwork = false;
         loadingText = findViewById(R.id.loadingText);
-
         managerIngredient = new ManagerIngredients();
         handler = new Handler();
         stepCounter = 0;
-
         handler.postDelayed(this,0);
-
     }
 
     @Override
@@ -74,6 +68,10 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
             stepCounter++;
             handler.postDelayed(this,1000);
         } else if (stepCounter == 3){
+            loadingText.setText("Cargando Recetas");
+            stepCounter++;
+            handler.postDelayed(this,1000);
+        } else if (stepCounter == 4){
             loadingText.setText("Descargando Ingredientes");
             RequestQueue queue = Volley.newRequestQueue(this);
             StringRequest request = new StringRequest(
@@ -84,7 +82,6 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
                         public void onResponse(String response) {
                             try {
                                 managerIngredient.addIngredientsBase(response);
-
                             } catch (JSONException e) {
                                 e.printStackTrace();
                             }
@@ -96,8 +93,13 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
                         @Override
                         public void onErrorResponse(VolleyError error) {
                             String msg = "Network error (timeout or disconnected)";
+                            Toast.makeText(SplashActivity.this,
+                                    "Error al Conectar con el Servidor ",Toast.LENGTH_SHORT)
+                                    .show();
+                            errorNetwork = true;
                             if (error.networkResponse != null) {
                                 msg = "ERROR: " + error.networkResponse.statusCode;
+
                             }
                             Log.d("Albert", msg);
                             stepCounter++;
@@ -105,14 +107,20 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
                         }
                     });
             queue.add(request);
-                        }  else {
-
-            Intent intent = new Intent(this, MainActivity.class);
-            finish();
-            startActivity(intent);
+        }  else {
+            if (!errorNetwork) {
+                Intent intent = new Intent(this, MainActivity.class);
+                finish();
+                ArrayList<Ingredient> ingredientesArray;
+                ingredientesArray = managerIngredient.getIngredientsArray();
+                intent.putExtra("Ingredientes", ingredientesArray);
+                startActivity(intent);
+            } else {
+                handler.postDelayed(SplashActivity.this, 2000);
+                finish();
+            }
         }
-                    }
-
+    }
 }
 
 

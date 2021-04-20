@@ -13,23 +13,35 @@ import android.media.SoundPool;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Button;
 
+import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
+import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.google.android.material.navigation.NavigationView;
 
-public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener {
+import java.util.ArrayList;
+
+public class MainActivity extends AppCompatActivity implements NavigationView.OnNavigationItemSelectedListener{
 
     DrawerLayout drawerLayout;
     NavigationView navigationView;
     Toolbar toolbar;
+    ManagerIngredients managerIngredient;
+    Button ingedientsButton;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        managerIngredient = new ManagerIngredients();
         setContentView(R.layout.activity_main);
         drawerLayout = findViewById(R.id.drawer_layout);
         navigationView = findViewById(R.id.nav_view);
         toolbar = findViewById(R.id.toolbar);
+        ingedientsButton = findViewById(R.id.ingedientsButton);
+
+        loadingIngredients(); // por aqui nos pasamos el ManagerIngredients de la activity Splash
 
         Menu menu = navigationView.getMenu();
 
@@ -41,6 +53,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
 
+        ingedientsButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openIngredientsActivity();
+            }
+        });
+    }
+
+    private void loadingIngredients() {
+        ArrayList<Ingredient> IngedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("Ingredientes");
+        managerIngredient.setIngredientsArray(IngedientesArray);
     }
 
     @Override
@@ -68,5 +91,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onResume() {
         super.onResume();
         navigationView.setCheckedItem(R.id.nav_home);
+    }
+
+    public void openIngredientsActivity() {
+        Intent intent = new Intent(this, IngredientsBaseActivity.class);
+        ArrayList<Ingredient> ingredientesArray;
+        ingredientesArray = managerIngredient.getIngredientsArray();
+        intent.putExtra("Ingredientes", ingredientesArray);
+        startActivity(intent);
     }
 }

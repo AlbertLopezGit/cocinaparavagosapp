@@ -23,7 +23,6 @@
     <ScrollView
         android:layout_width="match_parent"
         android:layout_height="match_parent">
-
     </ScrollView>
 
     <androidx.constraintlayout.widget.ConstraintLayout
@@ -43,7 +42,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/button4"
+            android:id="@+id/recetasButton"
             android:layout_width="176dp"
             android:layout_height="92dp"
             android:layout_marginTop="52dp"
@@ -51,11 +50,11 @@
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/button2"
+            app:layout_constraintTop_toBottomOf="@+id/ingedientsButton"
             android:background="@drawable/button_redondeado"/>
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/ingedientsButton"
             android:layout_width="176dp"
             android:layout_height="92dp"
             android:text="INGREDIENTES"

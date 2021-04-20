@@ -118,7 +118,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         finish();
     }
 
-    //metodo para comprobar el que correo es valido
+    //metodo para comprobar el que correo introducido tiene cierta logica
     private boolean checkEmailCorrect(String email) {
         Pattern pattern = Pattern.compile("([a-z0-9]+(\\.?[a-z0-9])*)+@(([a-z]+)\\.([a-z]+))+");
         Matcher mather = pattern.matcher(email);

@@ -12,6 +12,7 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CocinaParaVagos"
         android:usesCleartextTraffic="true">
+        <activity android:name=".IngredientsBaseActivity"></activity>
         <activity android:name=".SplashActivity">
             <intent-filter>
                 <action android:name="android.intent.action.MAIN" />
@@ -21,9 +22,7 @@
         </activity>
         <activity android:name=".RegisterActivity" />
         <activity android:name=".LoginActivity" />
-        <activity android:name=".MainActivity">
-
-        </activity>
+        <activity android:name=".MainActivity"></activity>
     </application>
 
 </manifest>

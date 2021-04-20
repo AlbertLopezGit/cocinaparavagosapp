@@ -2,7 +2,9 @@ package com.albertlopez.cocinaparavagos.model;
 
 import com.google.gson.annotations.SerializedName;
 
-public class Ingredient {
+import java.io.Serializable;
+
+public class Ingredient implements Serializable{
     @SerializedName("NOMBREINGREDIENTE")
     private String nombreIngrediente;
     @SerializedName("CLASIFICACIONINGREDIENTE")
