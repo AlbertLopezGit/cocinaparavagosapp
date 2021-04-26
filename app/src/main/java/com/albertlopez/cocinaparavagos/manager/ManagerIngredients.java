@@ -44,6 +44,10 @@ public class ManagerIngredients implements Serializable {
         return ingredientsArray;
     }
 
+    public ArrayList<Ingredient> getTiposIngredientsArray() {
+        return tiposIngredientsArray;
+    }
+
     public ArrayList<String> viewAllIngredients(){ //aqui se retorna solo los tipos de ingredientes
         HashSet<String> tipesIngredients = new HashSet<>();
         for (int i = 0; i < this.ingredientsArray.size() ; i++) {

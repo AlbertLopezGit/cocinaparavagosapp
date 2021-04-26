@@ -1,6 +1,9 @@
 package com.albertlopez.cocinaparavagos;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.GridLayoutManager;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.os.Bundle;
 import android.view.View;
@@ -12,41 +15,43 @@ import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 
 import java.util.ArrayList;
+import java.util.List;
 
 public class IngredientsActivity extends AppCompatActivity {
 
+    private RecyclerView recyclerViewIngrediente;
+    private RecyclerViewIngredientesAdaptador adaptadorIngrediente;
     ManagerIngredients managerIngredient;
-    ListView lista;
-    ArrayAdapter adapter;
+    ArrayList<Ingredient> IngedientesArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         managerIngredient = new ManagerIngredients();
         setContentView(R.layout.activity_ingredients);
+
+        recyclerViewIngrediente = (RecyclerView)findViewById(R.id.recyclerIngredientes);
+        recyclerViewIngrediente.setLayoutManager(new GridLayoutManager(this,2));
+
         loadingIngredients();
 
-        lista = (ListView) findViewById(R.id.listIngredients);
-        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,managerIngredient.viewIngredients());
-        lista.setAdapter(adapter);
-
-
-        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
-            @Override
-            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-
-
-            }
-        });
+        adaptadorIngrediente = new RecyclerViewIngredientesAdaptador(ingredientesMostrados());
+        recyclerViewIngrediente.setAdapter(adaptadorIngrediente);
     }
 
     private void loadingIngredients() {
-        ArrayList<Ingredient> IngedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("TiposIngredientes");
+        IngedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("TiposIngredientes");
         ArrayList<Ingredient> AllIngredientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("ingredientes");
         System.out.println("CANTIDAD "+IngedientesArray.size());
         System.out.println("CANTIDAD TOTAL "+ AllIngredientesArray.size());
         managerIngredient.setIngredientsArray(AllIngredientesArray);
         managerIngredient.settiposIngredientsArray(IngedientesArray);
+    }
+
+    public List<Ingredient>ingredientesMostrados() {
+        List<Ingredient> ingredients = new ArrayList<>(IngedientesArray);
+
+        return ingredients;
     }
 
 
