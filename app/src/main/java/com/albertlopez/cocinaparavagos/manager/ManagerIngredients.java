@@ -56,16 +56,13 @@ public class ManagerIngredients implements Serializable {
         return new ArrayList<>(tipesIngredients);
     }
 
-    public ArrayList<String> viewIngredients(){
-        ArrayList<String> nombreIngredientes = new ArrayList<>();
-        for (int i = 0; i < this.tiposIngredientsArray.size() ; i++) {
-            System.out.println("Ingredientes "+tiposIngredientsArray.get(i).getNombreIngrediente());
-            nombreIngredientes.add(tiposIngredientsArray.get(i).getNombreIngrediente());
+    public ArrayList<Ingredient> viewIngredientsBase(){
+        HashSet<Ingredient> tipesIngredients = new HashSet<>();
+        for (int i = 0; i < this.ingredientsArray.size() ; i++) {
+            tipesIngredients.add(ingredientsArray.get(i));
         }
-        return nombreIngredientes;
+        return new ArrayList<>(tipesIngredients);
     }
-    
-    
 
     public ArrayList<Ingredient> returnIngredientsForTipeIngredients(int posicion){ //metodo usado para separar los ingredientes por tipo
         ArrayList<String> tiposIngredientes = viewAllIngredients();
