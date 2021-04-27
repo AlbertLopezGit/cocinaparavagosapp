@@ -18,7 +18,7 @@ public class IngredientsBaseActivity extends AppCompatActivity{
 
     ManagerIngredients managerIngredient;
     ListView lista;
-    ArrayAdapter adapter;
+    AdaptadorIngredientesBase adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,7 +38,7 @@ public class IngredientsBaseActivity extends AppCompatActivity{
         loadingIngredients();
 
         lista = (ListView) findViewById(R.id.listIngredients);
-        adapter = new ArrayAdapter(this, android.R.layout.simple_list_item_1,managerIngredient.viewAllIngredients());
+        adapter = new AdaptadorIngredientesBase(managerIngredient.viewIngredientsBase(),this);
         lista.setAdapter(adapter);
 
 

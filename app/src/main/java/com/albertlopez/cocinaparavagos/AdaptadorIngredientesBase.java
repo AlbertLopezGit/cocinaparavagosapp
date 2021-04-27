@@ -46,9 +46,11 @@ public class AdaptadorIngredientesBase  extends BaseAdapter {
         TextView textView = convertView.findViewById(R.id.tvIngrediente);
 
 
+        imgFoto = (ImageView)convertView.findViewById(R.id.imagenIngrediente);
+
         String image = ingrediente.getImagen();
-        textView.setText(ingrediente.getNombreIngrediente());
-        Picasso.with(context).load(image).fit().centerInside().into(imgFoto);
+        textView.setText(ingrediente.getClasificacionIngredientes());
+        Picasso.with(context).load(image).fit().centerInside().into(convertView.imgFoto);
 
         return convertView;
     }

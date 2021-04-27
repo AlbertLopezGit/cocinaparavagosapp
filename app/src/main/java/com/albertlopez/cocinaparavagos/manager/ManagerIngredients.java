@@ -10,6 +10,8 @@ import org.json.JSONObject;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 import java.util.HashSet;
 
 
@@ -57,11 +59,14 @@ public class ManagerIngredients implements Serializable {
     }
 
     public ArrayList<Ingredient> viewIngredientsBase(){
-        HashSet<Ingredient> tipesIngredients = new HashSet<>();
+
+        HashMap<String, Ingredient> ingredientesBaseMap = new HashMap<String, Ingredient>();
         for (int i = 0; i < this.ingredientsArray.size() ; i++) {
-            tipesIngredients.add(ingredientsArray.get(i));
+            ingredientesBaseMap.put(ingredientsArray.get(i).getClasificacionIngredientes(),ingredientsArray.get(i));
         }
-        return new ArrayList<>(tipesIngredients);
+        Collection<Ingredient> values = ingredientesBaseMap.values();
+        ArrayList<Ingredient> listOfIngredients = new ArrayList<>(values);
+        return new ArrayList<>(listOfIngredients);
     }
 
     public ArrayList<Ingredient> returnIngredientsForTipeIngredients(int posicion){ //metodo usado para separar los ingredientes por tipo
