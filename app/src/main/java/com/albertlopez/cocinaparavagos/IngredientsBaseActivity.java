@@ -14,10 +14,11 @@ import com.albertlopez.cocinaparavagos.model.Ingredient;
 
 import java.util.ArrayList;
 
-public class IngredientsBaseActivity extends AppCompatActivity {
+public class IngredientsBaseActivity extends AppCompatActivity implements RecyclerViewIngredientesAdaptador.OnNoteListener {
 
     ManagerIngredients managerIngredient;
     ListView lista;
+    ArrayList<Ingredient> IngedientesArray;
     ArrayAdapter adapter;
 
     @Override
@@ -44,7 +45,7 @@ public class IngredientsBaseActivity extends AppCompatActivity {
     }
 
     private void loadingIngredients() {
-        ArrayList<Ingredient> IngedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("Ingredientes");
+        IngedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("Ingredientes");
         managerIngredient.setIngredientsArray(IngedientesArray);
     }
 
@@ -56,4 +57,8 @@ public class IngredientsBaseActivity extends AppCompatActivity {
     }
 
 
+    @Override
+    public void onNoteClick(int position) {
+
+    }
 }

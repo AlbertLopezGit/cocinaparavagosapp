@@ -11,16 +11,17 @@ public class Ingredient implements Serializable{
     private String clasificacionIngredientes;
     @SerializedName("INGREDIENTEBASE")
     private int ingredienteBase;
-    @SerializedName("IMAGEN_INGREDIENTES")
+    @SerializedName("IMAGEN_INGREDIENTE")
     private String imagen;
 
     public Ingredient() {
     }
 
-    public Ingredient(String nombreIngrediente, String clasificacionIngredientes, int ingredienteBase) {
+    public Ingredient(String nombreIngrediente, String clasificacionIngredientes, int ingredienteBase, String imagen) {
         this.nombreIngrediente = nombreIngrediente;
         this.clasificacionIngredientes = clasificacionIngredientes;
         this.ingredienteBase = ingredienteBase;
+        this.imagen = imagen;
 
     }
 
@@ -31,6 +32,7 @@ public class Ingredient implements Serializable{
     public void setNombreIngrediente(String nombreIngrediente) {
         this.nombreIngrediente = nombreIngrediente;
     }
+
 
 
     public String getClasificacionIngredientes() {

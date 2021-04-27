@@ -35,7 +35,7 @@ public class IngredientsActivity extends AppCompatActivity {
 
         loadingIngredients();
 
-        adaptadorIngrediente = new RecyclerViewIngredientesAdaptador(ingredientesMostrados());
+        adaptadorIngrediente = new RecyclerViewIngredientesAdaptador(this,IngedientesArray);
         recyclerViewIngrediente.setAdapter(adaptadorIngrediente);
     }
 
@@ -48,11 +48,6 @@ public class IngredientsActivity extends AppCompatActivity {
         managerIngredient.settiposIngredientsArray(IngedientesArray);
     }
 
-    public List<Ingredient>ingredientesMostrados() {
-        List<Ingredient> ingredients = new ArrayList<>(IngedientesArray);
-
-        return ingredients;
-    }
 
 
 

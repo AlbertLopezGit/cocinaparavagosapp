@@ -1,5 +1,6 @@
 package com.albertlopez.cocinaparavagos;
 
+import android.content.Context;
 import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -14,13 +15,19 @@ import androidx.recyclerview.widget.RecyclerView;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.squareup.picasso.Picasso;
 
+import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewIngredientesAdaptador extends RecyclerView.Adapter<RecyclerViewIngredientesAdaptador.ViewHolder> {
+    private Context context;
+    private ArrayList<Ingredient> ingredientesArray;
 
-    public List<Ingredient> ingredientesList;
+    public RecyclerViewIngredientesAdaptador(Context context,ArrayList<Ingredient> ingredientesArray) {
+        this.context = context;
+        this.ingredientesArray = ingredientesArray;
+    }
 
-    public static class ViewHolder extends RecyclerView.ViewHolder{
+    public class ViewHolder extends RecyclerView.ViewHolder{
         private TextView tvIngrediente;
         private ImageView imagenIngrediente;
 
@@ -32,28 +39,36 @@ public class RecyclerViewIngredientesAdaptador extends RecyclerView.Adapter<Recy
         }
     }
 
-    public RecyclerViewIngredientesAdaptador(List<Ingredient> ingredientesLista) {
-        this.ingredientesList = ingredientesLista;
+    public interface OnNoteListener{
+        void onNoteClick(int position);
+
+    }
+
+    @NonNull
+    @Override
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        View v = LayoutInflater.from(context).inflate(R.layout.items_ingredientes,parent,false);
+        return new ViewHolder(v);
     }
 
     @Override
-    public ViewHolder onCreateViewHolder(ViewGroup parent, int viewType) {
-        View view = LayoutInflater.from(parent.getContext()).inflate(R.layout.items_ingredientes,parent,false);
-        return new ViewHolder(view);
-    }
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Ingredient ingredient = ingredientesArray.get(position);
 
-    @Override
-    public void onBindViewHolder(ViewHolder holder, int position) {
-        holder.tvIngrediente.setText(ingredientesList.get(position).getNombreIngrediente());
+        String image = ingredient.getImagen();
+        String nombre = ingredient.getNombreIngrediente();
+
+        holder.tvIngrediente.setText(nombre);
+        Picasso.with(context).load(image).fit().centerInside().into(holder.imagenIngrediente);
     }
 
     @Override
     public int getItemCount() {
-        return ingredientesList.size();
+        return ingredientesArray.size();
     }
 
-    public interface OnNoteListener{
-        void onNoteClick(int position);
-    }
+
+
+
 
 }
