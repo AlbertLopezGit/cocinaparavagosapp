@@ -12,6 +12,7 @@ import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.albertlopez.cocinaparavagos.model.Ingredient;
+import com.squareup.picasso.Picasso;
 
 import java.util.List;
 
