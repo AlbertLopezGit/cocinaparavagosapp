@@ -14,16 +14,25 @@ import com.albertlopez.cocinaparavagos.model.Ingredient;
 
 import java.util.ArrayList;
 
-public class IngredientsBaseActivity extends AppCompatActivity implements RecyclerViewIngredientesAdaptador.OnNoteListener {
+public class IngredientsBaseActivity extends AppCompatActivity{
 
     ManagerIngredients managerIngredient;
     ListView lista;
-    ArrayList<Ingredient> IngedientesArray;
     ArrayAdapter adapter;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+
+        //Para esconder la barra superior
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+
         managerIngredient = new ManagerIngredients();
         setContentView(R.layout.activity_ingredients_base);
         loadingIngredients();
@@ -45,7 +54,7 @@ public class IngredientsBaseActivity extends AppCompatActivity implements Recycl
     }
 
     private void loadingIngredients() {
-        IngedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("Ingredientes");
+        ArrayList<Ingredient> IngedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("Ingredientes");
         managerIngredient.setIngredientsArray(IngedientesArray);
     }
 
@@ -57,8 +66,4 @@ public class IngredientsBaseActivity extends AppCompatActivity implements Recycl
     }
 
 
-    @Override
-    public void onNoteClick(int position) {
-
-    }
 }
