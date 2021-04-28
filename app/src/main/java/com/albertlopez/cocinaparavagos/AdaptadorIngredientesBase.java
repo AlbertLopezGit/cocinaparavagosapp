@@ -41,7 +41,7 @@ public class AdaptadorIngredientesBase  extends BaseAdapter {
     public View getView(int position, View convertView, ViewGroup parent) {
         Ingredient ingrediente =(Ingredient)getItem(position);
 
-        convertView = LayoutInflater.from(context).inflate(R.layout.items_ingredientes,null);
+        convertView = LayoutInflater.from(context).inflate(R.layout.items_ingredientesbase,null);
         ImageView imgFoto = convertView.findViewById(R.id.imageView3);
         TextView textView = convertView.findViewById(R.id.tvIngrediente);
 
@@ -50,7 +50,7 @@ public class AdaptadorIngredientesBase  extends BaseAdapter {
 
         String image = ingrediente.getImagen();
         textView.setText(ingrediente.getClasificacionIngredientes());
-        Picasso.with(context).load(image).fit().centerInside().into(convertView.imgFoto);
+        Picasso.with(context).load(image).fit().centerInside().into(imgFoto);
 
         return convertView;
     }
