@@ -1,6 +1,6 @@
 package com.albertlopez.cocinaparavagos;
-import androidx.appcompat.app.AppCompatActivity;
 
+import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
 import android.media.AudioManager;
 import android.media.SoundPool;
@@ -9,9 +9,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.Button;
 import android.widget.ImageView;
-
-import com.android.volley.RequestQueue;
-import com.android.volley.toolbox.Volley;
 
 public class LoginActivity extends AppCompatActivity {
 

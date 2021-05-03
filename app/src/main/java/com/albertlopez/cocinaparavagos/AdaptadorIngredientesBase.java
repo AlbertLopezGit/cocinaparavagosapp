@@ -14,8 +14,8 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 
 public class AdaptadorIngredientesBase  extends BaseAdapter {
-    private ArrayList<Ingredient> ingredients;
-    private Context context;
+    private final ArrayList<Ingredient> ingredients;
+    private final Context context;
 
     public AdaptadorIngredientesBase(ArrayList<Ingredient> ingredients, Context context) {
         this.ingredients = ingredients;

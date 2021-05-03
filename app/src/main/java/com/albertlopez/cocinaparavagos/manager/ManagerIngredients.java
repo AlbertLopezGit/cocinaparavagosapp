@@ -2,12 +2,9 @@ package com.albertlopez.cocinaparavagos.manager;
 
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.google.gson.Gson;
-
-
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
-
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;

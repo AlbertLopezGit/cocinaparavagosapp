@@ -19,17 +19,17 @@ import java.util.ArrayList;
 import java.util.List;
 
 public class RecyclerViewIngredientesAdaptador extends RecyclerView.Adapter<RecyclerViewIngredientesAdaptador.ViewHolder> {
-    private Context context;
-    private ArrayList<Ingredient> ingredientesArray;
+    private final Context context;
+    private final ArrayList<Ingredient> ingredientesArray;
 
     public RecyclerViewIngredientesAdaptador(Context context,ArrayList<Ingredient> ingredientesArray) {
         this.context = context;
         this.ingredientesArray = ingredientesArray;
     }
 
-    public class ViewHolder extends RecyclerView.ViewHolder{
-        private TextView tvIngrediente;
-        private ImageView imagenIngrediente;
+    public static class ViewHolder extends RecyclerView.ViewHolder{
+        private final TextView tvIngrediente;
+        private final ImageView imagenIngrediente;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
