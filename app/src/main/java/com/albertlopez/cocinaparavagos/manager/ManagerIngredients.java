@@ -8,6 +8,7 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
+import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -51,12 +52,13 @@ public class ManagerIngredients implements Serializable {
     }
 
     public ArrayList<Ingredient> viewIngredientsBase(){
-
         HashMap<String, Ingredient> ingredientesBaseMap = new HashMap<String, Ingredient>();
         for (int i = 0; i < this.ingredientsArray.size() ; i++) {
             ingredientesBaseMap.put(ingredientsArray.get(i).getClasificacionIngredientes(),ingredientsArray.get(i));
         }
         Collection<Ingredient> values = ingredientesBaseMap.values();
+
+
         ArrayList<Ingredient> listOfIngredients = new ArrayList<>(values);
         return new ArrayList<>(listOfIngredients);
     }
@@ -71,6 +73,4 @@ public class ManagerIngredients implements Serializable {
         }
         return ingredientesSeleccionado;
     }
-
-
 }

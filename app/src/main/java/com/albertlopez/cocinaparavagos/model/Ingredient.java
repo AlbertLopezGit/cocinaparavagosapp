@@ -34,14 +34,12 @@ public class Ingredient implements Serializable{
     public void setNombreIngrediente(String nombreIngrediente) {
         this.nombreIngrediente = nombreIngrediente;
     }
-
     public String getClasificacionIngredientes() {
         return clasificacionIngredientes;
     }
     public void setClasificacionIngredientes(String clasificacionIngredientes) {
         this.clasificacionIngredientes = clasificacionIngredientes;
     }
-
     public String getImagen() {
         return imagen;
     }

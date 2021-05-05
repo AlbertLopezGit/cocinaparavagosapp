@@ -11,7 +11,7 @@
         android:id="@+id/mas2"
         android:layout_width="92dp"
         android:layout_height="91dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="42dp"
         android:background="@drawable/button_redondeado"
         android:text="+"
         android:textSize="50dp"
@@ -23,7 +23,7 @@
         android:id="@+id/mas"
         android:layout_width="92dp"
         android:layout_height="91dp"
-        android:layout_marginTop="32dp"
+        android:layout_marginTop="42dp"
         android:layout_marginEnd="114dp"
         android:background="@drawable/button_redondeado"
         android:text="-"
@@ -54,8 +54,8 @@
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toTopOf="@+id/toolbar4"
-        app:layout_constraintVertical_bias="0.14" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar4"
+        app:layout_constraintVertical_bias="0.0" />
 
     <ImageView
         android:id="@+id/imageView2"
@@ -93,5 +93,15 @@
         app:layout_constraintTop_toBottomOf="@+id/toolbar4"
         app:layout_constraintVertical_bias="0.073"
         tools:srcCompat="@tools:sample/avatars" />
+
+    <TextView
+        android:id="@+id/tipoUnidad"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"
+        android:text="TextView"
+        android:textSize="24sp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar5" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -15,8 +15,8 @@ import java.util.ArrayList;
 
 public class IngredientDetailsActivity extends AppCompatActivity {
 
-    private  TextView tvIngrediente;
-    private  ImageView imagenIngrediente;
+    private TextView tvIngrediente,tipoUnidad;
+    private ImageView imagenIngrediente;
     private Ingredient ingredienteSeleccionado;
 
     @Override
@@ -36,11 +36,12 @@ public class IngredientDetailsActivity extends AppCompatActivity {
         loadingIngredients();
 
         tvIngrediente = findViewById(R.id.nombreIngrediente);
+        tipoUnidad = tvIngrediente = findViewById(R.id.tipoUnidad);
         imagenIngrediente = findViewById(R.id.imagenIngrediente);
 
         String image = ingredienteSeleccionado.getImagen();
         tvIngrediente.setText(ingredienteSeleccionado.getNombreIngrediente());
-
+        tipoUnidad.setText(ingredienteSeleccionado.getValorMedida());
         Picasso.with(this).load(image).into(imagenIngrediente);
 
     }
