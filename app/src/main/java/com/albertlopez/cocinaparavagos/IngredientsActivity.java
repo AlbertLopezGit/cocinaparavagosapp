@@ -4,8 +4,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
+
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.Toast;
+
 import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import java.util.ArrayList;
@@ -16,6 +20,7 @@ public class IngredientsActivity extends AppCompatActivity {
     private RecyclerView recyclerViewIngrediente;
     private RecyclerViewIngredientesAdaptador adaptadorIngrediente;
     ManagerIngredients managerIngredient;
+    Ingredient ingredienteSeleccionado;
     ArrayList<Ingredient> IngedientesArray;
     Toolbar toolbar;
 
@@ -42,6 +47,15 @@ public class IngredientsActivity extends AppCompatActivity {
         loadingIngredients();
 
         adaptadorIngrediente = new RecyclerViewIngredientesAdaptador(this,IngedientesArray);
+
+        adaptadorIngrediente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ingredienteSeleccionado = IngedientesArray.get(recyclerViewIngrediente.getChildAdapterPosition(v));
+                openIngredientsActivity(ingredienteSeleccionado);
+            }
+        });
+
         recyclerViewIngrediente.setAdapter(adaptadorIngrediente);
     }
 
@@ -52,6 +66,13 @@ public class IngredientsActivity extends AppCompatActivity {
         System.out.println("CANTIDAD TOTAL "+ AllIngredientesArray.size());
         managerIngredient.setIngredientsArray(AllIngredientesArray);
         managerIngredient.settiposIngredientsArray(IngedientesArray);
+    }
+
+    public void openIngredientsActivity(Ingredient ingredienteSeleccionado) {
+        Intent intent = new Intent(this, IngredientDetailsActivity.class);
+        intent.putExtra("ingredienteSeleccionado", ingredienteSeleccionado);
+        intent.putExtra("ingredientes",managerIngredient.getIngredientsArray());
+        startActivity(intent);
     }
 
 

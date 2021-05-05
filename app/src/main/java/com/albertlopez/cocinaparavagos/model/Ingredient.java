@@ -21,7 +21,7 @@ public class Ingredient implements Serializable{
 
     public Ingredient(String nombreIngrediente, String clasificacionIngredientes, int ingredienteBase, String imagen, String valorMedida) {
         this.nombreIngrediente = nombreIngrediente; //nombre del ingrediente
-        this.clasificacionIngredientes = clasificacionIngredientes; //fruta, verdura, especias, verdura
+        this.clasificacionIngredientes = clasificacionIngredientes; //fruta, verdura, especias
         this.ingredienteBase = ingredienteBase; //0 = ingrediente base y 1 = insertado por el usuario
         this.imagen = imagen; //link donde queda la imagen del ingrediente en el servidor
         this.valorMedida = valorMedida; //unidad, gramos, litros
@@ -34,12 +34,14 @@ public class Ingredient implements Serializable{
     public void setNombreIngrediente(String nombreIngrediente) {
         this.nombreIngrediente = nombreIngrediente;
     }
+
     public String getClasificacionIngredientes() {
         return clasificacionIngredientes;
     }
     public void setClasificacionIngredientes(String clasificacionIngredientes) {
         this.clasificacionIngredientes = clasificacionIngredientes;
     }
+
     public String getImagen() {
         return imagen;
     }

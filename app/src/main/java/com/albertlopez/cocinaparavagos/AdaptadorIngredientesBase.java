@@ -46,7 +46,7 @@ public class AdaptadorIngredientesBase  extends BaseAdapter {
         TextView textView = convertView.findViewById(R.id.tvIngrediente);
 
 
-        imgFoto = (ImageView)convertView.findViewById(R.id.imagenIngrediente);
+        imgFoto = convertView.findViewById(R.id.imagenIngrediente);
 
         String image = ingrediente.getImagen();
         textView.setText(ingrediente.getClasificacionIngredientes());

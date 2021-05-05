@@ -18,9 +18,10 @@ import com.squareup.picasso.Picasso;
 import java.util.ArrayList;
 import java.util.List;
 
-public class RecyclerViewIngredientesAdaptador extends RecyclerView.Adapter<RecyclerViewIngredientesAdaptador.ViewHolder> {
+public class RecyclerViewIngredientesAdaptador extends RecyclerView.Adapter<RecyclerViewIngredientesAdaptador.ViewHolder> implements View.OnClickListener{
     private final Context context;
     private final ArrayList<Ingredient> ingredientesArray;
+    private View.OnClickListener listener;
 
     public RecyclerViewIngredientesAdaptador(Context context,ArrayList<Ingredient> ingredientesArray) {
         this.context = context;
@@ -33,7 +34,6 @@ public class RecyclerViewIngredientesAdaptador extends RecyclerView.Adapter<Recy
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
-
             tvIngrediente = (TextView)itemView.findViewById(R.id.tvIngrediente);
             imagenIngrediente = (ImageView)itemView.findViewById(R.id.imagenIngrediente);
         }
@@ -48,6 +48,8 @@ public class RecyclerViewIngredientesAdaptador extends RecyclerView.Adapter<Recy
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.items_ingredientes,parent,false);
+
+        v.setOnClickListener(this);
         return new ViewHolder(v);
     }
 
@@ -67,7 +69,16 @@ public class RecyclerViewIngredientesAdaptador extends RecyclerView.Adapter<Recy
         return ingredientesArray.size();
     }
 
+    public void setOnClickListener (View.OnClickListener listener) {
+        this.listener = listener;
+    }
 
+    @Override
+    public void onClick(View v) {
+        if (listener != null) {
+            listener.onClick(v);
+        }
+    }
 
 
 
