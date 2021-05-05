@@ -8,29 +8,45 @@
     tools:context=".IngredientDetailsActivity">
 
     <Button
-        android:id="@+id/mas2"
-        android:layout_width="92dp"
-        android:layout_height="91dp"
-        android:layout_marginTop="42dp"
-        android:background="@drawable/button_redondeado"
-        android:text="+"
-        android:textSize="50dp"
-        app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintStart_toEndOf="@+id/mas"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar5" />
-
-    <Button
         android:id="@+id/mas"
         android:layout_width="92dp"
         android:layout_height="91dp"
-        android:layout_marginTop="42dp"
-        android:layout_marginEnd="114dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_redondeado"
+        android:backgroundTint="@color/teal_200"
+        android:text="+"
+        android:textColor="@color/teal_200"
+        android:textSize="50dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toEndOf="@+id/menos"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar6" />
+
+    <Button
+        android:id="@+id/menos"
+        android:layout_width="92dp"
+        android:layout_height="91dp"
+        android:layout_marginTop="16dp"
+        android:layout_marginEnd="170dp"
         android:background="@drawable/button_redondeado"
         android:text="-"
+        android:textColor="#FF0101"
         android:textSize="50dp"
-        app:layout_constraintEnd_toStartOf="@+id/mas2"
+        app:layout_constraintEnd_toStartOf="@+id/mas"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/toolbar5" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar6" />
+
+    <Button
+        android:id="@+id/aceptar"
+        android:layout_width="164dp"
+        android:layout_height="57dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_redondeado"
+        android:text="Insertar"
+        android:textColor="#FFFFFF"
+        android:textSize="24dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/dondeLosNumeros" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar4"
@@ -43,6 +59,18 @@
         app:layout_constraintHorizontal_bias="0.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar6"
+        android:layout_width="0dp"
+        android:layout_height="32dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar5" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar5"
@@ -103,5 +131,19 @@
         app:layout_constraintEnd_toEndOf="parent"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar5" />
+
+    <TextView
+        android:id="@+id/dondeLosNumeros"
+        android:layout_width="141dp"
+        android:layout_height="61dp"
+        android:layout_marginTop="32dp"
+        android:background="#FFFFFF"
+        android:gravity="center"
+        android:text="0"
+        android:textSize="30sp"
+        app:layout_constraintEnd_toStartOf="@+id/mas"
+        app:layout_constraintHorizontal_bias="0.493"
+        app:layout_constraintStart_toEndOf="@+id/menos"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar6" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>
