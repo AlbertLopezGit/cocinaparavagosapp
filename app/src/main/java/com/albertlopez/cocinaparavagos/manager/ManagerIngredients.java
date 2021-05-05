@@ -17,7 +17,6 @@ public class ManagerIngredients implements Serializable {
     ArrayList<Ingredient> ingredientsArray;
     ArrayList<Ingredient> tiposIngredientsArray;
 
-
     public void addIngredientsBase(String response) throws JSONException {
         JSONArray jsonResponse = new JSONArray(response);
         ingredientsArray = new ArrayList<>();
@@ -27,22 +26,18 @@ public class ManagerIngredients implements Serializable {
             JSONObject ingrediente = jsonResponse.getJSONObject(i);
             Ingredient ingredient = gson.fromJson(String.valueOf(ingrediente),Ingredient.class);
             ingredientsArray.add(ingredient);
-
         }
     }
 
     public void setIngredientsArray(ArrayList<Ingredient> ingredientsArray) {
         this.ingredientsArray = ingredientsArray;
     }
-
     public void settiposIngredientsArray(ArrayList<Ingredient> ingredientsArray) {
         this.tiposIngredientsArray = ingredientsArray;
     }
-
     public ArrayList<Ingredient> getIngredientsArray() {
         return ingredientsArray;
     }
-
     public ArrayList<Ingredient> getTiposIngredientsArray() {
         return tiposIngredientsArray;
     }
