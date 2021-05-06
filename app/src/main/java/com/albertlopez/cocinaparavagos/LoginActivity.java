@@ -45,7 +45,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
         capibara.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -63,8 +62,4 @@ public class LoginActivity extends AppCompatActivity {
     public void capibaraSound() {
         sp.play(sound,1,1,1,0,0);
     }
-
-
-
-
 }

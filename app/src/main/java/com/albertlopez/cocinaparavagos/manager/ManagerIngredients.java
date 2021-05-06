@@ -8,10 +8,8 @@ import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.ArrayList;
 import java.util.Collection;
-import java.util.Comparator;
 import java.util.HashMap;
 import java.util.HashSet;
-
 
 public class ManagerIngredients implements Serializable {
     Gson gson = new Gson();
@@ -57,7 +55,6 @@ public class ManagerIngredients implements Serializable {
             ingredientesBaseMap.put(ingredientsArray.get(i).getClasificacionIngredientes(),ingredientsArray.get(i));
         }
         Collection<Ingredient> values = ingredientesBaseMap.values();
-
 
         ArrayList<Ingredient> listOfIngredients = new ArrayList<>(values);
         return new ArrayList<>(listOfIngredients);

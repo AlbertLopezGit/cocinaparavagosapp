@@ -1,25 +1,25 @@
 package com.albertlopez.cocinaparavagos;
 
 import androidx.appcompat.app.AppCompatActivity;
-
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
+import android.widget.Toast;
 
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.squareup.picasso.Picasso;
 
-import java.sql.SQLOutput;
 import java.util.ArrayList;
 
 public class IngredientDetailsActivity extends AppCompatActivity {
 
     private TextView tvIngrediente,tipoUnidad;
     private ImageView imagenIngrediente;
-    private Button botonMas,botonMenos;
+    private Button botonMas,botonMenos,insertar;
     private Ingredient ingredienteSeleccionado;
+    private ArrayList<Ingredient> ingredientesIntroducidos;
     private TextView numero;
     private int cantidad;
 
@@ -39,11 +39,13 @@ public class IngredientDetailsActivity extends AppCompatActivity {
 
         loadingIngredients();
 
+        ingredientesIntroducidos = new ArrayList<>();
         tvIngrediente = findViewById(R.id.nombreIngrediente);
         tipoUnidad =  findViewById(R.id.tipoUnidad);
         imagenIngrediente = findViewById(R.id.imagenIngrediente);
         botonMas = findViewById(R.id.mas);
         botonMenos = findViewById(R.id.menos);
+        insertar = findViewById(R.id.insertar);
         numero = findViewById(R.id.dondeLosNumeros);
 
         String image = ingredienteSeleccionado.getImagen();
@@ -64,6 +66,28 @@ public class IngredientDetailsActivity extends AppCompatActivity {
                 restar();
             }
         });
+
+        insertar.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                insertar();
+            }
+        });
+    }
+
+    private void insertar() {
+        if(cantidad <= 0) {
+            Toast.makeText(IngredientDetailsActivity.this,
+                    "No tienes nada que insertar ",Toast.LENGTH_SHORT)
+                    .show();
+        } else {
+            this.ingredienteSeleccionado.setCantidad(conversionTipo((double) cantidad));
+            ingredientesIntroducidos.add(this.ingredienteSeleccionado);
+            Toast.makeText(IngredientDetailsActivity.this,
+                    ingredienteSeleccionado.getCantidad() +" "+ ingredienteSeleccionado.getValorMedida() + " Introducidos",Toast.LENGTH_SHORT)
+                    .show();
+            finish();
+        }
     }
 
     private void restar() {
@@ -73,14 +97,32 @@ public class IngredientDetailsActivity extends AppCompatActivity {
         } else {
             cantidad = 0;
         }
+        ingredienteSeleccionado.setCantidad(cantidad);
     }
 
     private void sumar() {
         cantidad++;
         numero.setText(String.valueOf(cantidad));
+        ingredienteSeleccionado.setCantidad(cantidad);
     }
 
     private void loadingIngredients() {
         ingredienteSeleccionado = (Ingredient) getIntent().getSerializableExtra("ingredienteSeleccionado");
+    }
+
+    private Double conversionTipo(Double cantidad) {
+        String tipoMedida = ingredienteSeleccionado.getValorMedida();
+        Double resultado = 0.0;
+
+        if (tipoMedida.equalsIgnoreCase("gramos")) {
+            resultado = cantidad/1000;
+            return resultado;
+        } else if(tipoMedida.equalsIgnoreCase("litros")) {
+            return resultado;
+        } else if(tipoMedida.equalsIgnoreCase("unidades")) {
+            return resultado;
+        }
+
+        return resultado;
     }
 }
