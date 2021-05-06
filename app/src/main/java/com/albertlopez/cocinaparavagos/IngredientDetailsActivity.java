@@ -118,11 +118,10 @@ public class IngredientDetailsActivity extends AppCompatActivity {
             resultado = cantidad/1000;
             return resultado;
         } else if(tipoMedida.equalsIgnoreCase("litros")) {
-            return resultado;
+            return cantidad;
         } else if(tipoMedida.equalsIgnoreCase("unidades")) {
-            return resultado;
+            return cantidad;
         }
-
-        return resultado;
+        return cantidad;
     }
 }
