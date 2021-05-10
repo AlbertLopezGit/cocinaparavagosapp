@@ -15,13 +15,13 @@ import java.util.ArrayList;
 
 public class IngredientDetailsActivity extends AppCompatActivity {
 
-    private TextView tvIngrediente,tipoUnidad;
-    private ImageView imagenIngrediente;
-    private Button botonMas,botonMenos,insertar;
-    private Ingredient ingredienteSeleccionado;
-    private ArrayList<Ingredient> ingredientesIntroducidos;
-    private TextView numero;
-    private int cantidad;
+    TextView tvIngrediente,tipoUnidad;
+    ImageView imagenIngrediente;
+    Button botonMas,botonMenos,insertar;
+    Ingredient ingredienteSeleccionado;
+    ArrayList<Ingredient> ingredientesIntroducidos;
+    TextView numeros;
+    int cantidad = 0;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -46,7 +46,8 @@ public class IngredientDetailsActivity extends AppCompatActivity {
         botonMas = findViewById(R.id.mas);
         botonMenos = findViewById(R.id.menos);
         insertar = findViewById(R.id.insertar);
-        numero = findViewById(R.id.dondeLosNumeros);
+        numeros = findViewById(R.id.loDelosNumeros);
+        numeros.setText("0");
 
         String image = ingredienteSeleccionado.getImagen();
         tvIngrediente.setText(ingredienteSeleccionado.getNombreIngrediente());
@@ -56,13 +57,15 @@ public class IngredientDetailsActivity extends AppCompatActivity {
         botonMas.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-              sumar();
+                parsearCantidadYNumeros();
+                sumar();
             }
         });
 
         botonMenos.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                parsearCantidadYNumeros();
                 restar();
             }
         });
@@ -70,9 +73,14 @@ public class IngredientDetailsActivity extends AppCompatActivity {
         insertar.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
+                parsearCantidadYNumeros();
                 insertar();
             }
         });
+    }
+
+    private void parsearCantidadYNumeros() {
+        cantidad = Integer.parseInt(numeros.getText().toString());
     }
 
     private void insertar() {
@@ -93,16 +101,17 @@ public class IngredientDetailsActivity extends AppCompatActivity {
     private void restar() {
         cantidad--;
         if (cantidad >= 0) {
-            numero.setText(String.valueOf(cantidad));
+            numeros.setText(String.valueOf(cantidad));
         } else {
             cantidad = 0;
         }
+
         ingredienteSeleccionado.setCantidad(cantidad);
     }
 
     private void sumar() {
         cantidad++;
-        numero.setText(String.valueOf(cantidad));
+        numeros.setText(String.valueOf(cantidad));
         ingredienteSeleccionado.setCantidad(cantidad);
     }
 
@@ -112,7 +121,7 @@ public class IngredientDetailsActivity extends AppCompatActivity {
 
     private Double conversionTipo(Double cantidad) {
         String tipoMedida = ingredienteSeleccionado.getValorMedida();
-        Double resultado = 0.0;
+        double resultado = 0.0;
 
         if (tipoMedida.equalsIgnoreCase("gramos")) {
             resultado = cantidad/1000;

@@ -39,14 +39,15 @@
         android:id="@+id/insertar"
         android:layout_width="164dp"
         android:layout_height="57dp"
-        android:layout_marginTop="16dp"
+        android:layout_marginTop="120dp"
         android:background="@drawable/button_redondeado"
         android:text="Insertar"
         android:textColor="#4F5254"
         android:textSize="24dp"
         app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
-        app:layout_constraintTop_toBottomOf="@+id/dondeLosNumeros" />
+        app:layout_constraintTop_toBottomOf="@+id/toolbar6" />
 
     <androidx.appcompat.widget.Toolbar
         android:id="@+id/toolbar4"
@@ -132,17 +133,18 @@
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar5" />
 
-    <TextView
-        android:id="@+id/dondeLosNumeros"
-        android:layout_width="141dp"
-        android:layout_height="61dp"
-        android:layout_marginTop="32dp"
-        android:background="#FFFFFF"
+    <EditText
+        android:id="@+id/loDelosNumeros"
+        android:layout_width="175dp"
+        android:layout_height="85dp"
+        android:background="@drawable/redonditaazul"
+        android:backgroundTint="#FFFFFF"
+        android:ems="10"
         android:gravity="center"
-        android:text="0"
-        android:textSize="30sp"
+        android:inputType="number"
+        android:textSize="24dp"
+        app:layout_constraintBottom_toTopOf="@+id/insertar"
         app:layout_constraintEnd_toStartOf="@+id/mas"
-        app:layout_constraintHorizontal_bias="0.493"
         app:layout_constraintStart_toEndOf="@+id/menos"
         app:layout_constraintTop_toBottomOf="@+id/toolbar6" />
 

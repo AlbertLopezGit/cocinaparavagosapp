@@ -21,7 +21,8 @@ public class UserCreator {
     RegisterActivity registerActivity;
     ManagerUser managerUser;
 
-    public void createUser(final String nombre, final String pass, final String email, final RequestQueue requestQueue, RegisterActivity registerActivity) throws NoSuchAlgorithmException {
+    public void createUser(final String nombre, final String pass, final String email,
+                           final RequestQueue requestQueue, RegisterActivity registerActivity) throws NoSuchAlgorithmException {
         managerUser = new ManagerUser();
         String encriptPass = managerUser.encryptPass(pass);
 
