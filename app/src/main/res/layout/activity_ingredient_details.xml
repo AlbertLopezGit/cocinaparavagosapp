@@ -37,15 +37,14 @@
 
     <Button
         android:id="@+id/insertar"
-        android:layout_width="164dp"
-        android:layout_height="57dp"
-        android:layout_marginTop="120dp"
+        android:layout_width="167dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="116dp"
         android:background="@drawable/button_redondeado"
         android:text="Insertar"
         android:textColor="#4F5254"
-        android:textSize="24dp"
+        android:textSize="22dp"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.497"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar6" />
 
@@ -135,8 +134,8 @@
 
     <EditText
         android:id="@+id/loDelosNumeros"
-        android:layout_width="175dp"
-        android:layout_height="85dp"
+        android:layout_width="155dp"
+        android:layout_height="91dp"
         android:background="@drawable/redonditaazul"
         android:backgroundTint="#FFFFFF"
         android:ems="10"
