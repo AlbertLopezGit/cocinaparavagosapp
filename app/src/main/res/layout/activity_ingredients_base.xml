@@ -26,26 +26,39 @@
         android:divider="?attr/selectableItemBackground"
         app:layout_constraintBottom_toBottomOf="parent"
         app:layout_constraintEnd_toEndOf="parent"
-        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintHorizontal_bias="1.0"
         app:layout_constraintStart_toStartOf="parent"
         app:layout_constraintTop_toBottomOf="@+id/toolbar3"
-        app:layout_constraintVertical_bias="0.0">
+        app:layout_constraintVertical_bias="1.0">
 
     </ListView>
 
-    <Button
-        android:id="@+id/botonIngredientesDelUsuario"
-        android:layout_width="44dp"
-        android:layout_height="40dp"
-        android:layout_marginTop="4dp"
-        android:layout_marginEnd="16dp"
-        android:layout_marginBottom="4dp"
+    <TextView
+        android:id="@+id/botonIngredientes"
+        android:layout_width="47dp"
+        android:layout_height="46dp"
+        android:layout_marginEnd="8dp"
         android:background="@drawable/button_redondo"
-        android:text="Button"
-        android:textColor="#FF5722"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:textColor="#FF0000"
+        android:textSize="20dp"
         android:visibility="invisible"
         app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
         app:layout_constraintEnd_toEndOf="@+id/toolbar3"
         app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textoIngredientesUsuario"
+        android:layout_width="92dp"
+        android:layout_height="25dp"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:text="Ingredientes"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
+        app:layout_constraintEnd_toStartOf="@+id/botonIngredientes"
+        app:layout_constraintTop_toTopOf="@+id/toolbar3"
+        tools:visibility="invisible" />
 
 </androidx.constraintlayout.widget.ConstraintLayout>

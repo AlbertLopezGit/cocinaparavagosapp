@@ -9,6 +9,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ImageButton;
 import android.widget.ListView;
+import android.widget.TextView;
 
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
 import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
@@ -20,7 +21,8 @@ public class IngredientsBaseActivity extends AppCompatActivity{
     ManagerIngredients managerIngredient;
     ListView lista;
     AdaptadorIngredientesBase adapter;
-    Button bottonIngredientesUsuario;
+    TextView botonRedondo;
+    TextView textoIngredientes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,8 +44,9 @@ public class IngredientsBaseActivity extends AppCompatActivity{
         lista = (ListView) findViewById(R.id.listIngredients);
         adapter = new AdaptadorIngredientesBase(managerIngredient.viewIngredientsBase(),this);
         lista.setAdapter(adapter);
-        bottonIngredientesUsuario = findViewById(R.id.botonIngredientesDelUsuario);
-
+        botonRedondo = findViewById(R.id.botonIngredientes);
+        textoIngredientes = findViewById(R.id.textoIngredientesUsuario);
+        textoIngredientes.setVisibility(View.INVISIBLE);
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
@@ -73,8 +76,9 @@ public class IngredientsBaseActivity extends AppCompatActivity{
         if (ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size() == 0) {
             System.out.println("no tengo nada para ti");
         } else {
-            bottonIngredientesUsuario.setVisibility(View.VISIBLE);
-            bottonIngredientesUsuario.setText(String.valueOf(ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size()));
+            textoIngredientes.setVisibility(View.VISIBLE);
+            botonRedondo.setVisibility(View.VISIBLE);
+            botonRedondo.setText(String.valueOf(ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size()));
             System.out.println("tenemos alguna cosa");
             System.out.println(ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size());
         }

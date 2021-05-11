@@ -8,6 +8,7 @@ import androidx.recyclerview.widget.RecyclerView;
 import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
@@ -25,6 +26,8 @@ public class IngredientsActivity extends AppCompatActivity {
     Ingredient ingredienteSeleccionado;
     ArrayList<Ingredient> IngedientesArray;
     Toolbar toolbar;
+    TextView botonRedondo;
+    TextView textoIngredientes;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -43,6 +46,9 @@ public class IngredientsActivity extends AppCompatActivity {
         setContentView(R.layout.activity_ingredients);
         toolbar = findViewById(R.id.toolbar2);
 
+        botonRedondo = findViewById(R.id.botonIngredientes3);
+        textoIngredientes = findViewById(R.id.textoIngredientesUsuario3);
+        textoIngredientes.setVisibility(View.INVISIBLE);
         recyclerViewIngrediente = (RecyclerView)findViewById(R.id.recyclerIngredientes);
         recyclerViewIngrediente.setLayoutManager(new GridLayoutManager(this,2));
 
@@ -82,6 +88,9 @@ public class IngredientsActivity extends AppCompatActivity {
         if (ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size() == 0) {
             System.out.println("no tengo nada para ti");
         } else {
+            textoIngredientes.setVisibility(View.VISIBLE);
+            botonRedondo.setVisibility(View.VISIBLE);
+            botonRedondo.setText(String.valueOf(ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size()));
             System.out.println("tenemos alguna cosa");
             System.out.println(ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size());
         }
