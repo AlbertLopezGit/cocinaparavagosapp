@@ -1,0 +1,68 @@
+package com.albertlopez.cocinaparavagos.model;
+
+import com.google.gson.annotations.SerializedName;
+
+import java.io.Serializable;
+
+public class Recipe implements Serializable {
+    @SerializedName("NOMBRERECETA")
+    private String nombreReceta;
+    @SerializedName("DESCRIPCIONRECETA")
+    private String descripcion;
+    @SerializedName("NOMBREINGREDIENTESTOTALES")
+    private String ingredientesParaLaReceta;
+    @SerializedName("RECETADEBASE")
+    private int modoReceta;
+    @SerializedName("IMAGEN_RECETA")
+    private String imagenReceta;
+
+    public Recipe () {}
+
+    public Recipe(String nombreReceta, String descripcion, String ingredientesParaLaReceta, int modoReceta, String imagenReceta) {
+        this.nombreReceta = nombreReceta;
+        this.descripcion = descripcion;
+        this.ingredientesParaLaReceta = ingredientesParaLaReceta;
+        this.modoReceta = modoReceta;
+        this.imagenReceta = imagenReceta;
+    }
+
+    public String getNombreReceta() {
+        return nombreReceta;
+    }
+
+    public void setNombreReceta(String nombreReceta) {
+        this.nombreReceta = nombreReceta;
+    }
+
+    public String getDescripcion() {
+        return descripcion;
+    }
+
+    public void setDescripcion(String descripcion) {
+        this.descripcion = descripcion;
+    }
+
+    public String getIngredientesParaLaReceta() {
+        return ingredientesParaLaReceta;
+    }
+
+    public void setIngredientesParaLaReceta(String ingredientesParaLaReceta) {
+        this.ingredientesParaLaReceta = ingredientesParaLaReceta;
+    }
+
+    public int getModoReceta() {
+        return modoReceta;
+    }
+
+    public void setModoReceta(int modoReceta) {
+        this.modoReceta = modoReceta;
+    }
+
+    public String getImagenReceta() {
+        return imagenReceta;
+    }
+
+    public void setImagenReceta(String imagenReceta) {
+        this.imagenReceta = imagenReceta;
+    }
+}

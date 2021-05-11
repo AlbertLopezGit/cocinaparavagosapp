@@ -10,6 +10,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.albertlopez.cocinaparavagos.bbdd.Bbdd;
 import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
+import com.albertlopez.cocinaparavagos.manager.ManagerRecetas;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -27,6 +28,7 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
     Handler handler;
     int stepCounter;
     ManagerIngredients managerIngredient;
+    ManagerRecetas managerRecetas;
     boolean errorNetwork; //si no conecta con el server el booleano queda como true y no deja pasar al menu principal
 
     @Override
@@ -47,6 +49,7 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
         errorNetwork = false;
         loadingText = findViewById(R.id.loadingText);
         managerIngredient = new ManagerIngredients();
+        managerRecetas = new ManagerRecetas();
         handler = new Handler();
         stepCounter = 0;
         handler.postDelayed(this,0);
@@ -64,12 +67,76 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
             handler.postDelayed(this,1000);
         } else if (stepCounter == 2){
             loadingText.setText("Cargando Datos");
-            stepCounter++;
-            handler.postDelayed(this,1000);
+            RequestQueue queue = Volley.newRequestQueue(this);
+            StringRequest request = new StringRequest(
+                    Request.Method.GET,
+                    Bbdd.recetasCantidades,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                managerRecetas.addCantidadesRecetas(response);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            stepCounter++;
+                            handler.postDelayed(SplashActivity.this, 1000);
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            String msg = "Network error (timeout or disconnected)";
+                            Toast.makeText(SplashActivity.this,
+                                    "Error al Conectar con el Servidor ",Toast.LENGTH_SHORT)
+                                    .show();
+                            errorNetwork = true;
+                            if (error.networkResponse != null) {
+                                msg = "ERROR: " + error.networkResponse.statusCode;
+
+                            }
+                            Log.d("Albert", msg);
+                            stepCounter++;
+                            handler.postDelayed(SplashActivity.this, 1000);
+                        }
+                    });
+            queue.add(request);
         } else if (stepCounter == 3){
             loadingText.setText("Cargando Recetas");
-            stepCounter++;
-            handler.postDelayed(this,1000);
+            RequestQueue queue = Volley.newRequestQueue(this);
+            StringRequest request = new StringRequest(
+                    Request.Method.GET,
+                    Bbdd.recetas,
+                    new Response.Listener<String>() {
+                        @Override
+                        public void onResponse(String response) {
+                            try {
+                                managerRecetas.addRecetasBase(response);
+                            } catch (JSONException e) {
+                                e.printStackTrace();
+                            }
+                            stepCounter++;
+                            handler.postDelayed(SplashActivity.this, 1000);
+                        }
+                    },
+                    new Response.ErrorListener() {
+                        @Override
+                        public void onErrorResponse(VolleyError error) {
+                            String msg = "Network error (timeout or disconnected)";
+                            Toast.makeText(SplashActivity.this,
+                                    "Error al Conectar con el Servidor ",Toast.LENGTH_SHORT)
+                                    .show();
+                            errorNetwork = true;
+                            if (error.networkResponse != null) {
+                                msg = "ERROR: " + error.networkResponse.statusCode;
+
+                            }
+                            Log.d("Albert", msg);
+                            stepCounter++;
+                            handler.postDelayed(SplashActivity.this, 1000);
+                        }
+                    });
+            queue.add(request);
         } else if (stepCounter == 4){
             loadingText.setText("Descargando Ingredientes");
             RequestQueue queue = Volley.newRequestQueue(this);
@@ -85,7 +152,7 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
                                 e.printStackTrace();
                             }
                             stepCounter++;
-                            handler.postDelayed(SplashActivity.this, 2000);
+                            handler.postDelayed(SplashActivity.this, 1000);
                         }
                     },
                     new Response.ErrorListener() {

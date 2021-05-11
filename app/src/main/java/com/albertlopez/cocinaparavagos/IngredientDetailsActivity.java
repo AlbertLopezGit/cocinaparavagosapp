@@ -8,6 +8,7 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.squareup.picasso.Picasso;
 
@@ -19,7 +20,6 @@ public class IngredientDetailsActivity extends AppCompatActivity {
     ImageView imagenIngrediente;
     Button botonMas,botonMenos,insertar;
     Ingredient ingredienteSeleccionado;
-    ArrayList<Ingredient> ingredientesIntroducidos;
     TextView numeros;
     int cantidad = 0;
 
@@ -39,7 +39,6 @@ public class IngredientDetailsActivity extends AppCompatActivity {
 
         loadingIngredients();
 
-        ingredientesIntroducidos = new ArrayList<>();
         tvIngrediente = findViewById(R.id.nombreIngrediente);
         tipoUnidad =  findViewById(R.id.tipoUnidad);
         imagenIngrediente = findViewById(R.id.imagenIngrediente);
@@ -48,7 +47,6 @@ public class IngredientDetailsActivity extends AppCompatActivity {
         insertar = findViewById(R.id.insertar);
         numeros = findViewById(R.id.loDelosNumeros);
         numeros.setText("0");
-
         String image = ingredienteSeleccionado.getImagen();
         tvIngrediente.setText(ingredienteSeleccionado.getNombreIngrediente());
         tipoUnidad.setText(ingredienteSeleccionado.getValorMedida());
@@ -90,7 +88,7 @@ public class IngredientDetailsActivity extends AppCompatActivity {
                     .show();
         } else {
             this.ingredienteSeleccionado.setCantidad(conversionTipo((double) cantidad));
-            ingredientesIntroducidos.add(this.ingredienteSeleccionado);
+            ManagerAllRecipes.ingredientesIntroducidosPorELUsuario.add(this.ingredienteSeleccionado);
             Toast.makeText(IngredientDetailsActivity.this,
                     ingredienteSeleccionado.getCantidad() +" "+ ingredienteSeleccionado.getValorMedida() + " Introducidos",Toast.LENGTH_SHORT)
                     .show();

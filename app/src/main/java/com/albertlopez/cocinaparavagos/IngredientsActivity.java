@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
 import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import java.util.ArrayList;
@@ -20,6 +21,7 @@ public class IngredientsActivity extends AppCompatActivity {
     private RecyclerView recyclerViewIngrediente;
     private RecyclerViewIngredientesAdaptador adaptadorIngrediente;
     ManagerIngredients managerIngredient;
+    ArrayList<Ingredient> IngredientesGuardadoPorELUsuario;
     Ingredient ingredienteSeleccionado;
     ArrayList<Ingredient> IngedientesArray;
     Toolbar toolbar;
@@ -75,8 +77,17 @@ public class IngredientsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+    @Override
+    protected void onResume() {
+        super.onResume();
 
-
+        if (ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size() == 0) {
+            System.out.println("no tengo nada para ti");
+        } else {
+            System.out.println("tenemos alguna cosa");
+            System.out.println(ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size());
+        }
+    }
 
 
 }
