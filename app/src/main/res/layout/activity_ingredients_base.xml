@@ -32,4 +32,20 @@
         app:layout_constraintVertical_bias="0.0">
 
     </ListView>
+
+    <Button
+        android:id="@+id/botonIngredientesDelUsuario"
+        android:layout_width="44dp"
+        android:layout_height="40dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="16dp"
+        android:layout_marginBottom="4dp"
+        android:background="@drawable/button_redondo"
+        android:text="Button"
+        android:textColor="#FF5722"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar3"
+        app:layout_constraintTop_toTopOf="parent" />
+
 </androidx.constraintlayout.widget.ConstraintLayout>

@@ -19,7 +19,7 @@ import java.util.ArrayList;
 public class IngredientsActivity extends AppCompatActivity {
 
     private RecyclerView recyclerViewIngrediente;
-    private RecyclerViewIngredientesAdaptador adaptadorIngrediente;
+    RecyclerViewIngredientesAdaptador adaptadorIngrediente;
     ManagerIngredients managerIngredient;
     ArrayList<Ingredient> IngredientesGuardadoPorELUsuario;
     Ingredient ingredienteSeleccionado;
@@ -57,7 +57,6 @@ public class IngredientsActivity extends AppCompatActivity {
                 openIngredientsActivity(ingredienteSeleccionado);
             }
         });
-
         recyclerViewIngrediente.setAdapter(adaptadorIngrediente);
     }
 
@@ -80,7 +79,6 @@ public class IngredientsActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
         if (ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size() == 0) {
             System.out.println("no tengo nada para ti");
         } else {
@@ -88,6 +86,4 @@ public class IngredientsActivity extends AppCompatActivity {
             System.out.println(ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size());
         }
     }
-
-
 }

@@ -6,7 +6,11 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
+import android.widget.Button;
+import android.widget.ImageButton;
 import android.widget.ListView;
+
+import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
 import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import java.util.ArrayList;
@@ -16,6 +20,7 @@ public class IngredientsBaseActivity extends AppCompatActivity{
     ManagerIngredients managerIngredient;
     ListView lista;
     AdaptadorIngredientesBase adapter;
+    Button bottonIngredientesUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,7 +42,7 @@ public class IngredientsBaseActivity extends AppCompatActivity{
         lista = (ListView) findViewById(R.id.listIngredients);
         adapter = new AdaptadorIngredientesBase(managerIngredient.viewIngredientsBase(),this);
         lista.setAdapter(adapter);
-
+        bottonIngredientesUsuario = findViewById(R.id.botonIngredientesDelUsuario);
 
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -60,6 +65,19 @@ public class IngredientsBaseActivity extends AppCompatActivity{
         intent.putExtra("TiposIngredientes", tiposIngredientes);
         intent.putExtra("ingredientes",managerIngredient.getIngredientsArray());
         startActivity(intent);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size() == 0) {
+            System.out.println("no tengo nada para ti");
+        } else {
+            bottonIngredientesUsuario.setVisibility(View.VISIBLE);
+            bottonIngredientesUsuario.setText(String.valueOf(ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size()));
+            System.out.println("tenemos alguna cosa");
+            System.out.println(ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size());
+        }
     }
 
 
