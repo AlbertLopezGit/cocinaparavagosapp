@@ -37,6 +37,7 @@ public class ManagerAllRecipes {
             }
         }
 
+        
 
         return ingredientesIntroducidosPorELUsuario;
     }
