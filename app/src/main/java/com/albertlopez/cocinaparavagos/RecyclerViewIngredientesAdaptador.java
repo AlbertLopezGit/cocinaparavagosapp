@@ -49,6 +49,9 @@ public class RecyclerViewIngredientesAdaptador extends RecyclerView.Adapter<Recy
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.items_ingredientes,parent,false);
+        if (this.tipoDeReclicler == 1) {
+            v = LayoutInflater.from(context).inflate(R.layout.items_ingredientesdetails,parent,false);
+        }
 
         v.setOnClickListener(this);
         return new ViewHolder(v);

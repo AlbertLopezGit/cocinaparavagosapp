@@ -7,6 +7,7 @@ import androidx.annotation.RequiresApi;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.IllegalFormatCodePointException;
@@ -36,10 +37,10 @@ public class ManagerAllRecipes {
                 //TODO LIO
             }
         }
+        Collection<Ingredient> values = ingredientesMap.values();
 
-        
-
-        return ingredientesIntroducidosPorELUsuario;
+        ArrayList<Ingredient> listOfIngredients = new ArrayList<>(values);
+        return new ArrayList<>(listOfIngredients);
     }
 
 
