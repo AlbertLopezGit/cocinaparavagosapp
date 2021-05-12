@@ -33,22 +33,6 @@ public class ManagerAllRecipes {
         ingredientesIntroducidosPorELUsuario.sort(Comparator.comparing(Ingredient::getNombreIngrediente));
         for (Ingredient i: ingredientesIntroducidosPorELUsuario) {
             ingredientesMap.put(i.getNombreIngrediente(),i);
-            for (String key : ingredientesMap.keySet()) {
-                if (key.equals(i.getNombreIngrediente())) {
-                    contador++;
-                    if (contador == 3) {
-                        if (key.equals(i.getNombreIngrediente())) {
-                            double total = Objects.requireNonNull(ingredientesMap.get(key)).getCantidad();
-                            total += i.getCantidad();
-                            Objects.requireNonNull(ingredientesMap.get(key)).setCantidad(total);
-                            contador = 0;
-                        }
-
-                    }
-                } else {
-                    contador = 0;
-                }
-            }
         }
 
         Collection<Ingredient> values = ingredientesMap.values();
