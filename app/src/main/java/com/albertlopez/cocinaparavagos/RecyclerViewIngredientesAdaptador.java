@@ -1,12 +1,10 @@
 package com.albertlopez.cocinaparavagos;
 
 import android.content.Context;
-import android.text.Layout;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ImageView;
-import android.widget.ListAdapter;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -16,25 +14,28 @@ import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.squareup.picasso.Picasso;
 
 import java.util.ArrayList;
-import java.util.List;
 
 public class RecyclerViewIngredientesAdaptador extends RecyclerView.Adapter<RecyclerViewIngredientesAdaptador.ViewHolder> implements View.OnClickListener{
     private final Context context;
     private final ArrayList<Ingredient> ingredientesArray;
     private View.OnClickListener listener;
+    private int tipoDeReclicler = 0; //si es 0 no mostrara cantidades si es 1 si mostrara cantidades
 
-    public RecyclerViewIngredientesAdaptador(Context context,ArrayList<Ingredient> ingredientesArray) {
+
+    public RecyclerViewIngredientesAdaptador(Context context, ArrayList<Ingredient> ingredientesArray, int tipo) {
         this.context = context;
         this.ingredientesArray = ingredientesArray;
+        this.tipoDeReclicler = tipo;
     }
 
     public static class ViewHolder extends RecyclerView.ViewHolder{
-        private final TextView tvIngrediente;
+        private final TextView tvIngrediente,cantidades;
         private final ImageView imagenIngrediente;
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
             tvIngrediente = (TextView)itemView.findViewById(R.id.tvIngrediente);
+            cantidades = (TextView)itemView.findViewById(R.id.canitdades);
             imagenIngrediente = (ImageView)itemView.findViewById(R.id.imagenIngrediente);
         }
     }
@@ -59,6 +60,14 @@ public class RecyclerViewIngredientesAdaptador extends RecyclerView.Adapter<Recy
 
         String image = ingredient.getImagen();
         String nombre = ingredient.getNombreIngrediente();
+
+        if (this.tipoDeReclicler == 1) {
+
+            Double cantidades = ingredient.getCantidad();
+            String textoCantidadaes = String.valueOf(cantidades) + " " + ingredient.getValorMedida();
+            holder.cantidades.setVisibility(View.VISIBLE);
+            holder.cantidades.setText(textoCantidadaes);
+        }
 
         holder.tvIngrediente.setText(nombre);
         Picasso.with(context).load(image).fit().centerInside().into(holder.imagenIngrediente);

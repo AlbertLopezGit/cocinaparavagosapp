@@ -1,8 +1,10 @@
 package com.albertlopez.cocinaparavagos;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
@@ -56,6 +58,25 @@ public class IngredientsBaseActivity extends AppCompatActivity{
                 openIngredientsActivity(tiposIngredientes);
             }
         });
+
+        textoIngredientes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listaIngredientes();
+            }
+        });
+
+        botonRedondo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listaIngredientes();
+            }
+        });
+    }
+
+    private void listaIngredientes() {
+        Intent intent = new Intent(this, IngredientsSelected.class);
+        startActivity(intent);
     }
 
     private void loadingIngredients() {
@@ -70,6 +91,7 @@ public class IngredientsBaseActivity extends AppCompatActivity{
         startActivity(intent);
     }
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onResume() {
         super.onResume();

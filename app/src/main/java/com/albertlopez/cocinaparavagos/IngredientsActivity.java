@@ -1,11 +1,13 @@
 package com.albertlopez.cocinaparavagos;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
@@ -54,7 +56,7 @@ public class IngredientsActivity extends AppCompatActivity {
 
         loadingIngredients();
 
-        adaptadorIngrediente = new RecyclerViewIngredientesAdaptador(this,IngedientesArray);
+        adaptadorIngrediente = new RecyclerViewIngredientesAdaptador(this,IngedientesArray,0);
 
         adaptadorIngrediente.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -64,6 +66,26 @@ public class IngredientsActivity extends AppCompatActivity {
             }
         });
         recyclerViewIngrediente.setAdapter(adaptadorIngrediente);
+
+        textoIngredientes.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listaIngredientes();
+            }
+        });
+
+        botonRedondo.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listaIngredientes();
+            }
+        });
+
+    }
+
+    private void listaIngredientes() {
+        Intent intent = new Intent(this, IngredientsSelected.class);
+        startActivity(intent);
     }
 
     private void loadingIngredients() {
@@ -82,6 +104,9 @@ public class IngredientsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
+
+
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onResume() {
         super.onResume();
