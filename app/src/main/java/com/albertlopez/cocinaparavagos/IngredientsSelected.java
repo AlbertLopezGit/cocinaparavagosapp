@@ -1,9 +1,11 @@
 package com.albertlopez.cocinaparavagos;
 
+import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
@@ -14,6 +16,7 @@ public class IngredientsSelected extends AppCompatActivity {
     private RecyclerView recyclerViewIngrediente;
     RecyclerViewIngredientesAdaptador adaptadorIngrediente;
 
+    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -36,4 +39,24 @@ public class IngredientsSelected extends AppCompatActivity {
         recyclerViewIngrediente.setAdapter(adaptadorIngrediente);
 
     }
+
+    @Override
+    protected void onResume() {
+        ocultarBarras();
+        super.onResume();
+    }
+
+
+    private void ocultarBarras(){
+        //Para esconder la barra superior
+        View decorView = getWindow().getDecorView();
+        int uiOptions = View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
+                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
+                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
+                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
+                | View.SYSTEM_UI_FLAG_FULLSCREEN;
+        decorView.setSystemUiVisibility(uiOptions);
+    }
+
+
 }
