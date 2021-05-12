@@ -22,15 +22,6 @@ public class IngredientsSelected extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingredients_selected);
 
-        //Para esconder la barra superior
-        View decorView = getWindow().getDecorView();
-        int uiOptions = View.SYSTEM_UI_FLAG_IMMERSIVE_STICKY
-                | View.SYSTEM_UI_FLAG_LAYOUT_STABLE
-                | View.SYSTEM_UI_FLAG_LAYOUT_HIDE_NAVIGATION
-                | View.SYSTEM_UI_FLAG_LAYOUT_FULLSCREEN
-                | View.SYSTEM_UI_FLAG_FULLSCREEN;
-        decorView.setSystemUiVisibility(uiOptions);
-
         recyclerViewIngrediente = (RecyclerView)findViewById(R.id.listaIngredientes);
         recyclerViewIngrediente.setLayoutManager(new GridLayoutManager(this,2));
 
@@ -46,7 +37,6 @@ public class IngredientsSelected extends AppCompatActivity {
         super.onResume();
     }
 
-
     private void ocultarBarras(){
         //Para esconder la barra superior
         View decorView = getWindow().getDecorView();
@@ -57,6 +47,5 @@ public class IngredientsSelected extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
     }
-
 
 }

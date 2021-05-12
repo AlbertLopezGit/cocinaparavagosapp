@@ -11,6 +11,7 @@ import java.util.Collection;
 import java.util.Comparator;
 import java.util.HashMap;
 import java.util.IllegalFormatCodePointException;
+import java.util.Objects;
 
 public class ManagerAllRecipes {
 
@@ -30,19 +31,30 @@ public class ManagerAllRecipes {
         HashMap<String,Ingredient> ingredientesMap = new HashMap<>();
         int contador = 0;
         ingredientesIntroducidosPorELUsuario.sort(Comparator.comparing(Ingredient::getNombreIngrediente));
-
         for (Ingredient i: ingredientesIntroducidosPorELUsuario) {
             ingredientesMap.put(i.getNombreIngrediente(),i);
             for (String key : ingredientesMap.keySet()) {
-                //TODO LIO
+                if (key.equals(i.getNombreIngrediente())) {
+                    contador++;
+                    if (contador == 3) {
+                        if (key.equals(i.getNombreIngrediente())) {
+                            double total = Objects.requireNonNull(ingredientesMap.get(key)).getCantidad();
+                            total += i.getCantidad();
+                            Objects.requireNonNull(ingredientesMap.get(key)).setCantidad(total);
+                            contador = 0;
+                        }
+
+                    }
+                } else {
+                    contador = 0;
+                }
             }
         }
-        Collection<Ingredient> values = ingredientesMap.values();
 
+        Collection<Ingredient> values = ingredientesMap.values();
         ArrayList<Ingredient> listOfIngredients = new ArrayList<>(values);
         return new ArrayList<>(listOfIngredients);
     }
-
 
     //Ingredient ingredient = new Ingredient(i.getNombreIngrediente(),i.getClasificacionIngredientes(),i.getIngredienteBase(),i.getImagen(),i.getValorMedida());
 

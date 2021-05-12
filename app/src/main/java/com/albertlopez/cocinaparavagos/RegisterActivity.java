@@ -91,7 +91,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                     .show();
             return false;
         }
-
         return true;
     }
 
@@ -114,8 +113,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         Matcher mather = pattern.matcher(email);
         return mather.find();
     }
-
-
 
     @Override
     public void onPointerCaptureChanged(boolean hasCapture) {
