@@ -38,4 +38,19 @@ public class ManagerRecetas implements Serializable{
         }
     }
 
+    public ArrayList<Recipe> getRecipesArray() {
+        return recipesArray;
+    }
+
+    public ArrayList<RecipeIngredients> getRecipesIngredientsArray() {
+        return recipesIngredientsArray;
+    }
+
+    public void setRecipesArray(ArrayList<Recipe> recipesArray) {
+        this.recipesArray = recipesArray;
+    }
+
+    public void setRecipesIngredientsArray(ArrayList<RecipeIngredients> recipesIngredientsArray) {
+        this.recipesIngredientsArray = recipesIngredientsArray;
+    }
 }

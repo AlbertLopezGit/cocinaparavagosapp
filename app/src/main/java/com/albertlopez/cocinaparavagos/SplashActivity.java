@@ -12,6 +12,8 @@ import com.albertlopez.cocinaparavagos.bbdd.Bbdd;
 import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
 import com.albertlopez.cocinaparavagos.manager.ManagerRecetas;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
+import com.albertlopez.cocinaparavagos.model.Recipe;
+import com.albertlopez.cocinaparavagos.model.RecipeIngredients;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -178,7 +180,15 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
                 Intent intent = new Intent(this, MainActivity.class);
                 finish();
                 ArrayList<Ingredient> ingredientesArray;
+                ArrayList<Recipe> recipesArray;
+                ArrayList<RecipeIngredients> recipesIngredientsArray;
+
+                recipesIngredientsArray = managerRecetas.getRecipesIngredientsArray();
+                recipesArray = managerRecetas.getRecipesArray();
                 ingredientesArray = managerIngredient.getIngredientsArray();
+
+                intent.putExtra("RecetasCantidades", recipesIngredientsArray);
+                intent.putExtra("Recetas", recipesArray);
                 intent.putExtra("Ingredientes", ingredientesArray);
                 startActivity(intent);
             } else {

@@ -21,7 +21,7 @@ import java.util.ArrayList;
 
 public class IngredientsActivity extends AppCompatActivity {
 
-    private RecyclerView recyclerViewIngrediente;
+    RecyclerView recyclerViewIngrediente;
     RecyclerViewIngredientesAdaptador adaptadorIngrediente;
     ManagerIngredients managerIngredient;
     ArrayList<Ingredient> IngredientesGuardadoPorELUsuario;
