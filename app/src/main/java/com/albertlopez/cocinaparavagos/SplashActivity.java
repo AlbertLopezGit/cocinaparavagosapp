@@ -9,6 +9,7 @@ import android.view.View;
 import android.widget.TextView;
 import android.widget.Toast;
 import com.albertlopez.cocinaparavagos.bbdd.Bbdd;
+import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
 import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
 import com.albertlopez.cocinaparavagos.manager.ManagerRecetas;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
@@ -186,6 +187,9 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
                 recipesIngredientsArray = managerRecetas.getRecipesIngredientsArray();
                 recipesArray = managerRecetas.getRecipesArray();
                 ingredientesArray = managerIngredient.getIngredientsArray();
+
+                ManagerAllRecipes.setRecipes(recipesArray);
+                ManagerAllRecipes.setRecipesCantidades(recipesIngredientsArray);
 
                 intent.putExtra("RecetasCantidades", recipesIngredientsArray);
                 intent.putExtra("Recetas", recipesArray);

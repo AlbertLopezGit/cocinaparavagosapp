@@ -85,6 +85,7 @@ public class IngredientsBaseActivity extends AppCompatActivity{
     @Override
     protected void onResume() {
         super.onResume();
+        ManagerAllRecipes.buscarRecetasQueCoincidenConLosIngredientes();
         ocultarBarras();
         if (ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size() != 0) {
             textoIngredientes.setVisibility(View.VISIBLE);

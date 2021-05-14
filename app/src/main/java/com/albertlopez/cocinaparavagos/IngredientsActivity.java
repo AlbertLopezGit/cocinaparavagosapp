@@ -97,6 +97,7 @@ public class IngredientsActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        ManagerAllRecipes.buscarRecetasQueCoincidenConLosIngredientes();
         ocultarBarras();
         super.onResume();
         comprobarIngredientesBoton();

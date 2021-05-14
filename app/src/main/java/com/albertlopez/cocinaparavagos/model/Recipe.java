@@ -3,6 +3,7 @@ package com.albertlopez.cocinaparavagos.model;
 import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
+import java.util.ArrayList;
 
 public class Recipe implements Serializable {
     @SerializedName("NOMBRERECETA")
@@ -15,6 +16,8 @@ public class Recipe implements Serializable {
     private int modoReceta;
     @SerializedName("IMAGEN_RECETA")
     private String imagenReceta;
+    ArrayList<String>ingredientes = new ArrayList<>();
+    ArrayList<Integer>cantidadesDeLosIngredientes = new ArrayList<>();
 
     public Recipe () {}
 
@@ -24,6 +27,30 @@ public class Recipe implements Serializable {
         this.ingredientesParaLaReceta = ingredientesParaLaReceta;
         this.modoReceta = modoReceta;
         this.imagenReceta = imagenReceta;
+    }
+
+    public void addIngrediente(String ingrediente) {
+        ingredientes.add(ingrediente);
+    }
+
+    public void addCantidadesDeLosIngredientes(int cantidadIngrediente) {
+        cantidadesDeLosIngredientes.add(cantidadIngrediente);
+    }
+
+    public ArrayList<Integer> getCantidadesDeLosIngredientes() {
+        return cantidadesDeLosIngredientes;
+    }
+
+    public ArrayList<String> getIngredientes() {
+        return ingredientes;
+    }
+
+    public void setCantidadesDeLosIngredientes(ArrayList<Integer> cantidadesDeLosIngredientes) {
+        this.cantidadesDeLosIngredientes = cantidadesDeLosIngredientes;
+    }
+
+    public void setIngredientes(ArrayList<String> ingredientes) {
+        this.ingredientes = ingredientes;
     }
 
     public String getNombreReceta() {

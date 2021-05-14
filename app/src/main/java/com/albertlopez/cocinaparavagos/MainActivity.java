@@ -35,6 +35,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+
         super.onCreate(savedInstanceState);
         managerIngredient = new ManagerIngredients();
         managerRecetas = new ManagerRecetas();
@@ -80,6 +81,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         managerIngredient.setIngredientsArray(ingedientesArray);
         managerRecetas.setRecipesArray(recipesArray);
         managerRecetas.setRecipesIngredientsArray(recipeIngredients);
+
+        ManagerAllRecipes.mezclarRecetasConSusIngredientes();
     }
 
     @Override
