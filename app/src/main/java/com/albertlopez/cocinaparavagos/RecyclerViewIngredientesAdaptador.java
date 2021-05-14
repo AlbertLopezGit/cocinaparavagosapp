@@ -51,6 +51,8 @@ public class RecyclerViewIngredientesAdaptador extends RecyclerView.Adapter<Recy
         View v = LayoutInflater.from(context).inflate(R.layout.items_ingredientes,parent,false);
         if (this.tipoDeReclicler == 1) {
             v = LayoutInflater.from(context).inflate(R.layout.items_ingredientesdetails,parent,false);
+        } else if (this.tipoDeReclicler == 3) {
+            v = LayoutInflater.from(context).inflate(R.layout.bottons_ingredientes,parent,false);
         }
 
         v.setOnClickListener(this);
@@ -65,15 +67,17 @@ public class RecyclerViewIngredientesAdaptador extends RecyclerView.Adapter<Recy
         String nombre = ingredient.getNombreIngrediente();
 
         if (this.tipoDeReclicler == 1) {
-
-            Double cantidades = ingredient.getCantidad();
+            int cantidades = ingredient.getCantidad();
             String textoCantidadaes = String.valueOf(cantidades) + " " + ingredient.getValorMedida();
             holder.cantidades.setVisibility(View.VISIBLE);
             holder.cantidades.setText(textoCantidadaes);
         }
 
-        holder.tvIngrediente.setText(nombre);
-        Picasso.with(context).load(image).fit().centerInside().into(holder.imagenIngrediente);
+        if (this.tipoDeReclicler == 1 || this.tipoDeReclicler == 0) {
+            holder.tvIngrediente.setText(nombre);
+            Picasso.with(context).load(image).fit().centerInside().into(holder.imagenIngrediente);
+        }
+
     }
 
     @Override

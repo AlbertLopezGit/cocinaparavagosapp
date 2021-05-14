@@ -15,11 +15,20 @@ public class Ingredient implements Serializable{
     private String imagen;
     @SerializedName("VALOR_MEDIDA")
     private String valorMedida;
-    private double cantidad;
+    private int cantidad;
 
     public Ingredient() {}
 
     public Ingredient(String nombreIngrediente, String clasificacionIngredientes, int ingredienteBase, String imagen, String valorMedida) {
+        this.nombreIngrediente = nombreIngrediente; //nombre del ingrediente
+        this.clasificacionIngredientes = clasificacionIngredientes; //fruta, verdura, especias
+        this.ingredienteBase = ingredienteBase; //0 = ingrediente base y 1 = insertado por el usuario
+        this.imagen = imagen; //link donde queda la imagen del ingrediente en el servidor
+        this.valorMedida = valorMedida; //unidad, gramos, litros
+        this.cantidad = 0;
+    }
+
+    public Ingredient(String nombreIngrediente, String clasificacionIngredientes, int ingredienteBase, String imagen, String valorMedida, int cantidad) {
         this.nombreIngrediente = nombreIngrediente; //nombre del ingrediente
         this.clasificacionIngredientes = clasificacionIngredientes; //fruta, verdura, especias
         this.ingredienteBase = ingredienteBase; //0 = ingrediente base y 1 = insertado por el usuario
@@ -55,10 +64,10 @@ public class Ingredient implements Serializable{
     public void setValorMedida(String valorMedida) {
         this.valorMedida = valorMedida;
     }
-    public double getCantidad() {
+    public int getCantidad() {
         return cantidad;
     }
-    public void setCantidad(double cantidad) {
+    public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
 }

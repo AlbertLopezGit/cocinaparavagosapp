@@ -5,30 +5,81 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
+import com.albertlopez.cocinaparavagos.model.Ingredient;
+
+import java.util.ArrayList;
 
 public class IngredientsSelected extends AppCompatActivity {
 
-    private RecyclerView recyclerViewIngrediente;
-    RecyclerViewIngredientesAdaptador adaptadorIngrediente;
+    RecyclerView recyclerViewIngrediente;
+    RecyclerView recyclerViewBotones;
+    RecyclerViewIngredientesAdaptador adaptadorIngrediente,adaptadorIngrediente2;
+    Ingredient ingredienteSeleccionado;
+    ArrayList<Ingredient> ingredientesIntroducidosPorELUsuario = ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario();
 
-    @RequiresApi(api = Build.VERSION_CODES.N)
+
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_ingredients_selected);
 
         recyclerViewIngrediente = (RecyclerView)findViewById(R.id.listaIngredientes);
-        recyclerViewIngrediente.setLayoutManager(new GridLayoutManager(this,2));
+        recyclerViewBotones = (RecyclerView)findViewById(R.id.listaBotones);
+
+        recyclerViewIngrediente.setLayoutManager(new GridLayoutManager(this,1));
+        recyclerViewBotones.setLayoutManager(new GridLayoutManager(this,1));
 
         adaptadorIngrediente = new RecyclerViewIngredientesAdaptador(
-                this, ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario(), 1);
+                this, ingredientesIntroducidosPorELUsuario, 1);
         recyclerViewIngrediente.setAdapter(adaptadorIngrediente);
 
+        adaptadorIngrediente2 = new RecyclerViewIngredientesAdaptador(
+                this, ingredientesIntroducidosPorELUsuario, 3);
+        recyclerViewBotones.setAdapter(adaptadorIngrediente2);
+
+        adaptadorIngrediente2.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ingredienteSeleccionado = ingredientesIntroducidosPorELUsuario.get(recyclerViewIngrediente.getChildAdapterPosition(v));
+                ManagerAllRecipes.borrarIngredientes(ingredienteSeleccionado);
+                nosVamos();
+            }
+        });
+
+        adaptadorIngrediente.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ingredienteSeleccionado = ingredientesIntroducidosPorELUsuario.get(recyclerViewIngrediente.getChildAdapterPosition(v));
+                openIngredientsActivity(ingredienteSeleccionado);
+                finish();
+            }
+        });
+
+
+    }
+
+    private void nosVamos() {
+        if (ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size() > 0) {
+            Intent intent = new Intent(this, IngredientsSelected.class);
+            finish();
+            startActivity(intent);
+        } else {
+            finish();
+        }
+
+    }
+
+    public void openIngredientsActivity(Ingredient ingredienteSeleccionado) {
+        Intent intent = new Intent(this, IngredientDetailsActivity.class);
+        intent.putExtra("ingredienteSeleccionado", ingredienteSeleccionado);
+        startActivity(intent);
     }
 
     @Override

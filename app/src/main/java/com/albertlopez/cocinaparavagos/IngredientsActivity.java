@@ -95,22 +95,26 @@ public class IngredientsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-
-    @RequiresApi(api = Build.VERSION_CODES.N)
     @Override
     protected void onResume() {
         ocultarBarras();
         super.onResume();
-        if (ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size() == 0) {
-            System.out.println("no tengo nada para ti");
-        } else {
+        comprobarIngredientesBoton();
+
+    }
+
+    private void comprobarIngredientesBoton() {
+        int recetas = ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size();
+        if (recetas != 0) {
             textoIngredientes.setVisibility(View.VISIBLE);
             botonRedondo.setVisibility(View.VISIBLE);
             botonRedondo.setText(String.valueOf(ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size()));
-            System.out.println("tenemos alguna cosa");
             System.out.println(ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size());
+        } else {
+            textoIngredientes.setVisibility(View.INVISIBLE);
+            botonRedondo.setVisibility(View.INVISIBLE);
         }
+
     }
 
     private void ocultarBarras(){

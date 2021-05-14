@@ -37,8 +37,6 @@ public class IngredientDetailsActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
 
-        loadingIngredients();
-
         tvIngrediente = findViewById(R.id.nombreIngrediente);
         tipoUnidad =  findViewById(R.id.tipoUnidad);
         imagenIngrediente = findViewById(R.id.imagenIngrediente);
@@ -47,10 +45,15 @@ public class IngredientDetailsActivity extends AppCompatActivity {
         insertar = findViewById(R.id.insertar);
         numeros = findViewById(R.id.loDelosNumeros);
         numeros.setText("0");
+
+        loadingIngredients();
+
         String image = ingredienteSeleccionado.getImagen();
         tvIngrediente.setText(ingredienteSeleccionado.getNombreIngrediente());
         tipoUnidad.setText(ingredienteSeleccionado.getValorMedida());
         Picasso.with(this).load(image).into(imagenIngrediente);
+
+        ;
 
         botonMas.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,7 +90,7 @@ public class IngredientDetailsActivity extends AppCompatActivity {
                     "No tienes nada que insertar ",Toast.LENGTH_SHORT)
                     .show();
         } else {
-            this.ingredienteSeleccionado.setCantidad(conversionTipo((double) cantidad));
+            this.ingredienteSeleccionado.setCantidad(cantidad);
             ManagerAllRecipes.ingredientesIntroducidosPorELUsuario.add(this.ingredienteSeleccionado);
             Toast.makeText(IngredientDetailsActivity.this,
                     ingredienteSeleccionado.getCantidad() +" "+ ingredienteSeleccionado.getValorMedida() + " Introducidos",Toast.LENGTH_SHORT)
@@ -115,20 +118,7 @@ public class IngredientDetailsActivity extends AppCompatActivity {
 
     private void loadingIngredients() {
         ingredienteSeleccionado = (Ingredient) getIntent().getSerializableExtra("ingredienteSeleccionado");
+        numeros.setText(String.valueOf(ingredienteSeleccionado.getCantidad()));
     }
 
-    private Double conversionTipo(Double cantidad) {
-        String tipoMedida = ingredienteSeleccionado.getValorMedida();
-        double resultado = 0.0;
-
-        if (tipoMedida.equalsIgnoreCase("gramos")) {
-            resultado = cantidad/1000;
-            return resultado;
-        } else if(tipoMedida.equalsIgnoreCase("litros")) {
-            return cantidad;
-        } else if(tipoMedida.equalsIgnoreCase("unidades")) {
-            return cantidad;
-        }
-        return cantidad;
-    }
 }
