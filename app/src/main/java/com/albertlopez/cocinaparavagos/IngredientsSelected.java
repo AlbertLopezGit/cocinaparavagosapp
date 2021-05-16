@@ -62,8 +62,40 @@ public class IngredientsSelected extends AppCompatActivity {
             }
         });
 
+        sincronizarRecyclerView(recyclerViewBotones,recyclerViewIngrediente);
+
+
 
     }
+
+    private void sincronizarRecyclerView(RecyclerView viewBotones, RecyclerView recyclerViewBotones) {
+        final RecyclerView.OnScrollListener[] scrollListeners = new RecyclerView.OnScrollListener[2];
+        scrollListeners[0] = new RecyclerView.OnScrollListener( )
+        {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy)
+            {
+                super.onScrolled(recyclerView, dx, dy);
+                recyclerViewBotones.removeOnScrollListener(scrollListeners[1]);
+                recyclerViewBotones.scrollBy(dx, dy);
+                recyclerViewBotones.addOnScrollListener(scrollListeners[1]);
+            }
+        };
+        scrollListeners[1] = new RecyclerView.OnScrollListener( )
+        {
+            @Override
+            public void onScrolled(RecyclerView recyclerView, int dx, int dy)
+            {
+                super.onScrolled(recyclerView, dx, dy);
+                viewBotones.removeOnScrollListener(scrollListeners[0]);
+                viewBotones.scrollBy(dx, dy);
+                viewBotones.addOnScrollListener(scrollListeners[0]);
+            }
+        };
+        viewBotones.addOnScrollListener(scrollListeners[0]);
+        recyclerViewBotones.addOnScrollListener(scrollListeners[1]);
+    }
+
 
     private void nosVamos() {
         if (ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size() > 0) {
@@ -98,5 +130,7 @@ public class IngredientsSelected extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
     }
+
+
 
 }

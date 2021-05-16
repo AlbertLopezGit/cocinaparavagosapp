@@ -19,7 +19,7 @@ public class RecyclerViewIngredientesAdaptador extends RecyclerView.Adapter<Recy
     private final Context context;
     private final ArrayList<Ingredient> ingredientesArray;
     private View.OnClickListener listener;
-    private int tipoDeReclicler = 0; //si es 0 no mostrara cantidades si es 1 si mostrara cantidades
+    private int tipoDeReclicler = 0; //si es 0 no mostrara cantidades si es 1 si mostrara cantidades el 3 son los botones de eliminar receta
 
 
     public RecyclerViewIngredientesAdaptador(Context context, ArrayList<Ingredient> ingredientesArray, int tipo) {

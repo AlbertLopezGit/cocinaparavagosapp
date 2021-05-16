@@ -57,6 +57,7 @@ public class ManagerAllRecipes {
                     if (x.equals(z.getNombreIngrediente())) {
                         contador++;
                         if (contador == ingredientes.size()) {
+                            System.out.println("Puede hacer "+ i.getNombreReceta());
                             contador = 0;
                         }
                     }
