@@ -1,5 +1,6 @@
 package com.albertlopez.cocinaparavagos;
 
+import androidx.annotation.NonNull;
 import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -73,7 +74,7 @@ public class IngredientsSelected extends AppCompatActivity {
         scrollListeners[0] = new RecyclerView.OnScrollListener( )
         {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy)
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy)
             {
                 super.onScrolled(recyclerView, dx, dy);
                 recyclerViewBotones.removeOnScrollListener(scrollListeners[1]);
@@ -84,7 +85,7 @@ public class IngredientsSelected extends AppCompatActivity {
         scrollListeners[1] = new RecyclerView.OnScrollListener( )
         {
             @Override
-            public void onScrolled(RecyclerView recyclerView, int dx, int dy)
+            public void onScrolled(@NonNull RecyclerView recyclerView, int dx, int dy)
             {
                 super.onScrolled(recyclerView, dx, dy);
                 viewBotones.removeOnScrollListener(scrollListeners[0]);
