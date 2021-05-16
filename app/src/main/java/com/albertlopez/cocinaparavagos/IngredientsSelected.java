@@ -69,6 +69,7 @@ public class IngredientsSelected extends AppCompatActivity {
 
     }
 
+    //metodo para sincronizar dos reciclerView
     private void sincronizarRecyclerView(RecyclerView viewBotones, RecyclerView recyclerViewBotones) {
         final RecyclerView.OnScrollListener[] scrollListeners = new RecyclerView.OnScrollListener[2];
         scrollListeners[0] = new RecyclerView.OnScrollListener( )
