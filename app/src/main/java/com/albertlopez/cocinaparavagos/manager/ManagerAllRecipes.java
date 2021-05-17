@@ -3,6 +3,8 @@ package com.albertlopez.cocinaparavagos.manager;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.albertlopez.cocinaparavagos.model.Recipe;
 import com.albertlopez.cocinaparavagos.model.RecipeIngredients;
+
+import java.sql.SQLOutput;
 import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
@@ -66,6 +68,7 @@ public class ManagerAllRecipes {
                     }
                 }
             }
+            System.out.println("COINCIDEN HASH " + ingredientesHash.size());
             compararCantidades(ingredientesHash);
             contador = 0;
         }
@@ -74,6 +77,7 @@ public class ManagerAllRecipes {
     private static void compararCantidades(HashSet<Recipe> ingredientesHash) {
         ArrayList<Recipe> recetasQueCoinciden = new ArrayList<>();
         List<Recipe> recetas = new ArrayList<>(ingredientesHash);
+        System.out.println("Coinciden parse hash "+ recetas.size());
         int contador = 0;
         for (Recipe i: recetas) {
             //System.out.println("RECETAS QUE CONICIDEN "+i.getNombreReceta());
@@ -87,10 +91,12 @@ public class ManagerAllRecipes {
                         contador++;
                         if (contador == arrayListString.size()) {
                             recetasQueCoinciden.add(i);
+                            contador = 0;
                         }
                     }
                 }
             }
+            contador = 0;
         }
 
         recetasQueCoincidenDelTodo = recetasQueCoinciden;
