@@ -24,12 +24,11 @@ public class IngredientsActivity extends AppCompatActivity {
     RecyclerView recyclerViewIngrediente;
     RecyclerViewIngredientesAdaptador adaptadorIngrediente;
     ManagerIngredients managerIngredient;
-    ArrayList<Ingredient> IngredientesGuardadoPorELUsuario;
     Ingredient ingredienteSeleccionado;
     ArrayList<Ingredient> IngedientesArray;
     Toolbar toolbar;
-    TextView botonRedondo;
-    TextView textoIngredientes;
+    TextView botonRedondo,botonRedondoRecetas;
+    TextView textoIngredientes,textoRecetasUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -38,9 +37,12 @@ public class IngredientsActivity extends AppCompatActivity {
         managerIngredient = new ManagerIngredients();
         setContentView(R.layout.activity_ingredients);
         toolbar = findViewById(R.id.toolbar2);
-
+        botonRedondoRecetas = findViewById(R.id.botonRecetas);
         botonRedondo = findViewById(R.id.botonIngredientes3);
+        textoRecetasUsuario = findViewById(R.id.textoRecetasUsuario);
         textoIngredientes = findViewById(R.id.textoIngredientesUsuario3);
+
+        textoRecetasUsuario.setVisibility(View.INVISIBLE);
         textoIngredientes.setVisibility(View.INVISIBLE);
         recyclerViewIngrediente = (RecyclerView)findViewById(R.id.recyclerIngredientes);
         recyclerViewIngrediente.setLayoutManager(new GridLayoutManager(this,2));
@@ -72,12 +74,33 @@ public class IngredientsActivity extends AppCompatActivity {
             }
         });
 
+        textoRecetasUsuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listaRecetas();
+            }
+        });
+
+        botonRedondoRecetas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listaRecetas();
+            }
+        });
+
+    }
+
+    private void listaRecetas() {
+        Intent intent = new Intent(this, RecipesCoincidentesActivity.class);
+        startActivity(intent);
     }
 
     private void listaIngredientes() {
         Intent intent = new Intent(this, IngredientsSelected.class);
         startActivity(intent);
     }
+
+
 
     private void loadingIngredients() {
         IngedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("TiposIngredientes");
@@ -101,7 +124,20 @@ public class IngredientsActivity extends AppCompatActivity {
         ocultarBarras();
         super.onResume();
         comprobarIngredientesBoton();
+        comprobarRecetasBoton();
 
+    }
+
+    private void comprobarRecetasBoton() {
+        int recetasQueCoinciden = ManagerAllRecipes.getRecetasQueCoincidenDelTodo().size();
+        if (recetasQueCoinciden != 0) {
+            textoRecetasUsuario.setVisibility(View.VISIBLE);
+            botonRedondoRecetas.setVisibility(View.VISIBLE);
+            botonRedondoRecetas.setText(String.valueOf(ManagerAllRecipes.getRecetasQueCoincidenDelTodo().size()));
+        } else {
+            textoRecetasUsuario.setVisibility(View.INVISIBLE);
+            botonRedondoRecetas.setVisibility(View.INVISIBLE);
+        }
     }
 
     private void comprobarIngredientesBoton() {
@@ -110,12 +146,10 @@ public class IngredientsActivity extends AppCompatActivity {
             textoIngredientes.setVisibility(View.VISIBLE);
             botonRedondo.setVisibility(View.VISIBLE);
             botonRedondo.setText(String.valueOf(ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size()));
-            System.out.println(ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size());
         } else {
             textoIngredientes.setVisibility(View.INVISIBLE);
             botonRedondo.setVisibility(View.INVISIBLE);
         }
-
     }
 
     private void ocultarBarras(){

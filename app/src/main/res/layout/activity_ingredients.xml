@@ -19,6 +19,46 @@
         app:layout_constraintTop_toTopOf="parent" />
 
     <TextView
+        android:id="@+id/botonRecetas"
+        android:layout_width="47dp"
+        android:layout_height="46dp"
+        android:layout_alignBottom="@+id/toolbar2"
+        android:layout_alignParentStart="true"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="6dp"
+        android:layout_marginTop="3dp"
+        android:layout_marginBottom="7dp"
+        android:background="@drawable/button_redondo"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:textColor="#FF0000"
+        android:textSize="20dp"
+        android:visibility="invisible"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
+        app:layout_constraintStart_toStartOf="@+id/toolbar3"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+        android:id="@+id/textoRecetasUsuario"
+        android:layout_width="wrap_content"
+        android:layout_height="25dp"
+        android:layout_alignBottom="@+id/toolbar2"
+        android:layout_alignParentTop="true"
+        android:layout_marginStart="8dp"
+        android:layout_marginTop="15dp"
+        android:layout_marginBottom="16dp"
+        android:layout_toEndOf="@+id/botonRecetas"
+        android:foregroundGravity="center"
+        android:gravity="center"
+        android:text="Recetas"
+        android:textStyle="bold"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
+        app:layout_constraintStart_toEndOf="@+id/botonRecetas"
+        app:layout_constraintTop_toTopOf="@+id/toolbar3"
+        app:layout_constraintVertical_bias="0.516"
+        tools:visibility="invisible" />
+
+    <TextView
         android:id="@+id/botonIngredientes3"
         android:layout_width="47dp"
         android:layout_height="46dp"
@@ -40,7 +80,7 @@
 
     <TextView
         android:id="@+id/textoIngredientesUsuario3"
-        android:layout_width="92dp"
+        android:layout_width="wrap_content"
         android:layout_height="25dp"
         android:layout_alignBottom="@+id/toolbar2"
         android:layout_alignParentTop="true"

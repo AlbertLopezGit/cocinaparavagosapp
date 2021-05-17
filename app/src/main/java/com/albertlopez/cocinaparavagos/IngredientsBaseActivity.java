@@ -23,8 +23,8 @@ public class IngredientsBaseActivity extends AppCompatActivity{
     ManagerIngredients managerIngredient;
     ListView lista;
     AdaptadorIngredientesBase adapter;
-    TextView botonRedondo;
-    TextView textoIngredientes;
+    TextView botonRedondo,botonRedondoRecetas;;
+    TextView textoIngredientes,textoRecetasUsuario;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -37,8 +37,12 @@ public class IngredientsBaseActivity extends AppCompatActivity{
         lista = (ListView) findViewById(R.id.listIngredients);
         adapter = new AdaptadorIngredientesBase(managerIngredient.viewIngredientsBase(),this);
         lista.setAdapter(adapter);
+        textoRecetasUsuario = findViewById(R.id.textoRecetasUsuario);
+        botonRedondoRecetas = findViewById(R.id.botonRecetas);
         botonRedondo = findViewById(R.id.botonIngredientes);
         textoIngredientes = findViewById(R.id.textoIngredientesUsuario);
+        textoIngredientes.setVisibility(View.INVISIBLE);
+        textoRecetasUsuario.setVisibility(View.INVISIBLE);
         textoIngredientes.setVisibility(View.INVISIBLE);
         lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
@@ -87,11 +91,28 @@ public class IngredientsBaseActivity extends AppCompatActivity{
         super.onResume();
         ManagerAllRecipes.buscarRecetasQueCoincidenConLosIngredientes();
         ocultarBarras();
-        if (ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size() != 0) {
+        comprobarIngredientesBoton();
+        comprobarRecetasBoton();
+    }
+
+    private void comprobarRecetasBoton() {
+        int recetasQueCoinciden = ManagerAllRecipes.getRecetasQueCoincidenDelTodo().size();
+        if (recetasQueCoinciden != 0) {
+            textoRecetasUsuario.setVisibility(View.VISIBLE);
+            botonRedondoRecetas.setVisibility(View.VISIBLE);
+            botonRedondoRecetas.setText(String.valueOf(ManagerAllRecipes.getRecetasQueCoincidenDelTodo().size()));
+        } else {
+            textoRecetasUsuario.setVisibility(View.INVISIBLE);
+            botonRedondoRecetas.setVisibility(View.INVISIBLE);
+        }
+    }
+
+    private void comprobarIngredientesBoton() {
+        int recetas = ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size();
+        if (recetas != 0) {
             textoIngredientes.setVisibility(View.VISIBLE);
             botonRedondo.setVisibility(View.VISIBLE);
             botonRedondo.setText(String.valueOf(ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size()));
-            System.out.println(ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size());
         } else {
             textoIngredientes.setVisibility(View.INVISIBLE);
             botonRedondo.setVisibility(View.INVISIBLE);
