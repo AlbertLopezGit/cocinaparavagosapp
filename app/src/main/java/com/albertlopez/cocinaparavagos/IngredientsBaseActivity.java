@@ -67,10 +67,29 @@ public class IngredientsBaseActivity extends AppCompatActivity{
                 listaIngredientes();
             }
         });
+
+        textoRecetasUsuario.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listaRecetas();
+            }
+        });
+
+        botonRedondoRecetas.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                listaRecetas();
+            }
+        });
     }
 
     private void listaIngredientes() {
         Intent intent = new Intent(this, IngredientsSelected.class);
+        startActivity(intent);
+    }
+
+    private void listaRecetas() {
+        Intent intent = new Intent(this, RecipesCoincidentesActivity.class);
         startActivity(intent);
     }
 
