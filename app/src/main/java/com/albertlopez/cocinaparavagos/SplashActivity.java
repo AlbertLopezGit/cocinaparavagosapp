@@ -194,6 +194,7 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
                 intent.putExtra("RecetasCantidades", recipesIngredientsArray);
                 intent.putExtra("Recetas", recipesArray);
                 intent.putExtra("Ingredientes", ingredientesArray);
+
                 startActivity(intent);
             } else {
                 handler.postDelayed(SplashActivity.this, 2000);

@@ -33,7 +33,6 @@ public class ManagerRecetas implements Serializable{
         for (int i = 0; i < jsonResponse.length() ; i++) {
             JSONObject recetasIngredientes = jsonResponse.getJSONObject(i);
             RecipeIngredients recipeIngredients = gson.fromJson(String.valueOf(recetasIngredientes),RecipeIngredients.class);
-            System.out.println(recipeIngredients.getNombreReceta());
             recipesIngredientsArray.add(recipeIngredients);
         }
     }
@@ -52,5 +51,17 @@ public class ManagerRecetas implements Serializable{
 
     public void setRecipesIngredientsArray(ArrayList<RecipeIngredients> recipesIngredientsArray) {
         this.recipesIngredientsArray = recipesIngredientsArray;
+    }
+
+    public ArrayList<Recipe> mezclarRecetasConSusIngredientes(ArrayList<Recipe> recipes, ArrayList<RecipeIngredients> recipesCantidades){
+        for (Recipe i: recipes) {
+            for (RecipeIngredients x:recipesCantidades) {
+                if (x.getNombreReceta().trim().equals(i.getNombreReceta().trim())) {
+                    i.addCantidadesDeLosIngredientes(x.getCantidadIngrediente());
+                    i.addIngrediente(x.getNombreIngrediente());
+                }
+            }
+        }
+        return recipes;
     }
 }

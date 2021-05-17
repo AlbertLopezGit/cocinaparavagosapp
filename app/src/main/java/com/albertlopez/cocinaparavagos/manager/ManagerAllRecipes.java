@@ -12,7 +12,7 @@ import java.util.HashSet;
 import java.util.List;
 
 
-public class ManagerAllRecipes {
+public class ManagerAllRecipes{
     static public ArrayList<Recipe> recetasQueCoincidenDelTodo = new ArrayList<>();
     static public ArrayList<Recipe> recipes = new ArrayList<>();
     static public ArrayList<RecipeIngredients> recipesCantidades = new ArrayList<>();
@@ -38,19 +38,6 @@ public class ManagerAllRecipes {
         ingredientesIntroducidosPorELUsuario.remove(ingredienteSeleccionado);
     }
 
-    public static void mezclarRecetasConSusIngredientes(){
-        for (Recipe i: recipes) {
-            //System.out.println("Nombre Recetas " + i.getNombreReceta());
-            for (RecipeIngredients x:recipesCantidades) {
-                if (i.getNombreReceta().equals(x.getNombreReceta())) {
-                    i.addIngrediente(x.getNombreIngrediente());
-                    i.addCantidadesDeLosIngredientes(x.getCantidadIngrediente());
-                    //System.out.println(x.getNombreIngrediente() + " " + x.getCantidadIngrediente());
-                }
-            }
-        }
-    }
-
     public static void buscarRecetasQueCoincidenConLosIngredientes() {
         int contador = 0;
         HashSet<Recipe> ingredientesHash = new HashSet<Recipe>();
@@ -68,7 +55,6 @@ public class ManagerAllRecipes {
                     }
                 }
             }
-            System.out.println("COINCIDEN HASH " + ingredientesHash.size());
             compararCantidades(ingredientesHash);
             contador = 0;
         }
@@ -77,7 +63,6 @@ public class ManagerAllRecipes {
     private static void compararCantidades(HashSet<Recipe> ingredientesHash) {
         ArrayList<Recipe> recetasQueCoinciden = new ArrayList<>();
         List<Recipe> recetas = new ArrayList<>(ingredientesHash);
-        System.out.println("Coinciden parse hash "+ recetas.size());
         int contador = 0;
         for (Recipe i: recetas) {
             //System.out.println("RECETAS QUE CONICIDEN "+i.getNombreReceta());
@@ -98,9 +83,7 @@ public class ManagerAllRecipes {
             }
             contador = 0;
         }
-
         recetasQueCoincidenDelTodo = recetasQueCoinciden;
-        System.out.println("COINCIDE" + recetasQueCoinciden.size());
     }
 
     public static void setRecipes(ArrayList<Recipe> recipes) {
