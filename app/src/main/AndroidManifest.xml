@@ -12,8 +12,12 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CocinaParaVagos"
         android:usesCleartextTraffic="true">
-        <activity android:name=".recipes.RecipesDetail"></activity>
-        <activity android:name=".recipes.RecipesCoincidentesActivity" />
+        <activity
+            android:name=".recipes.RecipesDetail"
+            android:screenOrientation="portrait" />
+        <activity
+            android:name=".recipes.RecipesCoincidentesActivity"
+            android:screenOrientation="portrait" />
         <activity
             android:name=".recipes.RecipesBaseActivity"
             android:screenOrientation="portrait" />
