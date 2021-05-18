@@ -47,7 +47,7 @@ public class RecipesDetail extends AppCompatActivity {
         tituloReceta.setText(recetaSeleccionada.getNombreReceta());
         descripcionReceta.setText(recetaSeleccionada.getDescripcion());
         String imagen = recetaSeleccionada.getImagenReceta();
-        Picasso.with(this).load(imagen).fit().centerInside().into(imagenRecetas);
+        Picasso.with(this).load(imagen).into(imagenRecetas);
     }
 
     private void loadingIngredients() {
