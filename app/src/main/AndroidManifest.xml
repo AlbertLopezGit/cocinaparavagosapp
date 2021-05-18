@@ -17,16 +17,16 @@
             android:name=".RecipesBaseActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".IngredientsSelected"
+            android:name=".ingredients.IngredientsSelected"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".IngredientDetailsActivity"
+            android:name=".ingredients.IngredientDetailsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".IngredientsActivity"
+            android:name=".ingredients.IngredientsActivity"
             android:screenOrientation="portrait" />
         <activity
-            android:name=".IngredientsBaseActivity"
+            android:name=".ingredients.IngredientsBaseActivity"
             android:screenOrientation="portrait" />
         <activity
             android:name=".SplashActivity"

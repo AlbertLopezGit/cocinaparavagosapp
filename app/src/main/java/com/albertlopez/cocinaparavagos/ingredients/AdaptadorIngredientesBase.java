@@ -1,4 +1,4 @@
-package com.albertlopez.cocinaparavagos;
+package com.albertlopez.cocinaparavagos.ingredients;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -8,6 +8,7 @@ import android.widget.BaseAdapter;
 import android.widget.ImageView;
 import android.widget.TextView;
 
+import com.albertlopez.cocinaparavagos.R;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.squareup.picasso.Picasso;
 

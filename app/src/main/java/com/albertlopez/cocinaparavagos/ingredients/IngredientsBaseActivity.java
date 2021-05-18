@@ -1,33 +1,27 @@
-package com.albertlopez.cocinaparavagos;
+package com.albertlopez.cocinaparavagos.ingredients;
 
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
-import androidx.appcompat.widget.Toolbar;
-import androidx.recyclerview.widget.GridLayoutManager;
-import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
+import android.widget.AdapterView;
+import android.widget.ListView;
 import android.widget.TextView;
-import android.widget.Toast;
 
+import com.albertlopez.cocinaparavagos.R;
+import com.albertlopez.cocinaparavagos.RecipesCoincidentesActivity;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
 import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import java.util.ArrayList;
 
+public class IngredientsBaseActivity extends AppCompatActivity{
 
-public class IngredientsActivity extends AppCompatActivity {
-
-    RecyclerView recyclerViewIngrediente;
-    RecyclerViewIngredientesAdaptador adaptadorIngrediente;
     ManagerIngredients managerIngredient;
-    Ingredient ingredienteSeleccionado;
-    ArrayList<Ingredient> IngedientesArray;
-    Toolbar toolbar;
-    TextView botonRedondo,botonRedondoRecetas;
+    ListView lista;
+    AdaptadorIngredientesBase adapter;
+    TextView botonRedondo,botonRedondoRecetas;;
     TextView textoIngredientes,textoRecetasUsuario;
 
     @Override
@@ -35,30 +29,28 @@ public class IngredientsActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
 
         managerIngredient = new ManagerIngredients();
-        setContentView(R.layout.activity_ingredients);
-        toolbar = findViewById(R.id.toolbar2);
-        botonRedondoRecetas = findViewById(R.id.botonRecetas);
-        botonRedondo = findViewById(R.id.botonIngredientes3);
-        textoRecetasUsuario = findViewById(R.id.textoRecetasUsuario);
-        textoIngredientes = findViewById(R.id.textoIngredientesUsuario3);
-
-        textoRecetasUsuario.setVisibility(View.INVISIBLE);
-        textoIngredientes.setVisibility(View.INVISIBLE);
-        recyclerViewIngrediente = (RecyclerView)findViewById(R.id.recyclerIngredientes);
-        recyclerViewIngrediente.setLayoutManager(new GridLayoutManager(this,2));
-
+        setContentView(R.layout.activity_ingredients_base);
         loadingIngredients();
 
-        adaptadorIngrediente = new RecyclerViewIngredientesAdaptador(this,IngedientesArray,0);
-
-        adaptadorIngrediente.setOnClickListener(new View.OnClickListener() {
+        lista = (ListView) findViewById(R.id.listIngredients);
+        adapter = new AdaptadorIngredientesBase(managerIngredient.viewIngredientsBase(),this);
+        lista.setAdapter(adapter);
+        textoRecetasUsuario = findViewById(R.id.textoRecetasUsuario);
+        botonRedondoRecetas = findViewById(R.id.botonRecetas);
+        botonRedondo = findViewById(R.id.botonIngredientes);
+        textoIngredientes = findViewById(R.id.textoIngredientesUsuario);
+        textoIngredientes.setVisibility(View.INVISIBLE);
+        textoRecetasUsuario.setVisibility(View.INVISIBLE);
+        textoIngredientes.setVisibility(View.INVISIBLE);
+        lista.setOnItemClickListener(new AdapterView.OnItemClickListener() {
             @Override
-            public void onClick(View v) {
-                ingredienteSeleccionado = IngedientesArray.get(recyclerViewIngrediente.getChildAdapterPosition(v));
-                openIngredientsActivity(ingredienteSeleccionado);
+            public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
+
+                //Toast.makeText(getApplicationContext(),String.valueOf(position),Toast.LENGTH_SHORT).show(); //chuleta para ver la posicion de la lista
+                ArrayList<Ingredient> tiposIngredientes = managerIngredient.returnIngredientsForTipeIngredients(position);
+                openIngredientsActivity(tiposIngredientes);
             }
         });
-        recyclerViewIngrediente.setAdapter(adaptadorIngrediente);
 
         textoIngredientes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -87,12 +79,6 @@ public class IngredientsActivity extends AppCompatActivity {
                 listaRecetas();
             }
         });
-
-    }
-
-    private void listaRecetas() {
-        Intent intent = new Intent(this, RecipesCoincidentesActivity.class);
-        startActivity(intent);
     }
 
     private void listaIngredientes() {
@@ -100,32 +86,30 @@ public class IngredientsActivity extends AppCompatActivity {
         startActivity(intent);
     }
 
-
-
-    private void loadingIngredients() {
-        IngedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("TiposIngredientes");
-        ArrayList<Ingredient> AllIngredientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("ingredientes");
-        System.out.println("CANTIDAD "+IngedientesArray.size());
-        System.out.println("CANTIDAD TOTAL "+ AllIngredientesArray.size());
-        managerIngredient.setIngredientsArray(AllIngredientesArray);
-        managerIngredient.settiposIngredientsArray(IngedientesArray);
+    private void listaRecetas() {
+        Intent intent = new Intent(this, RecipesCoincidentesActivity.class);
+        startActivity(intent);
     }
 
-    public void openIngredientsActivity(Ingredient ingredienteSeleccionado) {
-        Intent intent = new Intent(this, IngredientDetailsActivity.class);
-        intent.putExtra("ingredienteSeleccionado", ingredienteSeleccionado);
+    private void loadingIngredients() {
+        ArrayList<Ingredient> IngedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("Ingredientes");
+        managerIngredient.setIngredientsArray(IngedientesArray);
+    }
+
+    public void openIngredientsActivity(ArrayList<Ingredient> tiposIngredientes) {
+        Intent intent = new Intent(this, IngredientsActivity.class);
+        intent.putExtra("TiposIngredientes", tiposIngredientes);
         intent.putExtra("ingredientes",managerIngredient.getIngredientsArray());
         startActivity(intent);
     }
 
     @Override
     protected void onResume() {
+        super.onResume();
         ManagerAllRecipes.buscarRecetasQueCoincidenConLosIngredientes();
         ocultarBarras();
-        super.onResume();
         comprobarIngredientesBoton();
         comprobarRecetasBoton();
-
     }
 
     private void comprobarRecetasBoton() {
@@ -162,4 +146,6 @@ public class IngredientsActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
     }
+
+
 }

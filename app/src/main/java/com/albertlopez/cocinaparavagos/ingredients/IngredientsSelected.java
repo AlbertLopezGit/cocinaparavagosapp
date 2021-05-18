@@ -1,16 +1,16 @@
-package com.albertlopez.cocinaparavagos;
+package com.albertlopez.cocinaparavagos.ingredients;
 
 import androidx.annotation.NonNull;
-import androidx.annotation.RequiresApi;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Intent;
-import android.os.Build;
 import android.os.Bundle;
 import android.view.View;
 
+import com.albertlopez.cocinaparavagos.R;
+import com.albertlopez.cocinaparavagos.RecyclerViewIngredientesAdaptador;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 

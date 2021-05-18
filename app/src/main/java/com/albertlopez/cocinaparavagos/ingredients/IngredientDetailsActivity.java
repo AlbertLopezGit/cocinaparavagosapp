@@ -1,4 +1,4 @@
-package com.albertlopez.cocinaparavagos;
+package com.albertlopez.cocinaparavagos.ingredients;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.os.Bundle;
@@ -8,11 +8,10 @@ import android.widget.ImageView;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.albertlopez.cocinaparavagos.R;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.squareup.picasso.Picasso;
-
-import java.util.ArrayList;
 
 public class IngredientDetailsActivity extends AppCompatActivity {
 
