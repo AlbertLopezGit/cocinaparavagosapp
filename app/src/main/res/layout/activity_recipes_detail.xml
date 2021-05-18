@@ -48,7 +48,7 @@
                     android:background="@color/grey"
                     android:minHeight="?attr/actionBarSize"
                     android:theme="?attr/actionBarTheme"
-                    app:layout_constraintBottom_toTopOf="@+id/IgredientesDetails"
+                    app:layout_constraintBottom_toTopOf="@+id/linearLayout"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/imagenRecetaDetalles" />
@@ -66,17 +66,32 @@
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/toolbar12" />
 
-                <androidx.recyclerview.widget.RecyclerView
-                    android:id="@+id/IgredientesDetails"
-                    android:layout_width="341dp"
-                    android:layout_height="234dp"
-                    android:layout_marginStart="16dp"
-                    android:layout_marginEnd="16dp"
+                <LinearLayout
+                    android:id="@+id/linearLayout"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    android:orientation="horizontal"
+                    app:layout_constraintBottom_toTopOf="@+id/toolbar12"
                     app:layout_constraintEnd_toEndOf="parent"
                     app:layout_constraintStart_toStartOf="parent"
                     app:layout_constraintTop_toBottomOf="@+id/toolbar11">
 
-                </androidx.recyclerview.widget.RecyclerView>
+                    <androidx.recyclerview.widget.RecyclerView
+                        android:id="@+id/IgredientesDetails"
+                        android:layout_width="380dp"
+                        android:layout_height="234dp"
+                        android:orientation="horizontal"
+                        android:layout_marginStart="16dp"
+                        android:layout_marginEnd="16dp"
+                        android:layout_marginRight="70dp"
+                        app:layout_constraintBottom_toBottomOf="parent"
+                        app:layout_constraintEnd_toEndOf="parent"
+                        app:layout_constraintStart_toStartOf="parent"
+                        android:layout_centerVertical="true"
+                        app:layout_constraintTop_toTopOf="parent">
+
+                    </androidx.recyclerview.widget.RecyclerView>
+                </LinearLayout>
 
                 <androidx.appcompat.widget.Toolbar
                     android:id="@+id/toolbar12"
@@ -86,7 +101,8 @@
                     android:minHeight="?attr/actionBarSize"
                     android:theme="?attr/actionBarTheme"
                     app:layout_constraintEnd_toEndOf="parent"
-                    app:layout_constraintTop_toBottomOf="@+id/IgredientesDetails" />
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
 
                 <TextView
                     android:id="@+id/tituloReceta"
@@ -118,8 +134,9 @@
                     android:textSize="20dp"
                     app:layout_constraintBottom_toTopOf="@+id/descripcionReceta"
                     app:layout_constraintEnd_toEndOf="@+id/toolbar12"
+                    app:layout_constraintHorizontal_bias="0.498"
                     app:layout_constraintStart_toStartOf="@+id/toolbar12"
-                    app:layout_constraintTop_toBottomOf="@+id/IgredientesDetails" />
+                    app:layout_constraintTop_toBottomOf="@+id/linearLayout" />
             </androidx.constraintlayout.widget.ConstraintLayout>
 
         </LinearLayout>

@@ -33,7 +33,7 @@ public class RecipesDetail extends AppCompatActivity {
         tituloReceta = findViewById(R.id.tituloReceta);
         descripcionReceta = findViewById(R.id.descripcionReceta);
         imagenRecetas = findViewById(R.id.imagenRecetaDetalles);
-        ingredientesDetails =(RecyclerView)findViewById(R.id.IgredientesDetails);
+        ingredientesDetails = (RecyclerView)findViewById(R.id.IgredientesDetails);
         ingredientesDetails.setLayoutManager(new GridLayoutManager(this,2));
 
         loadingIngredients();
