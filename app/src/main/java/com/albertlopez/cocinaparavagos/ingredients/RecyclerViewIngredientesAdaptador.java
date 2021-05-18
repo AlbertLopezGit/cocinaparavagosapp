@@ -1,4 +1,4 @@
-package com.albertlopez.cocinaparavagos.recipes;
+package com.albertlopez.cocinaparavagos.ingredients;
 
 import android.content.Context;
 import android.view.LayoutInflater;

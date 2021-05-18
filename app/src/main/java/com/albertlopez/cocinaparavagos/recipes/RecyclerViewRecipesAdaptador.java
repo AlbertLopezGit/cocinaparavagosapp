@@ -44,14 +44,14 @@ public class RecyclerViewRecipesAdaptador extends RecyclerView.Adapter<RecyclerV
 
     @NonNull
     @Override
-    public RecyclerViewRecipesAdaptador.ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+    public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
         View v = LayoutInflater.from(context).inflate(R.layout.items_recetas,parent,false);
         v.setOnClickListener(this);
-        return new RecyclerViewRecipesAdaptador.ViewHolder(v);
+        return new ViewHolder(v);
     }
 
     @Override
-    public void onBindViewHolder(@NonNull RecyclerViewRecipesAdaptador.ViewHolder holder, int position) {
+    public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
         Recipe recipe = recipesArray.get(position);
 
         String image = recipe.getImagenReceta();
@@ -72,6 +72,7 @@ public class RecyclerViewRecipesAdaptador extends RecyclerView.Adapter<RecyclerV
     public void setOnClickListener (View.OnClickListener listener) {
         this.listener = listener;
     }
+
 
     @Override
     public void onClick(View v) {

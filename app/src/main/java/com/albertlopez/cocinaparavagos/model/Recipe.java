@@ -18,6 +18,7 @@ public class Recipe implements Serializable {
     private String imagenReceta;
     ArrayList<String>ingredientes = new ArrayList<>();
     ArrayList<Integer>cantidadesDeLosIngredientes = new ArrayList<>();
+    ArrayList<Ingredient>ingredients = new ArrayList<>();
 
     public Recipe () {}
 
@@ -37,8 +38,16 @@ public class Recipe implements Serializable {
         cantidadesDeLosIngredientes.add(cantidadIngrediente);
     }
 
+    public void addIngrediente(Ingredient ingrediente) {
+        ingredients.add(ingrediente);
+    }
+
     public ArrayList<Integer> getCantidadesDeLosIngredientes() {
         return cantidadesDeLosIngredientes;
+    }
+
+    public ArrayList<Ingredient> getIngredientsArray() {
+        return ingredients;
     }
 
     public ArrayList<String> getIngredientes() {

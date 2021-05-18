@@ -84,7 +84,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         managerRecetas.setRecipesArray(recipesArray);
         managerRecetas.setRecipesIngredientsArray(recipeIngredients);
 
-        ManagerAllRecipes.setRecipes(managerRecetas.mezclarRecetasConSusIngredientes(recipesArray,recipeIngredients));
+        ManagerAllRecipes.setRecipes(managerRecetas.mezclarRecetasConSusIngredientes(recipesArray,recipeIngredients,ingedientesArray));
     }
 
     @Override

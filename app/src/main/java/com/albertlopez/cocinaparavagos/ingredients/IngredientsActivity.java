@@ -12,7 +12,6 @@ import android.widget.TextView;
 
 import com.albertlopez.cocinaparavagos.R;
 import com.albertlopez.cocinaparavagos.recipes.RecipesCoincidentesActivity;
-import com.albertlopez.cocinaparavagos.recipes.RecyclerViewIngredientesAdaptador;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
 import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
@@ -25,7 +24,7 @@ public class IngredientsActivity extends AppCompatActivity {
     RecyclerViewIngredientesAdaptador adaptadorIngrediente;
     ManagerIngredients managerIngredient;
     Ingredient ingredienteSeleccionado;
-    ArrayList<Ingredient> IngedientesArray;
+    ArrayList<Ingredient> ingedientesArray;
     Toolbar toolbar;
     TextView botonRedondo,botonRedondoRecetas;
     TextView textoIngredientes,textoRecetasUsuario;
@@ -49,12 +48,12 @@ public class IngredientsActivity extends AppCompatActivity {
 
         loadingIngredients();
 
-        adaptadorIngrediente = new RecyclerViewIngredientesAdaptador(this,IngedientesArray,0);
+        adaptadorIngrediente = new RecyclerViewIngredientesAdaptador(this,ingedientesArray,0);
 
         adaptadorIngrediente.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                ingredienteSeleccionado = IngedientesArray.get(recyclerViewIngrediente.getChildAdapterPosition(v));
+                ingredienteSeleccionado = ingedientesArray.get(recyclerViewIngrediente.getChildAdapterPosition(v));
                 openIngredientsActivity(ingredienteSeleccionado);
             }
         });
@@ -103,12 +102,12 @@ public class IngredientsActivity extends AppCompatActivity {
 
 
     private void loadingIngredients() {
-        IngedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("TiposIngredientes");
+        ingedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("TiposIngredientes");
         ArrayList<Ingredient> AllIngredientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("ingredientes");
-        System.out.println("CANTIDAD "+IngedientesArray.size());
+        System.out.println("CANTIDAD "+ingedientesArray.size());
         System.out.println("CANTIDAD TOTAL "+ AllIngredientesArray.size());
         managerIngredient.setIngredientsArray(AllIngredientesArray);
-        managerIngredient.settiposIngredientsArray(IngedientesArray);
+        managerIngredient.settiposIngredientsArray(ingedientesArray);
     }
 
     public void openIngredientsActivity(Ingredient ingredienteSeleccionado) {

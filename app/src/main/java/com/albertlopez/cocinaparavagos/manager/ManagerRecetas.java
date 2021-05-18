@@ -1,5 +1,6 @@
 package com.albertlopez.cocinaparavagos.manager;
 
+import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.albertlopez.cocinaparavagos.model.Recipe;
 import com.albertlopez.cocinaparavagos.model.RecipeIngredients;
 import com.google.gson.Gson;
@@ -53,7 +54,7 @@ public class ManagerRecetas implements Serializable{
         this.recipesIngredientsArray = recipesIngredientsArray;
     }
 
-    public ArrayList<Recipe> mezclarRecetasConSusIngredientes(ArrayList<Recipe> recipes, ArrayList<RecipeIngredients> recipesCantidades){
+    public ArrayList<Recipe> mezclarRecetasConSusIngredientes(ArrayList<Recipe> recipes, ArrayList<RecipeIngredients> recipesCantidades, ArrayList<Ingredient> ingredientes){
         for (Recipe i: recipes) {
             for (RecipeIngredients x:recipesCantidades) {
                 if (x.getNombreReceta().trim().equals(i.getNombreReceta().trim())) {
@@ -62,6 +63,18 @@ public class ManagerRecetas implements Serializable{
                 }
             }
         }
+
+        for (Recipe i: recipes) {
+            ArrayList<String>ingredienteString = i.getIngredientes();
+            for (Ingredient x: ingredientes) {
+                for (String z:ingredienteString) {
+                    if (z.trim().equals(x.getNombreIngrediente().trim())) {
+                        i.addIngrediente(x);
+                    }
+                }
+            }
+        }
+
         return recipes;
     }
 }

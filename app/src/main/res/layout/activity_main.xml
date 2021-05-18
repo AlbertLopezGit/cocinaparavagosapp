@@ -6,6 +6,7 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:fitsSystemWindows="true"
+    android:visibility="visible"
     tools:context=".MainActivity"
     tools:openDrawer="start">
 
@@ -15,20 +16,24 @@
         android:layout_height="match_parent"
         android:layout_gravity="start"
         android:background="@color/grey_low"
+        android:visibility="visible"
         app:headerLayout="@layout/header"
         app:menu="@menu/main_menu">
 
     </com.google.android.material.navigation.NavigationView>
 
-    <ScrollView
-        android:layout_width="match_parent"
-        android:layout_height="match_parent">
-    </ScrollView>
-
     <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@color/grey_low">
+
+        <ScrollView
+            android:id="@+id/scrollView2"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:visibility="visible">
+
+        </ScrollView>
 
         <androidx.appcompat.widget.Toolbar
             android:id="@+id/toolbar"
@@ -41,30 +46,42 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent" />
 
+        <ImageView
+            android:id="@+id/imageView8"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            app:layout_constraintBottom_toTopOf="@+id/ingedientsButton"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/toolbar"
+            app:srcCompat="@drawable/portadaversion2" />
+
         <Button
             android:id="@+id/recetasButton"
             android:layout_width="176dp"
             android:layout_height="92dp"
             android:layout_marginTop="52dp"
+            android:background="@drawable/button_redondeado"
+            android:elevation="10dp"
             android:text="RECETAS"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/ingedientsButton"
-            android:background="@drawable/button_redondeado"/>
+            app:layout_constraintTop_toBottomOf="@+id/ingedientsButton" />
 
         <Button
             android:id="@+id/ingedientsButton"
             android:layout_width="176dp"
             android:layout_height="92dp"
+            android:layout_marginTop="100dp"
+            android:background="@drawable/button_redondeado"
             android:text="INGREDIENTES"
             app:layout_constraintBottom_toBottomOf="parent"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintHorizontal_bias="0.497"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toTopOf="parent"
-            app:layout_constraintVertical_bias="0.358"
-            android:background="@drawable/button_redondeado"/>
+            app:layout_constraintVertical_bias="0.358" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
