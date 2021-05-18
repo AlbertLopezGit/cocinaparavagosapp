@@ -197,7 +197,7 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
 
                 startActivity(intent);
             } else {
-                handler.postDelayed(SplashActivity.this, 2000);
+                handler.postDelayed(SplashActivity.this, 3000);
                 finish();
             }
         }
