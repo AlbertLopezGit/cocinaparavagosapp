@@ -20,6 +20,7 @@ import com.albertlopez.cocinaparavagos.manager.ManagerRecetas;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.albertlopez.cocinaparavagos.model.Recipe;
 import com.albertlopez.cocinaparavagos.model.RecipeIngredients;
+import com.albertlopez.cocinaparavagos.recipes.RecipesBaseActivity;
 import com.google.android.material.navigation.NavigationView;
 
 import java.util.ArrayList;

@@ -11,8 +11,8 @@ import android.view.View;
 import android.widget.TextView;
 
 import com.albertlopez.cocinaparavagos.R;
-import com.albertlopez.cocinaparavagos.RecipesCoincidentesActivity;
-import com.albertlopez.cocinaparavagos.RecyclerViewIngredientesAdaptador;
+import com.albertlopez.cocinaparavagos.recipes.RecipesCoincidentesActivity;
+import com.albertlopez.cocinaparavagos.recipes.RecyclerViewIngredientesAdaptador;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
 import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
 import com.albertlopez.cocinaparavagos.model.Ingredient;

@@ -10,7 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.albertlopez.cocinaparavagos.R;
-import com.albertlopez.cocinaparavagos.RecyclerViewIngredientesAdaptador;
+import com.albertlopez.cocinaparavagos.recipes.RecyclerViewIngredientesAdaptador;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 
