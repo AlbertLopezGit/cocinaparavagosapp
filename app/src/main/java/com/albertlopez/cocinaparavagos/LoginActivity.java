@@ -66,8 +66,16 @@ public class LoginActivity extends AppCompatActivity {
         String pass = password.getText().toString().trim();
         //metodo para controlar todos los requisitos para registrar usuario
         if (!checkOptionsLogout(pass,correo)) { return;}
-        managerUser.comprobarPassYdescargarUsuario(correo,pass);
+        comprobarUsuarioYdescargar(correo,pass);
 
+    }
+
+    private void comprobarUsuarioYdescargar(String correo, String pass) {
+        Intent intent = new Intent(this, SpashUserValidation.class);
+        intent.putExtra("pass", pass);
+        intent.putExtra("email", correo);
+        startActivity(intent);
+        finish();
     }
 
     private boolean checkOptionsLogout(String pass, String correo) {

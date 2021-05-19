@@ -132,7 +132,6 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
                             errorNetwork = true;
                             if (error.networkResponse != null) {
                                 msg = "ERROR: " + error.networkResponse.statusCode;
-
                             }
                             Log.d("Albert", msg);
                             stepCounter++;
@@ -199,6 +198,7 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
             } else {
                 handler.postDelayed(SplashActivity.this, 3000);
                 finish();
+
             }
         }
     }
