@@ -16,12 +16,8 @@ import java.util.regex.Pattern;
 
 public class RegisterActivity extends AppCompatActivity implements View.OnClickListener {
 
-    EditText name;
-    EditText password;
-    EditText repeatPassword;
-    EditText mail;
+    EditText name,password,repeatPassword,mail;
     Button btnRegistrar;
-
     RequestQueue requestQueue;
     UserCreator userCreator;
 

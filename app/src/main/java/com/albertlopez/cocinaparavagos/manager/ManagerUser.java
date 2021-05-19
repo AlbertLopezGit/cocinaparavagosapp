@@ -20,4 +20,9 @@ public class ManagerUser {
         }
         return null;
     }
+
+    public void comprobarPassYdescargarUsuario(String correo, String pass) {
+
+
+    }
 }
