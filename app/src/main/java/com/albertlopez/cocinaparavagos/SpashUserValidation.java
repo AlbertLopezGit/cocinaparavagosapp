@@ -51,7 +51,7 @@ public class SpashUserValidation extends AppCompatActivity implements Runnable{
                 | View.SYSTEM_UI_FLAG_HIDE_NAVIGATION
                 | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
-        setContentView(R.layout.activity_splash);
+        setContentView(R.layout.activity_spash_user_validation);
 
         managerUser = new ManagerUser();
         errorNetwork = false;
