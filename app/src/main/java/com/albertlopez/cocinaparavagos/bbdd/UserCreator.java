@@ -51,9 +51,9 @@ public class UserCreator {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("NICKNAME",encriptName);
+                params.put("NICKNAME",nombre);
                 params.put("PASS",encriptPass);
-                params.put("CORREOELECTRONICO",encriptEmail);
+                params.put("CORREOELECTRONICO",email);
                 return params;
             }
         };
