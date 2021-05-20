@@ -49,7 +49,7 @@ public class IngredientCreator {
                 Map<String, String> params = new HashMap<>();
                 params.put("NOMBREINGREDIENTECUSTOM",name);
                 params.put("CLASIFICACIONINGREDIENTECUSTOM",tipo);
-                params.put("INGREDIENTEBASECUSTOM","1");
+                params.put("INGREDIENTEDEBASECUSTOM","1");
                 params.put("IMAGEN_INGREDIENTE_CUSTOM",Bbdd.ingredientesCustomGeneralImg);
                 params.put("VALOR_MEDIDA_CUSTOM",medida);
                 params.put("IDUSUARIO",idUsuario);
