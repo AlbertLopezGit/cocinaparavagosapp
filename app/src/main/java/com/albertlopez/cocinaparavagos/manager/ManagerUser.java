@@ -7,9 +7,11 @@ import android.widget.Toast;
 
 
 import com.albertlopez.cocinaparavagos.MainActivity;
+import com.albertlopez.cocinaparavagos.UserValidation;
 import com.albertlopez.cocinaparavagos.model.Recipe;
 import com.albertlopez.cocinaparavagos.model.User;
 import com.google.gson.Gson;
+import com.google.gson.JsonObject;
 
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -20,6 +22,7 @@ import java.util.ArrayList;
 
 public class ManagerUser implements Serializable {
     Gson gson = new Gson();
+    User user = new User();
 
     public String encryptPass(String md5) {
 
@@ -40,14 +43,10 @@ public class ManagerUser implements Serializable {
     }
 
     public void addUsuario(String response) throws JSONException {
-        JSONArray jsonResponse = new JSONArray(response);
+        user = gson.fromJson(response, User.class);
+        UserValidation.setUser(user);
 
-
-        for (int i = 0; i < jsonResponse.length() ; i++) {
-            JSONObject usuario = jsonResponse.getJSONObject(i);
-            User user = gson.fromJson(String.valueOf(usuario),User.class);
-
-        }
     }
+
 
 }

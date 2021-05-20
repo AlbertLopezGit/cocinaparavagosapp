@@ -24,8 +24,7 @@ public class UserCreator {
     public void createUser(final String nombre, final String pass, final String email,
                            final RequestQueue requestQueue, RegisterActivity registerActivity) throws NoSuchAlgorithmException {
         managerUser = new ManagerUser();
-        String encriptPass = managerUser.encryptPass(nombre);
-        String encriptName = managerUser.encryptPass(pass);
+        String encriptPass = managerUser.encryptPass(pass);
         String encriptEmail = managerUser.encryptPass(email);
 
         this.registerActivity = registerActivity;
@@ -51,7 +50,7 @@ public class UserCreator {
             @Override
             protected Map<String, String> getParams() throws AuthFailureError {
                 Map<String, String> params = new HashMap<>();
-                params.put("NICKNAME",encriptName);
+                params.put("NICKNAME",nombre);
                 params.put("PASS",encriptPass);
                 params.put("CORREOELECTRONICO",encriptEmail);
                 return params;

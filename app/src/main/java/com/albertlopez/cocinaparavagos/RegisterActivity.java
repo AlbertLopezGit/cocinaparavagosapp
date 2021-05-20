@@ -29,7 +29,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         name = findViewById(R.id.editTextTextPersonName);
-        password = findViewById(R.id.editTextTextPassword);
+        password = findViewById(R.id.editTextTextPasswordLogin);
         repeatPassword = findViewById(R.id.editTextTextConfirmPassword);
         mail = findViewById(R.id.editTextTextEmail);
 

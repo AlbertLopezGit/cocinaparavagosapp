@@ -18,6 +18,7 @@ import com.albertlopez.cocinaparavagos.manager.ManagerUser;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.albertlopez.cocinaparavagos.model.Recipe;
 import com.albertlopez.cocinaparavagos.model.RecipeIngredients;
+import com.albertlopez.cocinaparavagos.model.User;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -37,7 +38,8 @@ public class SpashUserValidation extends AppCompatActivity implements Runnable{
     boolean errorNetwork; //si no conecta con el server el booleano queda como true y no deja pasar al menu principal
     ManagerUser managerUser;
     String email;
-    String nombre;
+    String pass;
+    User user;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -55,6 +57,7 @@ public class SpashUserValidation extends AppCompatActivity implements Runnable{
 
         managerUser = new ManagerUser();
         errorNetwork = false;
+        user = new User();
         loadingText = findViewById(R.id.loadingText);
         handler = new Handler();
         stepCounter = 0;
@@ -87,12 +90,11 @@ public class SpashUserValidation extends AppCompatActivity implements Runnable{
                         public void onErrorResponse(VolleyError error) {
                             String msg = "Network error (timeout or disconnected)";
                             Toast.makeText(SpashUserValidation.this,
-                                    "Error al Conectar con el Servidor ",Toast.LENGTH_SHORT)
+                                    "Usuario o Contraseña incorrectos",Toast.LENGTH_SHORT)
                                     .show();
                             errorNetwork = true;
                             if (error.networkResponse != null) {
                                 msg = "ERROR: " + error.networkResponse.statusCode;
-
                             }
                             Log.d("Albert", msg);
                             stepCounter++;
@@ -101,20 +103,24 @@ public class SpashUserValidation extends AppCompatActivity implements Runnable{
                     });
             queue.add(request);
         }  else {
-            if (!errorNetwork) {
-                Intent intent = new Intent(this, MainActivity.class);
-                finish();
-                startActivity(intent);
-            } else {
-                handler.postDelayed(SpashUserValidation.this, 3000);
-                finish();
-
-            }
-        }
+             if (!errorNetwork) {
+                 UserValidation.comprobarPass(pass);
+                 if (UserValidation.getValidado()) {
+                     Toast.makeText(SpashUserValidation.this,
+                             "Logueado",Toast.LENGTH_SHORT)
+                             .show();
+                 } else {
+                     Toast.makeText(SpashUserValidation.this,
+                             "Usuario o Contraseña incorrectos X",Toast.LENGTH_SHORT)
+                             .show();
+                 }
+             }
+            finish();
+         }
     }
 
     private void loading() {
-        email = (String) getIntent().getSerializableExtra("pass");
-        nombre = (String) getIntent().getSerializableExtra("pass");
+        pass = managerUser.encryptPass((String) getIntent().getSerializableExtra("pass"));
+        email = managerUser.encryptPass((String) getIntent().getSerializableExtra("email"));
     }
 }

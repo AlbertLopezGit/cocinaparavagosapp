@@ -30,7 +30,7 @@ public class LoginActivity extends AppCompatActivity {
                 WindowManager.LayoutParams.FLAG_FULLSCREEN);
 
         managerUser = new ManagerUser();
-        password = findViewById(R.id.editTextTextPassword);
+        password = findViewById(R.id.editTextTextPasswordLogin);
         email = findViewById(R.id.editTextMail);
         register = findViewById(R.id.btnRegister);
         capibara = findViewById(R.id.capibaraImg);
@@ -59,6 +59,8 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
+
+
     }
 
     private void comprobarImputs() {
@@ -75,7 +77,8 @@ public class LoginActivity extends AppCompatActivity {
         intent.putExtra("pass", pass);
         intent.putExtra("email", correo);
         startActivity(intent);
-        finish();
+        email.setText("");
+        password.setText("");
     }
 
     private boolean checkOptionsLogout(String pass, String correo) {
@@ -100,5 +103,13 @@ public class LoginActivity extends AppCompatActivity {
 
     public void capibaraSound() {
         sp.play(sound,1,1,1,0,0);
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        if (UserValidation.validado) {
+          finish();
+        }
     }
 }

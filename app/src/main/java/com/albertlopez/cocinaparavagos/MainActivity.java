@@ -12,6 +12,8 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toast;
 
 import com.albertlopez.cocinaparavagos.ingredients.IngredientsBaseActivity;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
@@ -33,7 +35,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     ManagerIngredients managerIngredient;
     ManagerRecetas managerRecetas;
     Button ingedientsButton, recipesButton;
-
+    TextView nombreUsuario;
+    Menu menu;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -47,11 +50,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         toolbar = findViewById(R.id.toolbar);
         ingedientsButton = findViewById(R.id.ingedientsButton);
         recipesButton = findViewById(R.id.recetasButton);
+        nombreUsuario = findViewById(R.id.NombreUsuario);
+
 
         loadingIngredients(); // por aqui nos pasamos el ManagerIngredients de la activity Splash
 
-        Menu menu = navigationView.getMenu();
+        menu = navigationView.getMenu();
 
+        nombreUsuario.setVisibility(View.INVISIBLE);
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
         drawerLayout.addDrawerListener(toggle);
@@ -70,9 +76,16 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         recipesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                openRecipeActivity();
+                if (UserValidation.validado) {
+                    openRecipeActivity();
+                } else {
+                    Toast.makeText(MainActivity.this,
+                            "Opción para usuarios registrados ",Toast.LENGTH_SHORT)
+                            .show();
+                }
             }
         });
+
     }
 
     private void loadingIngredients() {
@@ -98,9 +111,15 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     @Override
     public boolean onNavigationItemSelected(@NonNull MenuItem item) {
+
         switch (item.getItemId()) {
             case R.id.nav_login:
                 Intent intent = new Intent (this, LoginActivity.class);
+                startActivity(intent);
+                break;
+            case R.id.nav_logout:
+                UserValidation.logout();
+                intent = new Intent (this, LoginActivity.class);
                 startActivity(intent);
                 break;
         }
@@ -112,6 +131,17 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     protected void onResume() {
         super.onResume();
         navigationView.setCheckedItem(R.id.nav_home);
+        if (UserValidation.validado) {
+            menu.getItem(1).setVisible(false);
+            menu.getItem(2).setVisible(true);
+            nombreUsuario.setVisibility(View.VISIBLE);
+            nombreUsuario.setText(UserValidation.getUser().getName());
+        } else {
+            menu.getItem(2).setVisible(false);
+            menu.getItem(1).setVisible(true);
+            nombreUsuario.setVisibility(View.INVISIBLE);
+        }
+
     }
 
     public void openIngredientsActivity() {

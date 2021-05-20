@@ -9,22 +9,11 @@
             android:id="@+id/nav_login"
             android:icon="@drawable/register_icon"
             android:title="REGISTRAR/LOGIN" />
+
+        <item
+            android:id="@+id/nav_logout"
+            android:icon="@drawable/logout_icon"
+            android:title="LOGOUT" />
+
     </group>
-
-        <item android:title="TEMA EN BLANCO">
-
-            <menu>
-                <group android:checkableBehavior="single">
-                <item
-                    android:id="@+id/nav_hola"
-                    android:icon="@drawable/home_icon"
-                    android:title="TEMA EN BLANCO" />
-                <item
-                    android:id="@+id/nav_profile"
-                    android:icon="@drawable/home_icon"
-                    android:title="TEMA EN BLANCO" />
-                </group>
-            </menu>
-        </item>
-
 </menu>
