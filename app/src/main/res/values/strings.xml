@@ -2,4 +2,24 @@
     <string name="app_name">CocinaParaVagos</string>
     <string name="navigation_drawer_open">Abrir menu de navegacion</string>
     <string name="navigation_drawer_close">Abrir menu de navegacion</string>
+    <string-array name="pesos">
+        <item>Masa</item>
+        <item>Gramos</item>
+        <item>Mililitros</item>
+        <item>Unidades</item>
+    </string-array>
+
+    <string-array name="tipoIngrediente">
+        <item>Tipo</item>
+        <item>Carne</item>
+        <item>Pescado</item>
+        <item>Lacteos</item>
+        <item>Cereales</item>
+        <item>Huevos</item>
+        <item>Verduras</item>
+        <item>Frutas</item>
+        <item>Legúmbres</item>
+        <item>Especias</item>
+        <item>Salsas</item>
+    </string-array>
 </resources>

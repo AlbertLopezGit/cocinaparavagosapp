@@ -34,7 +34,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     ManagerIngredients managerIngredient;
     ManagerRecetas managerRecetas;
-    Button ingedientsButton, recipesButton;
+    Button ingedientsButton, recipesButton, ingredienCustomButton;
     TextView nombreUsuario;
     Menu menu;
 
@@ -51,12 +51,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ingedientsButton = findViewById(R.id.ingedientsButton);
         recipesButton = findViewById(R.id.recetasButton);
         nombreUsuario = findViewById(R.id.NombreUsuario);
+        ingredienCustomButton = findViewById(R.id.ingredientesCustomButton);
 
 
         loadingIngredients(); // por aqui nos pasamos el ManagerIngredients de la activity Splash
 
         menu = navigationView.getMenu();
-
         nombreUsuario.setVisibility(View.INVISIBLE);
         navigationView.bringToFront();
         ActionBarDrawerToggle toggle = new ActionBarDrawerToggle(this,drawerLayout,toolbar,R.string.navigation_drawer_open,R.string.navigation_drawer_close);
@@ -70,6 +70,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             @Override
             public void onClick(View v) {
                 openIngredientsActivity();
+            }
+        });
+
+        ingredienCustomButton.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                openCustomIngredientsActivity();
             }
         });
 
@@ -87,6 +94,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         });
 
     }
+
+
 
     private void loadingIngredients() {
         ArrayList<Ingredient> ingedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("Ingredientes");
@@ -134,9 +143,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (UserValidation.validado) {
             menu.getItem(1).setVisible(false);
             menu.getItem(2).setVisible(true);
+            ingredienCustomButton.setVisibility(View.VISIBLE);
             nombreUsuario.setVisibility(View.VISIBLE);
             nombreUsuario.setText(UserValidation.getUser().getName());
         } else {
+            ingredienCustomButton.setVisibility(View.INVISIBLE);
             menu.getItem(2).setVisible(false);
             menu.getItem(1).setVisible(true);
             nombreUsuario.setVisibility(View.INVISIBLE);
@@ -149,6 +160,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ArrayList<Ingredient> ingredientesArray;
         ingredientesArray = managerIngredient.getIngredientsArray();
         intent.putExtra("Ingredientes", ingredientesArray);
+        startActivity(intent);
+    }
+
+    public void openCustomIngredientsActivity() {
+        Intent intent = new Intent(this, CustomBaseActivity.class);
         startActivity(intent);
     }
 

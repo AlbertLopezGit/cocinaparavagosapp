@@ -1,0 +1,162 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_gravity="center"
+    android:background="@color/grey_low"
+    android:foregroundGravity="center"
+    android:textAlignment="center"
+    app:layout_anchorGravity="center"
+    tools:context=".CreateIngredientesActivity">
+
+    <EditText
+        android:id="@+id/nombreIngredienteCustom"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:layout_marginStart="32dp"
+        android:layout_marginEnd="32dp"
+        android:ems="10"
+        android:hint="Nombre Ingrediente"
+        android:inputType="textPersonName"
+        android:maxLength="15"
+        android:textColorHint="#0072BC"
+        android:textSize="20dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView9" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar15"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar17"
+        android:layout_width="362dp"
+        android:layout_height="31dp"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toTopOf="@+id/toolbar16"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar16"
+        app:layout_constraintHorizontal_bias="0.51"
+        app:layout_constraintStart_toStartOf="@+id/toolbar16" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar16"
+        android:layout_width="362dp"
+        android:layout_height="151dp"
+        android:layout_marginBottom="124dp"
+        android:background="@color/grey"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintBottom_toBottomOf="parent"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.489"
+        app:layout_constraintStart_toStartOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView9"
+        android:layout_width="266dp"
+        android:layout_height="278dp"
+        app:layout_constraintBottom_toBottomOf="@+id/imageView7"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar15"
+        app:srcCompat="@drawable/button_redondo" />
+
+    <ImageView
+        android:id="@+id/imageView7"
+        android:layout_width="280dp"
+        android:layout_height="289dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar15"
+        app:srcCompat="@drawable/vegetable" />
+
+    <TextView
+        android:id="@+id/textView2"
+        android:layout_width="186dp"
+        android:layout_height="24dp"
+        android:text="Unidad de masa"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar17"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar17"
+        app:layout_constraintHorizontal_bias="0.0"
+        app:layout_constraintStart_toStartOf="@+id/toolbar17"
+        app:layout_constraintTop_toTopOf="@+id/toolbar17"
+        app:layout_constraintVertical_bias="0.857" />
+
+    <TextView
+        android:id="@+id/textView4"
+        android:layout_width="186dp"
+        android:layout_height="24dp"
+        android:text="Tipo de Ingrediente"
+        android:textAlignment="textEnd"
+        android:textColor="@color/black"
+        android:textSize="20sp"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar17"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar17"
+        app:layout_constraintHorizontal_bias="1.0"
+        app:layout_constraintStart_toStartOf="@+id/toolbar17"
+        app:layout_constraintTop_toTopOf="@+id/toolbar17"
+        app:layout_constraintVertical_bias="0.714" />
+
+    <Button
+        android:id="@+id/insertarIngredienteCustom"
+        android:layout_width="167dp"
+        android:layout_height="48dp"
+        android:layout_marginTop="24dp"
+        android:background="@drawable/button_redondeado"
+        android:text="Insertar"
+        android:textColor="#4F5254"
+        android:textSize="22dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar16" />
+
+    <Spinner
+        android:id="@+id/spinner2"
+        android:layout_width="wrap_content"
+        android:layout_height="98dp"
+        android:background="@drawable/button_redondo"
+        android:backgroundTint="#FFFFFF"
+        android:foregroundGravity="center"
+        android:spinnerMode="dropdown"
+        android:textAlignment="center"
+        app:flow_horizontalAlign="center"
+        app:flow_verticalAlign="center"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar16"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar16"
+        app:layout_constraintHorizontal_bias="0.881"
+        app:layout_constraintStart_toStartOf="@+id/toolbar16"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar17" />
+
+    <Spinner
+        android:id="@+id/spinner"
+        android:layout_width="wrap_content"
+        android:layout_height="98dp"
+        android:background="@drawable/button_redondo"
+        android:backgroundTint="#FFFFFF"
+        android:foregroundGravity="center"
+        android:spinnerMode="dropdown"
+        android:textAlignment="center"
+        app:flow_horizontalAlign="center"
+        app:flow_verticalAlign="center"
+        app:layout_constraintBottom_toBottomOf="@+id/toolbar16"
+        app:layout_constraintEnd_toEndOf="@+id/toolbar16"
+        app:layout_constraintHorizontal_bias="0.118"
+        app:layout_constraintStart_toStartOf="@+id/toolbar16"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar17" />
+
+</androidx.constraintlayout.widget.ConstraintLayout>
