@@ -9,7 +9,7 @@ public class Ingredient implements Serializable{
     private String nombreIngrediente;
     @SerializedName("CLASIFICACIONINGREDIENTE")
     private String clasificacionIngredientes;
-    @SerializedName("INGREDIENTEBASE")
+    @SerializedName("INGREDIENTEDEBASE")
     private int ingredienteBase;
     @SerializedName("IMAGEN_INGREDIENTE")
     private String imagen;
