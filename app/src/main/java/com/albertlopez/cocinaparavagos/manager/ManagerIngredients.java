@@ -89,6 +89,9 @@ public class ManagerIngredients implements Serializable {
     }
 
     public void mezclarIngredientesConCustom() {
+
+        if (ingredientsCustomArray.size() == 0) {return;}
+
         ArrayList<Ingredient> ingredientsArrayMezclado = new ArrayList<>();
 
         for (IngredientCustom i: ingredientsCustomArray) {
