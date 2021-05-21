@@ -113,6 +113,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ArrayList<RecipeIngredients> recipeIngredients = (ArrayList<RecipeIngredients>) getIntent().getSerializableExtra("RecetasCantidades");
 
         managerIngredient.setIngredientsArray(ingedientesArray);
+        managerIngredient.setIngredientsArrayFijos(ingedientesArray);
         managerRecetas.setRecipesArray(recipesArray);
         managerRecetas.setRecipesIngredientsArray(recipeIngredients);
 

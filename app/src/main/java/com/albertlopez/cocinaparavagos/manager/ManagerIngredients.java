@@ -121,6 +121,10 @@ public class ManagerIngredients implements Serializable {
         setIngredientsArray(mezclado);
     }
 
+    public void setIngredientsArrayFijos(ArrayList<Ingredient> ingredientsArrayFijos) {
+        this.ingredientsArrayFijos = ingredientsArrayFijos;
+    }
+
     public void noUsuario(){
         setIngredientsArray(ingredientsArrayFijos);
     }
