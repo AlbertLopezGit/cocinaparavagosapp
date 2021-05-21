@@ -35,8 +35,8 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
     ManagerIngredients managerIngredient;
     ManagerRecetas managerRecetas;
     ManagerUser managerUser;
-    //String pass;
-    //String email;
+    String pass;
+    String email;
     boolean errorNetwork; //si no conecta con el server el booleano queda como true y no deja pasar al menu principal
 
     @Override
@@ -66,20 +66,22 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
 
     @Override
     public void run() {
-        if (stepCounter == 1000) {
+        if (stepCounter == 0) {
             loadingText.setText("Iniciando");
-            //SharedPreferences prefs = getSharedPreferences(getPackageName(), MODE_PRIVATE);
-            //pass = prefs.getString("pass", "");
-            //email = prefs.getString("email", "");
-            //if (email.length() > 0) {
-                //descargarUsuario(email);
-                //comprobarContraseña(pass);
-            //}
+            SharedPreferences prefs = getSharedPreferences(getPackageName(), MODE_PRIVATE);
+            pass = prefs.getString("pass", "");
+            email = prefs.getString("email", "");
+            if (email.length() > 0) {
+            descargarUsuario(email);
+            }
             stepCounter++;
             handler.postDelayed(this,1000);
         } else if (stepCounter == 1){
             loadingText.setText("Despertando al Capibara");
             stepCounter++;
+            if (pass.length() > 0) {
+                comprobarContraseña(pass);
+            }
             handler.postDelayed(this,1000);
         } else if (stepCounter == 2){
             loadingText.setText("Cargando Datos");
@@ -221,7 +223,6 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
     }
 
     private void descargarUsuario(String email) {
-        loadingText.setText("Buscando Usuario");
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest request = new StringRequest(
                 Request.Method.GET,
@@ -234,22 +235,16 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
-                        stepCounter++;
-                        handler.postDelayed(SplashActivity.this, 1000);
+
                     }
                 },
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         errorNetwork = true;
-                        stepCounter++;
-                        handler.postDelayed(SplashActivity.this, 1000);
                     }
                 });
         queue.add(request);
-
     }
 }
-
-
 

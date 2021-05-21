@@ -45,7 +45,6 @@ public class ManagerUser implements Serializable {
     public void addUsuario(String response) throws JSONException {
         user = gson.fromJson(response, User.class);
         UserValidation.setUser(user);
-
     }
 
 

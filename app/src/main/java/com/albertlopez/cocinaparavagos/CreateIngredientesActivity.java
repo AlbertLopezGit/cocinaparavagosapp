@@ -62,11 +62,15 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
                 if (!checkOptionsRegister(name,tipo,medida)) {
                     return;
                 } else {
-                    ingredientCreator.createIngredientCustom(name,medida,tipo,requestQueue);
+                    insertarIngredientes();
                 }
             }
         });
 
+    }
+
+    private void insertarIngredientes() {
+        ingredientCreator.createIngredientCustom(name,medida,tipo,requestQueue,this);
     }
 
     private boolean checkOptionsRegister(String name, String tipo,String medida) {
@@ -122,5 +126,18 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
+    }
+
+    public void ingredienteRepetido() {
+        Toast.makeText(CreateIngredientesActivity.this,
+                "El Ingrediente que intentas insertar ya existe en la base de datos",Toast.LENGTH_SHORT)
+                .show();
+    }
+
+    public void ingredienteInsertado() {
+        Toast.makeText(CreateIngredientesActivity.this,
+                "Ingrediente Insertado",Toast.LENGTH_SHORT)
+                .show();
+        nombre.setText("");
     }
 }

@@ -21,18 +21,21 @@ import static com.albertlopez.cocinaparavagos.bbdd.Bbdd.ingredientesCustom;
 
 public class IngredientCreator {
     String idUsuario;
+    CreateIngredientesActivity createIngredientesActivity;
 
+    public void createIngredientCustom(final String name, final String medida, final String tipo,
+                                       final RequestQueue requestQueue, CreateIngredientesActivity createIngredientesActivity) {
 
-    public void createIngredientCustom(String name, String medida, String tipo, RequestQueue requestQueue) {
+        this.createIngredientesActivity = createIngredientesActivity;
         idUsuario = UserValidation.getUser().getIdUsuario();
+
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
                 ingredientesCustom,
                 new Response.Listener<String>() {
                     @Override
                     public void onResponse(String response) {
-                        Log.d("Albert", response);
-                        if (!duplicatedIngredient(response, name)) {
+                        if (!duplicatedIngredient(response)) {
 
                         }
                     }
@@ -40,7 +43,7 @@ public class IngredientCreator {
                 new Response.ErrorListener() {
                     @Override
                     public void onErrorResponse(VolleyError error) {
-
+                        createIngredientesActivity.ingredienteInsertado();
                     }
                 }
         ){
@@ -59,16 +62,18 @@ public class IngredientCreator {
         requestQueue.add(stringRequest);
     }
 
-    private boolean duplicatedIngredient(String message, String email) {
+    private boolean duplicatedIngredient(String message) {
         Log.d("Albert", "itemduplicado");
         String errorSql = "1062";
         String[] palabras = errorSql.split("\\W+");
         for (String palabra : palabras) {
             if (message.contains(palabra)) {
                 Log.d("Albert", "INGREDIENTE DUPLICADO");
+                createIngredientesActivity.ingredienteRepetido();
                 return true;
             }
         }
+        createIngredientesActivity.ingredienteInsertado();
         return false;
     }
 

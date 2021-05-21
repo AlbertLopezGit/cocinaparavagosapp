@@ -7,6 +7,7 @@ import androidx.appcompat.widget.Toolbar;
 import androidx.core.view.GravityCompat;
 import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -127,6 +128,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 break;
             case R.id.nav_logout:
+                SharedPreferences prefs = getSharedPreferences(getPackageName(), MODE_PRIVATE);
+                SharedPreferences.Editor ed = prefs.edit();
+                ed.putString("pass", "");
+                ed.putString("email", "");
+                ed.apply();
                 UserValidation.logout();
                 intent = new Intent (this, LoginActivity.class);
                 startActivity(intent);
