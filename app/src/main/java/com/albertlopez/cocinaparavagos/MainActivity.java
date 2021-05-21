@@ -64,7 +64,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         nombreUsuario = findViewById(R.id.NombreUsuario);
         ingredienCustomButton = findViewById(R.id.ingredientesCustomButton);
 
-
         loadingIngredients(); // por aqui nos pasamos el ManagerIngredients de la activity Splash
 
         menu = navigationView.getMenu();
@@ -168,6 +167,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             menu.getItem(2).setVisible(false);
             menu.getItem(1).setVisible(true);
             nombreUsuario.setVisibility(View.INVISIBLE);
+            managerIngredient.noUsuario();
         }
 
     }
