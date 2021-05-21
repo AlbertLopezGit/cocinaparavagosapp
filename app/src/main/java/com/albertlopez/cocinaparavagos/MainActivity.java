@@ -105,8 +105,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     }
 
-
-
     private void loadingIngredients() {
         ArrayList<Ingredient> ingedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("Ingredientes");
         ArrayList<Recipe> recipesArray = (ArrayList<Recipe>) getIntent().getSerializableExtra("Recetas");
@@ -114,6 +112,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         managerIngredient.setIngredientsArray(ingedientesArray);
         managerIngredient.setIngredientsArrayFijos(ingedientesArray);
+
         managerRecetas.setRecipesArray(recipesArray);
         managerRecetas.setRecipesIngredientsArray(recipeIngredients);
 
@@ -146,6 +145,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 UserValidation.logout();
                 intent = new Intent (this, LoginActivity.class);
                 startActivity(intent);
+                managerIngredient.noUsuario();
                 break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
@@ -164,13 +164,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             nombreUsuario.setText(UserValidation.getUser().getName());
             gestionarIngredientesNuevos();
         } else {
+            loadingIngredients();
             ingredienCustomButton.setVisibility(View.INVISIBLE);
             menu.getItem(2).setVisible(false);
             menu.getItem(1).setVisible(true);
             nombreUsuario.setVisibility(View.INVISIBLE);
             managerIngredient.noUsuario();
         }
-
     }
 
     private void gestionarIngredientesNuevos() {

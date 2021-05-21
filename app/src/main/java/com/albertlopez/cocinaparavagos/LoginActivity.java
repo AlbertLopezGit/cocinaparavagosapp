@@ -59,8 +59,6 @@ public class LoginActivity extends AppCompatActivity {
             }
         });
 
-
-
     }
 
     private void comprobarImputs() {
@@ -69,7 +67,6 @@ public class LoginActivity extends AppCompatActivity {
         //metodo para controlar todos los requisitos para registrar usuario
         if (!checkOptionsLogout(pass,correo)) { return;}
         comprobarUsuarioYdescargar(correo,pass);
-
     }
 
     private void comprobarUsuarioYdescargar(String correo, String pass) {

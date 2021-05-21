@@ -33,7 +33,6 @@ public class ManagerIngredients implements Serializable {
             JSONObject ingrediente = jsonResponse.getJSONObject(i);
             Ingredient ingredient = gson.fromJson(String.valueOf(ingrediente),Ingredient.class);
             ingredientsArray.add(ingredient);
-            ingredientsArrayFijos.add(ingredient);
         }
     }
 
@@ -45,7 +44,6 @@ public class ManagerIngredients implements Serializable {
             JSONObject ingrediente = jsonResponse.getJSONObject(i);
             IngredientCustom ingredient = gson.fromJson(String.valueOf(ingrediente),IngredientCustom.class);
             if (ingredient.getIdUsuario().equals(UserValidation.getUser().getIdUsuario())) {
-                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa "+ ingredientsCustomArray.size());
                 ingredientsCustomArray.add(ingredient);
             }
         }
@@ -109,6 +107,8 @@ public class ManagerIngredients implements Serializable {
                 ingredientsArrayMezclado.add(ingredient);
             }
         }
+
+        System.out.println("INGREDIENTES CUSTOM "+  ingredientsCustomArray.size());
 
         ingredientsArrayMezclado.addAll(ingredientsArrayFijos);
 
