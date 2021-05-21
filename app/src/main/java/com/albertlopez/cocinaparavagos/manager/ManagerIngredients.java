@@ -1,6 +1,8 @@
 package com.albertlopez.cocinaparavagos.manager;
 
+import com.albertlopez.cocinaparavagos.UserValidation;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
+import com.albertlopez.cocinaparavagos.model.IngredientCustom;
 import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -15,6 +17,7 @@ public class ManagerIngredients implements Serializable {
     Gson gson = new Gson();
     ArrayList<Ingredient> ingredientsArray;
     ArrayList<Ingredient> tiposIngredientsArray;
+    ArrayList<IngredientCustom> ingredientsCustomArray;
 
     public void addIngredientsBase(String response) throws JSONException {
         JSONArray jsonResponse = new JSONArray(response);
@@ -26,6 +29,20 @@ public class ManagerIngredients implements Serializable {
             Ingredient ingredient = gson.fromJson(String.valueOf(ingrediente),Ingredient.class);
             ingredientsArray.add(ingredient);
         }
+    }
+
+    public void addIngredientsCustom(String response) throws JSONException {
+        JSONArray jsonResponse = new JSONArray(response);
+        ingredientsCustomArray = new ArrayList<>();
+
+        for (int i = 0; i < jsonResponse.length() ; i++) {
+            JSONObject ingrediente = jsonResponse.getJSONObject(i);
+            IngredientCustom ingredient = gson.fromJson(String.valueOf(ingrediente),IngredientCustom.class);
+            if (ingredient.getIdUsuario().equals(UserValidation.getUser().getIdUsuario())) {
+                ingredientsCustomArray.add(ingredient);
+            }
+        }
+        mezclarIngredientesConCustom();
     }
 
     public void setIngredientsArray(ArrayList<Ingredient> ingredientsArray) {
@@ -69,5 +86,19 @@ public class ManagerIngredients implements Serializable {
             }
         }
         return ingredientesSeleccionado;
+    }
+
+    public void mezclarIngredientesConCustom() {
+        ArrayList<Ingredient> ingredientsArrayMezclado = new ArrayList<>();
+
+        for (IngredientCustom i: ingredientsCustomArray) {
+            System.out.println(i.getNombreIngrediente());
+            Ingredient ingredient = new Ingredient(i.getNombreIngrediente(),i.getClasificacionIngredientes(),1, i.getImagen(), i.getValorMedida());
+            ingredientsArrayMezclado.add(ingredient);
+        }
+
+        ingredientsArrayMezclado.addAll(ingredientsArray);
+
+        ingredientsArray = ingredientsArrayMezclado;
     }
 }

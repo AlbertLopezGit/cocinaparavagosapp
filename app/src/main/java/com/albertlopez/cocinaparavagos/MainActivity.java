@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.view.View;
@@ -16,6 +17,7 @@ import android.widget.Button;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.albertlopez.cocinaparavagos.bbdd.Bbdd;
 import com.albertlopez.cocinaparavagos.ingredients.IngredientsBaseActivity;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
 import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
@@ -24,7 +26,15 @@ import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.albertlopez.cocinaparavagos.model.Recipe;
 import com.albertlopez.cocinaparavagos.model.RecipeIngredients;
 import com.albertlopez.cocinaparavagos.recipes.RecipesBaseActivity;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
 import com.google.android.material.navigation.NavigationView;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 
@@ -152,12 +162,39 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             ingredienCustomButton.setVisibility(View.VISIBLE);
             nombreUsuario.setVisibility(View.VISIBLE);
             nombreUsuario.setText(UserValidation.getUser().getName());
+            gestionarIngredientesNuevos();
         } else {
             ingredienCustomButton.setVisibility(View.INVISIBLE);
             menu.getItem(2).setVisible(false);
             menu.getItem(1).setVisible(true);
             nombreUsuario.setVisibility(View.INVISIBLE);
         }
+
+    }
+
+    private void gestionarIngredientesNuevos() {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest request = new StringRequest(
+                Request.Method.GET,
+                Bbdd.ingredientesCustom,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            managerIngredient.addIngredientsCustom(response);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+        queue.add(request);
 
     }
 
