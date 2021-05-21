@@ -45,10 +45,10 @@ public class ManagerIngredients implements Serializable {
             JSONObject ingrediente = jsonResponse.getJSONObject(i);
             IngredientCustom ingredient = gson.fromJson(String.valueOf(ingrediente),IngredientCustom.class);
             if (ingredient.getIdUsuario().equals(UserValidation.getUser().getIdUsuario())) {
+                System.out.println("aaaaaaaaaaaaaaaaaaaaaaaaaa "+ ingredientsCustomArray.size());
                 ingredientsCustomArray.add(ingredient);
             }
         }
-
         mezclarIngredientesConCustom();
     }
 
@@ -96,19 +96,21 @@ public class ManagerIngredients implements Serializable {
     }
 
     public void mezclarIngredientesConCustom() {
+
         if (ingredientsCustomArray.size() == 0) {return;}
         ArrayList<Ingredient> ingredientsArrayMezclado = new ArrayList<>();
         LinkedHashMap<String,Ingredient> mapIngredientes = new LinkedHashMap<>();
         ArrayList<Ingredient> mezclado = new ArrayList<>();
 
         for (IngredientCustom i: ingredientsCustomArray) {
-            Ingredient ingredient = new Ingredient(i.getNombreIngrediente(),i.getClasificacionIngredientes(),
-                    1, i.getImagen(), i.getValorMedida());
-            ingredientsArrayMezclado.add(ingredient);
-
+            if (i.getIdUsuario().equals(UserValidation.getUser().getIdUsuario())) {
+                Ingredient ingredient = new Ingredient(i.getNombreIngrediente(),i.getClasificacionIngredientes(),
+                        1, i.getImagen(), i.getValorMedida());
+                ingredientsArrayMezclado.add(ingredient);
+            }
         }
 
-        ingredientsArrayMezclado.addAll(ingredientsArray);
+        ingredientsArrayMezclado.addAll(ingredientsArrayFijos);
 
         for (Ingredient i: ingredientsArrayMezclado) {
             mapIngredientes.put(i.getNombreIngrediente(),i);
