@@ -3,6 +3,7 @@ package com.albertlopez.cocinaparavagos;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -106,6 +107,7 @@ public class SpashUserValidation extends AppCompatActivity implements Runnable{
              if (!errorNetwork) {
                  UserValidation.comprobarPass(pass);
                  if (UserValidation.getValidado()) {
+                     guardandoShared();
                      Toast.makeText(SpashUserValidation.this,
                              "Logueado",Toast.LENGTH_SHORT)
                              .show();
@@ -117,6 +119,14 @@ public class SpashUserValidation extends AppCompatActivity implements Runnable{
              }
             finish();
          }
+    }
+
+    private void guardandoShared() {
+        SharedPreferences prefs = getSharedPreferences(getPackageName(), MODE_PRIVATE);
+        SharedPreferences.Editor ed = prefs.edit();
+        ed.putString("pass", pass);
+        ed.putString("email", email);
+        ed.apply();
     }
 
     private void loading() {

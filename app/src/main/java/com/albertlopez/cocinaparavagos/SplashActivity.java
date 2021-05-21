@@ -2,6 +2,7 @@ package com.albertlopez.cocinaparavagos;
 
 import androidx.appcompat.app.AppCompatActivity;
 import android.content.Intent;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 import android.os.Handler;
 import android.util.Log;
@@ -12,6 +13,7 @@ import com.albertlopez.cocinaparavagos.bbdd.Bbdd;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
 import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
 import com.albertlopez.cocinaparavagos.manager.ManagerRecetas;
+import com.albertlopez.cocinaparavagos.manager.ManagerUser;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.albertlopez.cocinaparavagos.model.Recipe;
 import com.albertlopez.cocinaparavagos.model.RecipeIngredients;
@@ -32,6 +34,9 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
     int stepCounter;
     ManagerIngredients managerIngredient;
     ManagerRecetas managerRecetas;
+    ManagerUser managerUser;
+    //String pass;
+    //String email;
     boolean errorNetwork; //si no conecta con el server el booleano queda como true y no deja pasar al menu principal
 
     @Override
@@ -54,14 +59,22 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
         managerIngredient = new ManagerIngredients();
         managerRecetas = new ManagerRecetas();
         handler = new Handler();
+        managerUser = new ManagerUser();
         stepCounter = 0;
         handler.postDelayed(this,0);
     }
 
     @Override
     public void run() {
-        if (stepCounter == 0) {
+        if (stepCounter == 1000) {
             loadingText.setText("Iniciando");
+            //SharedPreferences prefs = getSharedPreferences(getPackageName(), MODE_PRIVATE);
+            //pass = prefs.getString("pass", "");
+            //email = prefs.getString("email", "");
+            //if (email.length() > 0) {
+                //descargarUsuario(email);
+                //comprobarContraseña(pass);
+            //}
             stepCounter++;
             handler.postDelayed(this,1000);
         } else if (stepCounter == 1){
@@ -201,6 +214,40 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
 
             }
         }
+    }
+
+    private void comprobarContraseña(String pass) {
+        UserValidation.comprobarPass(pass);
+    }
+
+    private void descargarUsuario(String email) {
+        loadingText.setText("Buscando Usuario");
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest request = new StringRequest(
+                Request.Method.GET,
+                Bbdd.usuario+"/"+email,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            managerUser.addUsuario(response);
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                        stepCounter++;
+                        handler.postDelayed(SplashActivity.this, 1000);
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+                        errorNetwork = true;
+                        stepCounter++;
+                        handler.postDelayed(SplashActivity.this, 1000);
+                    }
+                });
+        queue.add(request);
+
     }
 }
 
