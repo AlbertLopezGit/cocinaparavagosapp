@@ -12,6 +12,9 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
+import java.util.LinkedHashMap;
+import java.util.List;
+import java.util.Map;
 
 public class ManagerIngredients implements Serializable {
     Gson gson = new Gson();
@@ -32,8 +35,8 @@ public class ManagerIngredients implements Serializable {
     }
 
     public void addIngredientsCustom(String response) throws JSONException {
+        ingredientsCustomArray  = new ArrayList<>();
         JSONArray jsonResponse = new JSONArray(response);
-        ingredientsCustomArray = new ArrayList<>();
 
         for (int i = 0; i < jsonResponse.length() ; i++) {
             JSONObject ingrediente = jsonResponse.getJSONObject(i);
@@ -42,6 +45,7 @@ public class ManagerIngredients implements Serializable {
                 ingredientsCustomArray.add(ingredient);
             }
         }
+
         mezclarIngredientesConCustom();
     }
 
@@ -89,19 +93,30 @@ public class ManagerIngredients implements Serializable {
     }
 
     public void mezclarIngredientesConCustom() {
-
         if (ingredientsCustomArray.size() == 0) {return;}
-
         ArrayList<Ingredient> ingredientsArrayMezclado = new ArrayList<>();
+        LinkedHashMap<String,Ingredient> mapIngredientes = new LinkedHashMap<>();
+        ArrayList<Ingredient> mezclado = new ArrayList<>();
 
         for (IngredientCustom i: ingredientsCustomArray) {
-            System.out.println(i.getNombreIngrediente());
-            Ingredient ingredient = new Ingredient(i.getNombreIngrediente(),i.getClasificacionIngredientes(),1, i.getImagen(), i.getValorMedida());
+            Ingredient ingredient = new Ingredient(i.getNombreIngrediente(),i.getClasificacionIngredientes(),
+                    1, i.getImagen(), i.getValorMedida());
             ingredientsArrayMezclado.add(ingredient);
+
         }
 
         ingredientsArrayMezclado.addAll(ingredientsArray);
 
-        ingredientsArray = ingredientsArrayMezclado;
+        for (Ingredient i: ingredientsArrayMezclado) {
+            mapIngredientes.put(i.getNombreIngrediente(),i);
+        }
+
+        for (Map.Entry<String, Ingredient> entry : mapIngredientes.entrySet()) {
+            Ingredient value = entry.getValue();
+            mezclado.add(value);
+        }
+
+
+        setIngredientsArray(mezclado);
     }
 }

@@ -195,7 +195,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
         queue.add(request);
-
     }
 
     public void openIngredientsActivity() {
