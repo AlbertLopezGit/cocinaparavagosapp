@@ -44,10 +44,7 @@ public class DeleteIngredientCustom extends AppCompatActivity {
         loading();
 
         adaptadorRecyclerViewIngredientes = new RecyclerViewIngredientesAdaptador(this,arrayListCustomIngredients,4);
-
         recyclerViewBorrarIngredientes.setAdapter(adaptadorRecyclerViewIngredientes);
-
-
 
         adaptadorRecyclerViewIngredientes.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -84,7 +81,6 @@ public class DeleteIngredientCustom extends AppCompatActivity {
         arrayListCustomIngredients.remove(ingredienteSeleccionado);
     }
 
-
     private void loading() {
         ArrayList<String> ultimosIngredientesDelete = UserValidation.getIngredientesUltimosDelete();
         ArrayList<Ingredient> ingredientesParaEliminar = new ArrayList<>();
@@ -97,9 +93,7 @@ public class DeleteIngredientCustom extends AppCompatActivity {
                 }
             }
         }
-
         arrayListCustomIngredients.removeAll(ingredientesParaEliminar);
-
     }
 
     private void ocultarBarras(){

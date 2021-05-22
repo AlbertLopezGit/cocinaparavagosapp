@@ -107,7 +107,6 @@ public class ManagerIngredients implements Serializable {
             }
         }
 
-
         ingredientsArrayMezclado.addAll(ingredientsArrayFijos);
 
         for (Ingredient i: ingredientsArrayMezclado) {
