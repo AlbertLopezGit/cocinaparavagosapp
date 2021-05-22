@@ -9,6 +9,7 @@ import androidx.drawerlayout.widget.DrawerLayout;
 import android.content.Intent;
 import android.content.SharedPreferences;
 import android.os.Bundle;
+import android.os.Parcelable;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
@@ -48,6 +49,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Button ingedientsButton, recipesButton, ingredienCustomButton;
     TextView nombreUsuario;
     Menu menu;
+    MainActivity mainActivity = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -147,6 +149,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 UserValidation.logout();
                 intent = new Intent (this, LoginActivity.class);
                 startActivity(intent);
+                UserValidation.restearIngredientesUltimos();
+                UserValidation.restearIngredientesUltimosDelete();
                 managerIngredient.noUsuario();
                 break;
             case R.id.nav_ingredientsCustom:
@@ -184,7 +188,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         }
     }
 
-    private void gestionarIngredientesNuevos() {
+    void gestionarIngredientesNuevos() {
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest request = new StringRequest(
                 Request.Method.GET,
@@ -219,6 +223,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void openCustomIngredientsActivity() {
         Intent intent = new Intent(this, CustomBaseActivity.class);
+        intent.putExtra("customIngredients",managerIngredient.getIngredientsCustomArray());
         startActivity(intent);
     }
 

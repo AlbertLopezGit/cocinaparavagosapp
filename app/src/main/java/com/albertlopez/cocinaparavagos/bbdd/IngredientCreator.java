@@ -1,11 +1,10 @@
 package com.albertlopez.cocinaparavagos.bbdd;
 
 import android.util.Log;
-import android.view.View;
-import android.widget.EditText;
 
 import com.albertlopez.cocinaparavagos.CreateIngredientesActivity;
 import com.albertlopez.cocinaparavagos.UserValidation;
+import com.albertlopez.cocinaparavagos.model.IngredientCustom;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -21,6 +20,7 @@ import static com.albertlopez.cocinaparavagos.bbdd.Bbdd.ingredientesCustom;
 
 public class IngredientCreator {
     String idUsuario;
+    IngredientCustom ingredientCustom;
     CreateIngredientesActivity createIngredientesActivity;
 
     public void createIngredientCustom(final String name, final String medida, final String tipo,

@@ -7,16 +7,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.albertlopez.cocinaparavagos.model.Ingredient;
+import com.albertlopez.cocinaparavagos.model.IngredientCustom;
+
+import java.util.ArrayList;
+
 public class CustomBaseActivity extends AppCompatActivity {
 
     Button ingredientes,recetas;
+    ArrayList<IngredientCustom> ingredientCustom;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_custom_base);
         ocultarBarras();
-
+        loading();
         ingredientes = findViewById(R.id.ingedientsButton);
         recetas = findViewById(R.id.recetasButton);
 
@@ -36,11 +42,16 @@ public class CustomBaseActivity extends AppCompatActivity {
         });
     }
 
+    private void loading() {
+        ingredientCustom = (ArrayList<IngredientCustom>) getIntent().getSerializableExtra("customIngredients");
+    }
+
     private void openRecetasCustomActivity() {
     }
 
     private void openIngredientsCustomActivity() {
         Intent intent = new Intent (this, CreateIngredientesActivity.class);
+        intent.putExtra("customIngredients",ingredientCustom);
         startActivity(intent);
     }
 

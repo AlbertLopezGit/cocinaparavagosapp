@@ -12,8 +12,11 @@ import android.widget.Spinner;
 import android.widget.Toast;
 
 import com.albertlopez.cocinaparavagos.bbdd.IngredientCreator;
+import com.albertlopez.cocinaparavagos.model.IngredientCustom;
 import com.android.volley.RequestQueue;
 import com.android.volley.toolbox.Volley;
+
+import java.util.ArrayList;
 
 public class CreateIngredientesActivity extends AppCompatActivity implements AdapterView.OnItemSelectedListener {
 
@@ -22,6 +25,7 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
     EditText nombre;
     IngredientCreator ingredientCreator;
     RequestQueue requestQueue;
+    ArrayList<IngredientCustom> ingredientCustomArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -30,6 +34,8 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
         ocultarBarras();
         name = "";
         tipo = "";
+
+        loading();
 
         ArrayAdapter<CharSequence> adapter2 = ArrayAdapter.createFromResource(this,R.array.tipoIngrediente, android.R.layout.simple_spinner_item);
         ArrayAdapter<CharSequence> adapter = ArrayAdapter.createFromResource(this,R.array.pesos, android.R.layout.simple_spinner_item);
@@ -69,14 +75,26 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
 
     }
 
+    private void loading() {
+        ingredientCustomArray = (ArrayList<IngredientCustom>) getIntent().getSerializableExtra("customIngredients");
+    }
+
     private void insertarIngredientes() {
         ingredientCreator.createIngredientCustom(name,medida,tipo,requestQueue,this);
     }
 
     private boolean checkOptionsRegister(String name, String tipo,String medida) {
+        for (IngredientCustom i: ingredientCustomArray) {
+            if (i.getNombreIngrediente().equals(name) || comprobarIngredientesRepetidosLocal(name)) {
+                Toast.makeText(CreateIngredientesActivity.this,
+                        "El ingrediente ya esta creado",Toast.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+        }
         if (name.length() < 1) {
             Toast.makeText(CreateIngredientesActivity.this,
-                    "El nombre no puede estar vacío ",Toast.LENGTH_SHORT)
+                    "El nombre no puede estar vacío",Toast.LENGTH_SHORT)
                     .show();
             return false;
         } else if (tipo.length() != 0 && tipo.equals("Tipo")) {
@@ -91,6 +109,17 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
             return false;
         }
         return true;
+    }
+
+    private boolean comprobarIngredientesRepetidosLocal(String name) {
+        ArrayList<String> ultimos;
+        ultimos = UserValidation.getIngredientesUltimos();
+        for (String i: ultimos) {
+            if (name.equals(i)) {
+                return true;
+            }
+        }
+        return false;
     }
 
     private void ocultarBarras(){
@@ -138,6 +167,7 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
         Toast.makeText(CreateIngredientesActivity.this,
                 "Ingrediente Insertado",Toast.LENGTH_SHORT)
                 .show();
+        UserValidation.addUltimoIngrediente(nombre.getText().toString().trim());
         nombre.setText("");
     }
 }
