@@ -151,6 +151,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 UserValidation.restearIngredientesUltimos();
                 UserValidation.restearIngredientesUltimosDelete();
+                ManagerAllRecipes.resetarIngredientesIntroducidosPorElUsuario();
                 managerIngredient.noUsuario();
                 break;
             case R.id.nav_ingredientsCustom:

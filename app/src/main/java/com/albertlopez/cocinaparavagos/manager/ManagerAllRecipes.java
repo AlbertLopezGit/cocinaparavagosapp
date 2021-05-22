@@ -97,4 +97,9 @@ public class ManagerAllRecipes{
     public static ArrayList<Recipe> getRecetasQueCoincidenDelTodo() {
         return recetasQueCoincidenDelTodo;
     }
+
+    public static void resetarIngredientesIntroducidosPorElUsuario(){
+        ArrayList<Ingredient> ingredientesIntroducidosPorELUsuarioVacio = new ArrayList<>();
+        ingredientesIntroducidosPorELUsuario = ingredientesIntroducidosPorELUsuarioVacio;
+    }
 }
