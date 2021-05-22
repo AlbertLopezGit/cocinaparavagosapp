@@ -13,7 +13,6 @@ import java.util.Collection;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.LinkedHashMap;
-import java.util.List;
 import java.util.Map;
 
 public class ManagerIngredients implements Serializable {
@@ -108,7 +107,6 @@ public class ManagerIngredients implements Serializable {
             }
         }
 
-        System.out.println("INGREDIENTES CUSTOM "+  ingredientsCustomArray.size());
 
         ingredientsArrayMezclado.addAll(ingredientsArrayFijos);
 
@@ -129,5 +127,20 @@ public class ManagerIngredients implements Serializable {
 
     public void noUsuario(){
         setIngredientsArray(ingredientsArrayFijos);
+    }
+
+    public ArrayList<IngredientCustom> getIngredientsCustomArray() {
+        return ingredientsCustomArray;
+    }
+
+    public ArrayList<Ingredient> conversorCustomIngredientes() {
+        ArrayList<Ingredient> ingredientesCustomParse = new ArrayList<>();
+        for (IngredientCustom i:ingredientsCustomArray) {
+            Ingredient ingredient = new Ingredient(i.getNombreIngrediente(),i.getClasificacionIngredientes(),
+                    1, i.getImagen(), i.getValorMedida());
+            ingredientesCustomParse.add(ingredient);
+        }
+
+        return ingredientesCustomParse;
     }
 }

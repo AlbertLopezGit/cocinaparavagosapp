@@ -75,6 +75,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         navigationView.setNavigationItemSelectedListener(this);
         navigationView.setCheckedItem(R.id.nav_home);
+        navigationView.setCheckedItem(R.id.nav_ingredientsCustom);
 
         ingedientsButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -89,6 +90,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 openCustomIngredientsActivity();
             }
         });
+
 
         recipesButton.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -147,6 +149,13 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 startActivity(intent);
                 managerIngredient.noUsuario();
                 break;
+            case R.id.nav_ingredientsCustom:
+                ArrayList<Ingredient>ingredienteCustomParse;
+                intent = new Intent (this, IngredientsSettingsCustom.class);
+                ingredienteCustomParse = managerIngredient.conversorCustomIngredientes();
+                intent.putExtra("ingredientesCustom", ingredienteCustomParse);
+                startActivity(intent);
+                break;
         }
         drawerLayout.closeDrawer(GravityCompat.START);
         return true;
@@ -159,6 +168,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         if (UserValidation.validado) {
             menu.getItem(1).setVisible(false);
             menu.getItem(2).setVisible(true);
+            menu.getItem(3).setVisible(true);
             ingredienCustomButton.setVisibility(View.VISIBLE);
             nombreUsuario.setVisibility(View.VISIBLE);
             nombreUsuario.setText(UserValidation.getUser().getName());
@@ -167,6 +177,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             loadingIngredients();
             ingredienCustomButton.setVisibility(View.INVISIBLE);
             menu.getItem(2).setVisible(false);
+            menu.getItem(3).setVisible(false);
             menu.getItem(1).setVisible(true);
             nombreUsuario.setVisibility(View.INVISIBLE);
             managerIngredient.noUsuario();

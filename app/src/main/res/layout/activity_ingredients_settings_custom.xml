@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<androidx.constraintlayout.widget.ConstraintLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:background="@color/grey_low"
+    tools:context=".IngredientsSettingsCustom">
+
+    <Button
+        android:id="@+id/borrarIngredientesButton"
+        android:layout_width="176dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="52dp"
+        android:background="@drawable/button_redondeado"
+        android:elevation="10dp"
+        android:text="BORRAR INGREDIENTES"
+        android:textColor="#0072bc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/borrarRecetasButton" />
+
+    <Button
+        android:id="@+id/borrarRecetasButton"
+        android:layout_width="176dp"
+        android:layout_height="92dp"
+        android:layout_marginTop="16dp"
+        android:background="@drawable/button_redondeado"
+        android:elevation="10dp"
+        android:text="BORRAR RECETAS"
+        android:textColor="#0072bc"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintHorizontal_bias="0.497"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/imageView10" />
+
+    <androidx.appcompat.widget.Toolbar
+        android:id="@+id/toolbar18"
+        android:layout_width="match_parent"
+        android:layout_height="wrap_content"
+        android:background="?attr/colorPrimary"
+        android:minHeight="?attr/actionBarSize"
+        android:theme="?attr/actionBarTheme"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toTopOf="parent" />
+
+    <ImageView
+        android:id="@+id/imageView10"
+        android:layout_width="233dp"
+        android:layout_height="210dp"
+        app:layout_constraintEnd_toEndOf="parent"
+        app:layout_constraintStart_toStartOf="parent"
+        app:layout_constraintTop_toBottomOf="@+id/toolbar18"
+        app:srcCompat="@drawable/iconologoversioneditar3" />
+</androidx.constraintlayout.widget.ConstraintLayout>

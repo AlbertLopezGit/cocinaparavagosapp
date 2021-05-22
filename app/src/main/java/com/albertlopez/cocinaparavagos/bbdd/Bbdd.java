@@ -8,4 +8,5 @@ public class Bbdd {
     static public String recetasCantidades = "http://80.32.104.188:8220/relacionrecetaingrediente";
     static public String ingredientesCustomGeneralImg = "http://80.32.104.188:8220/imatges/IngredientesCustomGeneral.png";
     static public String ingredientesCustom = "http://80.32.104.188:8220/ingredientescustom";
+    static public String ingredientesCustomDelete = "http://80.32.104.188:8220/ingredientescustomdelete";
 }

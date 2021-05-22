@@ -20,7 +20,7 @@ public class RecyclerViewIngredientesAdaptador extends RecyclerView.Adapter<Recy
     private final Context context;
     private final ArrayList<Ingredient> ingredientesArray;
     private View.OnClickListener listener;
-    private int tipoDeReclicler = 0; //si es 0 no mostrara cantidades si es 1 si mostrara cantidades el 3 son los botones de eliminar receta
+    private int tipoDeReclicler = 0; //si es 0 no mostrara cantidades si es 1 si mostrara cantidades el 3 son los botones de eliminar ingrediente, el 4 es para eliminar los ingredientes Custom
 
 
     public RecyclerViewIngredientesAdaptador(Context context, ArrayList<Ingredient> ingredientesArray, int tipo) {
@@ -54,6 +54,8 @@ public class RecyclerViewIngredientesAdaptador extends RecyclerView.Adapter<Recy
             v = LayoutInflater.from(context).inflate(R.layout.items_ingredientesdetails,parent,false);
         } else if (this.tipoDeReclicler == 3) {
             v = LayoutInflater.from(context).inflate(R.layout.bottons_ingredientes,parent,false);
+        } else if (this.tipoDeReclicler == 4) {
+            v = LayoutInflater.from(context).inflate(R.layout.items_ingredientesborrarcustom,parent,false);
         }
 
         v.setOnClickListener(this);
@@ -67,14 +69,14 @@ public class RecyclerViewIngredientesAdaptador extends RecyclerView.Adapter<Recy
         String image = ingredient.getImagen();
         String nombre = ingredient.getNombreIngrediente();
 
-        if (this.tipoDeReclicler == 1) {
+        if (this.tipoDeReclicler == 1 ) {
             int cantidades = ingredient.getCantidad();
             String textoCantidadaes = String.valueOf(cantidades) + " " + ingredient.getValorMedida();
             holder.cantidades.setVisibility(View.VISIBLE);
             holder.cantidades.setText(textoCantidadaes);
         }
 
-        if (this.tipoDeReclicler == 1 || this.tipoDeReclicler == 0) {
+        if (this.tipoDeReclicler == 1 || this.tipoDeReclicler == 0 || this.tipoDeReclicler == 4 ) {
             holder.tvIngrediente.setText(nombre);
             Picasso.with(context).load(image).fit().centerInside().into(holder.imagenIngrediente);
         }

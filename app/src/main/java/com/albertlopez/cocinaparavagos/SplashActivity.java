@@ -37,6 +37,7 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
     ManagerUser managerUser;
     String pass;
     String email;
+    boolean siUsuarios = false;
     boolean errorNetwork; //si no conecta con el server el booleano queda como true y no deja pasar al menu principal
 
     @Override
@@ -219,7 +220,16 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
     }
 
     private void comprobarContraseña(String pass) {
-        UserValidation.comprobarPass(pass);
+        if (siUsuarios) {
+            UserValidation.comprobarPass(pass);
+        } else {
+            SharedPreferences prefs = getSharedPreferences(getPackageName(), MODE_PRIVATE);
+            SharedPreferences.Editor ed = prefs.edit();
+            ed.putString("pass", "");
+            ed.putString("email", "");
+            ed.apply();
+        }
+
     }
 
     private void descargarUsuario(String email) {
@@ -232,6 +242,7 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
                     public void onResponse(String response) {
                         try {
                             managerUser.addUsuario(response);
+                            siUsuarios = true;
                         } catch (JSONException e) {
                             e.printStackTrace();
                         }
@@ -242,6 +253,7 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
                     @Override
                     public void onErrorResponse(VolleyError error) {
                         errorNetwork = true;
+                        siUsuarios = false;
                     }
                 });
         queue.add(request);
