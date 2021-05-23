@@ -35,6 +35,7 @@ public class IngredientsActivity extends AppCompatActivity {
 
         managerIngredient = new ManagerIngredients();
         setContentView(R.layout.activity_ingredients);
+
         toolbar = findViewById(R.id.toolbar2);
         botonRedondoRecetas = findViewById(R.id.botonRecetas);
         botonRedondo = findViewById(R.id.botonIngredientes3);
@@ -86,7 +87,6 @@ public class IngredientsActivity extends AppCompatActivity {
                 listaRecetas();
             }
         });
-
     }
 
     private void listaRecetas() {
@@ -99,8 +99,6 @@ public class IngredientsActivity extends AppCompatActivity {
         intent.putExtra("recetasBool", false);
         startActivity(intent);
     }
-
-
 
     private void loadingIngredients() {
         ingedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("TiposIngredientes");
