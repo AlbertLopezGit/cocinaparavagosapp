@@ -7,8 +7,22 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
+import com.albertlopez.cocinaparavagos.bbdd.Bbdd;
+import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
+import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
+import com.albertlopez.cocinaparavagos.manager.ManagerRecetas;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.albertlopez.cocinaparavagos.model.IngredientCustom;
+import com.albertlopez.cocinaparavagos.model.Recipe;
+import com.albertlopez.cocinaparavagos.model.RecipeIngredients;
+import com.android.volley.Request;
+import com.android.volley.RequestQueue;
+import com.android.volley.Response;
+import com.android.volley.VolleyError;
+import com.android.volley.toolbox.StringRequest;
+import com.android.volley.toolbox.Volley;
+
+import org.json.JSONException;
 
 import java.util.ArrayList;
 
@@ -16,6 +30,8 @@ public class CustomBaseActivity extends AppCompatActivity {
 
     Button ingredientes,recetas;
     ArrayList<IngredientCustom> ingredientCustom;
+    ArrayList<Ingredient> ingredientesArray;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -44,9 +60,15 @@ public class CustomBaseActivity extends AppCompatActivity {
 
     private void loading() {
         ingredientCustom = (ArrayList<IngredientCustom>) getIntent().getSerializableExtra("customIngredients");
+        ingredientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("ingredientsArray");
     }
 
     private void openRecetasCustomActivity() {
+        finish();
+        Intent intent = new Intent (this, CreateRecipesActivity.class);
+        intent.putExtra("customIngredients",ingredientCustom);
+        intent.putExtra("ingredientsArray",ingredientesArray);
+        startActivity(intent);
     }
 
     private void openIngredientsCustomActivity() {
@@ -65,4 +87,5 @@ public class CustomBaseActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
     }
+
 }

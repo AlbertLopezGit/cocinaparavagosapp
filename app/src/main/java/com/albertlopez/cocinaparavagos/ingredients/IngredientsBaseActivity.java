@@ -83,6 +83,7 @@ public class IngredientsBaseActivity extends AppCompatActivity{
 
     private void listaIngredientes() {
         Intent intent = new Intent(this, IngredientsSelected.class);
+        intent.putExtra("recetasBool", false);
         startActivity(intent);
     }
 

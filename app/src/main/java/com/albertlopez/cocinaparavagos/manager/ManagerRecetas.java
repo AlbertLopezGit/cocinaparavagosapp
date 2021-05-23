@@ -77,4 +77,5 @@ public class ManagerRecetas implements Serializable{
 
         return recipes;
     }
+
 }

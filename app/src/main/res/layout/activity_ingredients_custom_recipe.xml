@@ -1,0 +1,69 @@
+<?xml version="1.0" encoding="utf-8"?>
+<RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"
+xmlns:app="http://schemas.android.com/apk/res-auto"
+xmlns:tools="http://schemas.android.com/tools"
+android:layout_width="match_parent"
+android:layout_height="match_parent"
+android:background="@color/grey_low"
+tools:context=".IngredientsCustomRecipeActivity">
+
+<androidx.appcompat.widget.Toolbar
+    android:id="@+id/toolbar2"
+    android:layout_width="match_parent"
+    android:layout_height="wrap_content"
+    android:background="?attr/colorPrimary"
+    android:minHeight="?attr/actionBarSize"
+    android:theme="?attr/actionBarTheme"
+    app:layout_constraintEnd_toEndOf="parent"
+    app:layout_constraintStart_toStartOf="parent"
+    app:layout_constraintTop_toTopOf="parent" />
+
+    <TextView
+    android:id="@+id/botonIngredientes3"
+    android:layout_width="47dp"
+    android:layout_height="46dp"
+    android:layout_alignBottom="@+id/toolbar2"
+    android:layout_alignParentTop="true"
+    android:layout_alignParentEnd="true"
+    android:layout_marginTop="3dp"
+    android:layout_marginEnd="6dp"
+    android:layout_marginBottom="7dp"
+    android:background="@drawable/button_redondo"
+    android:foregroundGravity="center"
+    android:gravity="center"
+    android:textColor="#FFFFFF"
+    android:textSize="20dp"
+    android:visibility="invisible"
+    app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
+    app:layout_constraintEnd_toEndOf="@+id/toolbar3"
+    app:layout_constraintTop_toTopOf="parent" />
+
+<TextView
+    android:id="@+id/textoIngredientesUsuario3"
+    android:layout_width="wrap_content"
+    android:layout_height="25dp"
+    android:layout_alignBottom="@+id/toolbar2"
+    android:layout_alignParentTop="true"
+    android:layout_marginTop="15dp"
+    android:layout_marginEnd="8dp"
+    android:layout_marginBottom="16dp"
+    android:layout_toStartOf="@+id/botonIngredientes3"
+    android:foregroundGravity="center"
+    android:gravity="center"
+    android:text="Ingredientes"
+    android:textStyle="bold"
+    app:layout_constraintBottom_toBottomOf="@+id/toolbar3"
+    app:layout_constraintEnd_toStartOf="@+id/botonIngredientes"
+    app:layout_constraintTop_toTopOf="@+id/toolbar3"
+    tools:visibility="invisible" />
+
+<androidx.recyclerview.widget.RecyclerView
+    android:id="@+id/recyclerIngredientes"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    android:layout_below="@+id/toolbar2"
+    android:layout_marginTop="0dp"
+    android:layout_marginBottom="40dp">
+
+</androidx.recyclerview.widget.RecyclerView>
+</RelativeLayout>

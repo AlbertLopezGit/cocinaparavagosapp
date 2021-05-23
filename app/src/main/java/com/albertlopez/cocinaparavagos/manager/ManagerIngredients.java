@@ -142,4 +142,18 @@ public class ManagerIngredients implements Serializable {
 
         return ingredientesCustomParse;
     }
+
+    public ArrayList<Ingredient> getIngredientsArrayFijos() {
+        return ingredientsArrayFijos;
+    }
+
+    public void setIngredientsCustomArray(ArrayList<IngredientCustom> ingredientsCustomArray) {
+        this.ingredientsCustomArray = ingredientsCustomArray;
+    }
+
+    public void setTiposIngredientsArray(ArrayList<Ingredient> tiposIngredientsArray) {
+        this.tiposIngredientsArray = tiposIngredientsArray;
+    }
+
+
 }

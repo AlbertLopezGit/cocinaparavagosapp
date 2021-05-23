@@ -10,6 +10,7 @@ import android.widget.Toast;
 
 import com.albertlopez.cocinaparavagos.R;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
+import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipesCustom;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.squareup.picasso.Picasso;
 
@@ -21,6 +22,7 @@ public class IngredientDetailsActivity extends AppCompatActivity {
     Ingredient ingredienteSeleccionado;
     TextView numeros;
     int cantidad = 0;
+    Boolean recipesCustom = false;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,8 +53,6 @@ public class IngredientDetailsActivity extends AppCompatActivity {
         tvIngrediente.setText(ingredienteSeleccionado.getNombreIngrediente());
         tipoUnidad.setText(ingredienteSeleccionado.getValorMedida());
         Picasso.with(this).load(image).into(imagenIngrediente);
-
-        ;
 
         botonMas.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -90,7 +90,12 @@ public class IngredientDetailsActivity extends AppCompatActivity {
                     .show();
         } else {
             this.ingredienteSeleccionado.setCantidad(cantidad);
-            ManagerAllRecipes.ingredientesIntroducidosPorELUsuario.add(this.ingredienteSeleccionado);
+            if (recipesCustom) {
+                ManagerAllRecipesCustom.ingredientesIntroducidosPorELUsuario.add(this.ingredienteSeleccionado);
+            } else {
+                ManagerAllRecipes.ingredientesIntroducidosPorELUsuario.add(this.ingredienteSeleccionado);
+            }
+
             Toast.makeText(IngredientDetailsActivity.this,
                     ingredienteSeleccionado.getCantidad() +" "+ ingredienteSeleccionado.getValorMedida() + " Introducidos",Toast.LENGTH_SHORT)
                     .show();
@@ -117,6 +122,7 @@ public class IngredientDetailsActivity extends AppCompatActivity {
 
     private void loadingIngredients() {
         ingredienteSeleccionado = (Ingredient) getIntent().getSerializableExtra("ingredienteSeleccionado");
+        recipesCustom = (Boolean) getIntent().getSerializableExtra("tipoDeDetalle");
         numeros.setText(String.valueOf(ingredienteSeleccionado.getCantidad()));
     }
 

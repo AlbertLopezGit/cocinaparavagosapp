@@ -13,6 +13,7 @@ import android.widget.Toast;
 
 import com.albertlopez.cocinaparavagos.bbdd.Bbdd;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
+import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipesCustom;
 import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
 import com.albertlopez.cocinaparavagos.manager.ManagerRecetas;
 import com.albertlopez.cocinaparavagos.manager.ManagerUser;
@@ -112,6 +113,7 @@ public class SpashUserValidation extends AppCompatActivity implements Runnable{
                              "Logueado",Toast.LENGTH_SHORT)
                              .show();
                      ManagerAllRecipes.resetarIngredientesIntroducidosPorElUsuario();
+                     ManagerAllRecipesCustom.resetarIngredientesIntroducidosPorElUsuario();
                  } else {
                      Toast.makeText(SpashUserValidation.this,
                              "Usuario o Contraseña incorrectos X",Toast.LENGTH_SHORT)

@@ -21,6 +21,7 @@ import android.widget.Toast;
 import com.albertlopez.cocinaparavagos.bbdd.Bbdd;
 import com.albertlopez.cocinaparavagos.ingredients.IngredientsBaseActivity;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
+import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipesCustom;
 import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
 import com.albertlopez.cocinaparavagos.manager.ManagerRecetas;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
@@ -152,6 +153,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 UserValidation.restearIngredientesUltimos();
                 UserValidation.restearIngredientesUltimosDelete();
                 ManagerAllRecipes.resetarIngredientesIntroducidosPorElUsuario();
+                ManagerAllRecipesCustom.resetarIngredientesIntroducidosPorElUsuario();
                 managerIngredient.noUsuario();
                 break;
             case R.id.nav_ingredientsCustom:
@@ -225,6 +227,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     public void openCustomIngredientsActivity() {
         Intent intent = new Intent(this, CustomBaseActivity.class);
         intent.putExtra("customIngredients",managerIngredient.getIngredientsCustomArray());
+        intent.putExtra("ingredientsArray",managerIngredient.getIngredientsArray());
+
         startActivity(intent);
     }
 

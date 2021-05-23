@@ -12,7 +12,10 @@
         android:supportsRtl="true"
         android:theme="@style/Theme.CocinaParaVagos"
         android:usesCleartextTraffic="true">
-        <activity android:name=".DeleteIngredientCustom"></activity>
+        <activity android:name=".IngredientsCustomRecipeActivity"></activity>
+        <activity android:name=".IngredientsCustomRecipeBaseActivity" />
+        <activity android:name=".CreateRecipesActivity" />
+        <activity android:name=".DeleteIngredientCustom" />
         <activity android:name=".IngredientsSettingsCustom" />
         <activity android:name=".CustomBaseActivity" />
         <activity android:name=".CreateIngredientesActivity" />
