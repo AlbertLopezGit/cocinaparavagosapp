@@ -56,8 +56,6 @@ public class UserCreator {
                 return params;
             }
         };
-
-
         requestQueue.add(stringRequest);
     }
 

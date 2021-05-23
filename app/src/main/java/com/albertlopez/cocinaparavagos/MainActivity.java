@@ -50,7 +50,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Button ingedientsButton, recipesButton, ingredienCustomButton;
     TextView nombreUsuario;
     Menu menu;
-    MainActivity mainActivity = this;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -112,16 +111,14 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void loadingIngredients() {
         ArrayList<Ingredient> ingedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("Ingredientes");
-        ArrayList<Recipe> recipesArray = (ArrayList<Recipe>) getIntent().getSerializableExtra("Recetas");
-        ArrayList<RecipeIngredients> recipeIngredients = (ArrayList<RecipeIngredients>) getIntent().getSerializableExtra("RecetasCantidades");
 
         managerIngredient.setIngredientsArray(ingedientesArray);
         managerIngredient.setIngredientsArrayFijos(ingedientesArray);
 
-        managerRecetas.setRecipesArray(recipesArray);
-        managerRecetas.setRecipesIngredientsArray(recipeIngredients);
+        managerRecetas.setRecipesArray(ManagerAllRecipes.getRecipes());
+        managerRecetas.setRecipesIngredientsArray(ManagerAllRecipes.getRecipesCantidades());
 
-        ManagerAllRecipes.setRecipes(managerRecetas.mezclarRecetasConSusIngredientes(recipesArray,recipeIngredients,ingedientesArray));
+        ManagerAllRecipes.setRecipes(managerRecetas.mezclarRecetasConSusIngredientes(ManagerAllRecipes.getRecipes(),ManagerAllRecipes.getRecipesCantidades(),ingedientesArray));
     }
 
     @Override
@@ -228,7 +225,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         Intent intent = new Intent(this, CustomBaseActivity.class);
         intent.putExtra("customIngredients",managerIngredient.getIngredientsCustomArray());
         intent.putExtra("ingredientsArray",managerIngredient.getIngredientsArray());
-
         startActivity(intent);
     }
 

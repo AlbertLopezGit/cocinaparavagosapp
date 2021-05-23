@@ -37,53 +37,6 @@ public class ManagerAllRecipesCustom {
         ingredientesIntroducidosPorELUsuario.remove(ingredienteSeleccionado);
     }
 
-    public static void buscarRecetasQueCoincidenConLosIngredientes() {
-        int contador = 0;
-        HashSet<Recipe> ingredientesHash = new HashSet<Recipe>();
-        for (Recipe i: recipes) {
-            ArrayList<String>ingredientes = i.getIngredientes();
-            for (String x:ingredientes) {
-                for (Ingredient z:ingredientesIntroducidosPorELUsuario) {
-                    if (x.equals(z.getNombreIngrediente())) {
-                        contador++;
-                        if (contador == ingredientes.size()) {
-                            //System.out.println("Puede hacer "+ i.getNombreReceta());
-                            ingredientesHash.add(i);
-                            contador = 0;
-                        }
-                    }
-                }
-            }
-            compararCantidades(ingredientesHash);
-            contador = 0;
-        }
-
-    }
-    private static void compararCantidades(HashSet<Recipe> ingredientesHash) {
-        ArrayList<Recipe> recetasQueCoinciden = new ArrayList<>();
-        List<Recipe> recetas = new ArrayList<>(ingredientesHash);
-        int contador = 0;
-        for (Recipe i: recetas) {
-            //System.out.println("RECETAS QUE CONICIDEN "+i.getNombreReceta());
-            ArrayList<String> arrayListString = i.getIngredientes();
-            ArrayList<Integer> arrayListCantidades = i.getCantidadesDeLosIngredientes();
-            for (int j = 0; j < arrayListString.size(); j++) {
-                //System.out.println("Ingrediente " + arrayListString.get(j));
-                //System.out.println("Cantidad " + arrayListCantidades.get(j));
-                for (Ingredient x :ingredientesIntroducidosPorELUsuario) {
-                    if (arrayListString.get(j).equals(x.getNombreIngrediente()) && arrayListCantidades.get(j) <= x.getCantidad()) {
-                        contador++;
-                        if (contador == arrayListString.size()) {
-                            recetasQueCoinciden.add(i);
-                            contador = 0;
-                        }
-                    }
-                }
-            }
-            contador = 0;
-        }
-        recetasQueCoincidenDelTodo = recetasQueCoinciden;
-    }
 
     public static void setRecipes(ArrayList<Recipe> recipes) {
         ManagerAllRecipesCustom.recipes = recipes;

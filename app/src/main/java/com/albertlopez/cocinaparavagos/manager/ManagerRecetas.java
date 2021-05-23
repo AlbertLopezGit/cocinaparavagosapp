@@ -9,6 +9,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.HashMap;
 
 public class ManagerRecetas implements Serializable{
 
@@ -55,6 +56,7 @@ public class ManagerRecetas implements Serializable{
     }
 
     public ArrayList<Recipe> mezclarRecetasConSusIngredientes(ArrayList<Recipe> recipes, ArrayList<RecipeIngredients> recipesCantidades, ArrayList<Ingredient> ingredientes){
+
         for (Recipe i: recipes) {
             for (RecipeIngredients x:recipesCantidades) {
                 if (x.getNombreReceta().trim().equals(i.getNombreReceta().trim())) {
@@ -73,6 +75,7 @@ public class ManagerRecetas implements Serializable{
                     }
                 }
             }
+            i.comprobarConsitenciaIngredientes();
         }
 
         return recipes;

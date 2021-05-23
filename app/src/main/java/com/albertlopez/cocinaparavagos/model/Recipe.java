@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 
 public class Recipe implements Serializable {
     @SerializedName("NOMBRERECETA")
@@ -100,5 +102,17 @@ public class Recipe implements Serializable {
 
     public void setImagenReceta(String imagenReceta) {
         this.imagenReceta = imagenReceta;
+    }
+
+
+    public void comprobarConsitenciaIngredientes(){
+        HashMap<String,Ingredient> mapIngredientes = new HashMap<>();
+
+        for (Ingredient i: ingredients) {
+            mapIngredientes.put(i.getNombreIngrediente(),i);
+        }
+
+        Collection<Ingredient> values = mapIngredientes.values();
+        ingredients = new ArrayList<>(values);
     }
 }

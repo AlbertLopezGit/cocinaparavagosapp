@@ -13,7 +13,6 @@ import android.widget.TextView;
 import com.albertlopez.cocinaparavagos.ingredients.IngredientDetailsActivity;
 import com.albertlopez.cocinaparavagos.ingredients.IngredientsSelected;
 import com.albertlopez.cocinaparavagos.ingredients.RecyclerViewIngredientesAdaptador;
-import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipesCustom;
 import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
@@ -93,8 +92,6 @@ public class IngredientsCustomRecipeActivity extends AppCompatActivity {
         ocultarBarras();
         super.onResume();
         comprobarIngredientesBoton();
-
-
     }
 
     private void ocultarBarras(){

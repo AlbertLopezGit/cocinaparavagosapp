@@ -9,6 +9,7 @@ import android.widget.TextView;
 import android.widget.Toast;
 
 import com.albertlopez.cocinaparavagos.R;
+import com.albertlopez.cocinaparavagos.UserValidation;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipesCustom;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
@@ -124,6 +125,12 @@ public class IngredientDetailsActivity extends AppCompatActivity {
         ingredienteSeleccionado = (Ingredient) getIntent().getSerializableExtra("ingredienteSeleccionado");
         recipesCustom = (Boolean) getIntent().getSerializableExtra("tipoDeDetalle");
         numeros.setText(String.valueOf(ingredienteSeleccionado.getCantidad()));
+    }
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+        loadingIngredients();
     }
 
 }

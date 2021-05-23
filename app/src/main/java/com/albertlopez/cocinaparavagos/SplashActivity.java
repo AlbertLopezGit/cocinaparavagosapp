@@ -206,8 +206,6 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
                 ManagerAllRecipes.setRecipes(recipesArray);
                 ManagerAllRecipes.setRecipesCantidades(recipesIngredientsArray);
 
-                intent.putExtra("RecetasCantidades", recipesIngredientsArray);
-                intent.putExtra("Recetas", recipesArray);
                 intent.putExtra("Ingredientes", ingredientesArray);
 
                 startActivity(intent);

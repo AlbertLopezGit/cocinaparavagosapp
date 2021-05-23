@@ -141,6 +141,7 @@ public class IngredientsSelected extends AppCompatActivity {
         if (!recetas) {
             if (ManagerAllRecipes.getIngredientesIntroducidosPorELUsuario().size() > 0) {
                 Intent intent = new Intent(this, IngredientsSelected.class);
+                intent.putExtra("recetasBool", false);
                 finish();
                 startActivity(intent);
             } else {
@@ -149,6 +150,7 @@ public class IngredientsSelected extends AppCompatActivity {
         } else {
             if (ManagerAllRecipesCustom.getIngredientesIntroducidosPorELUsuario().size() > 0) {
                 Intent intent = new Intent(this, IngredientsSelected.class);
+                intent.putExtra("recetasBool", true);
                 finish();
                 startActivity(intent);
             } else {
@@ -161,12 +163,14 @@ public class IngredientsSelected extends AppCompatActivity {
 
     public void openIngredientsActivity(Ingredient ingredienteSeleccionado) {
         Intent intent = new Intent(this, IngredientDetailsActivity.class);
+        intent.putExtra("tipoDeDetalle", recetas);
         intent.putExtra("ingredienteSeleccionado", ingredienteSeleccionado);
         startActivity(intent);
     }
 
     @Override
     protected void onResume() {
+        loading();
         ocultarBarras();
         super.onResume();
     }

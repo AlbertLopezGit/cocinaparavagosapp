@@ -58,8 +58,8 @@ public class ManagerAllRecipes{
             compararCantidades(ingredientesHash);
             contador = 0;
         }
-
     }
+
     private static void compararCantidades(HashSet<Recipe> ingredientesHash) {
         ArrayList<Recipe> recetasQueCoinciden = new ArrayList<>();
         List<Recipe> recetas = new ArrayList<>(ingredientesHash);
@@ -86,20 +86,27 @@ public class ManagerAllRecipes{
         recetasQueCoincidenDelTodo = recetasQueCoinciden;
     }
 
-    public static void setRecipes(ArrayList<Recipe> recipes) {
-        ManagerAllRecipes.recipes = recipes;
-    }
 
-    public static void setRecipesCantidades(ArrayList<RecipeIngredients> recipesCantidades) {
-        ManagerAllRecipes.recipesCantidades = recipesCantidades;
+
+
+    public static void resetarIngredientesIntroducidosPorElUsuario(){
+        ArrayList<Ingredient> ingredientesIntroducidosPorELUsuarioVacio = new ArrayList<>();
+        ingredientesIntroducidosPorELUsuario = ingredientesIntroducidosPorELUsuarioVacio;
     }
 
     public static ArrayList<Recipe> getRecetasQueCoincidenDelTodo() {
         return recetasQueCoincidenDelTodo;
     }
-
-    public static void resetarIngredientesIntroducidosPorElUsuario(){
-        ArrayList<Ingredient> ingredientesIntroducidosPorELUsuarioVacio = new ArrayList<>();
-        ingredientesIntroducidosPorELUsuario = ingredientesIntroducidosPorELUsuarioVacio;
+    public static ArrayList<Recipe> getRecipes() {
+        return recipes;
+    }
+    public static ArrayList<RecipeIngredients> getRecipesCantidades() {
+        return recipesCantidades;
+    }
+    public static void setRecipes(ArrayList<Recipe> recipes) {
+        ManagerAllRecipes.recipes = recipes;
+    }
+    public static void setRecipesCantidades(ArrayList<RecipeIngredients> recipesCantidades) {
+        ManagerAllRecipes.recipesCantidades = recipesCantidades;
     }
 }

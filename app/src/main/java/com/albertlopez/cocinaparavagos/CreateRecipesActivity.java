@@ -33,7 +33,6 @@ public class CreateRecipesActivity extends AppCompatActivity {
     Button ingredients;
     RecyclerView recyclerViewIngrediente;
     RecyclerViewIngredientesAdaptador adaptadorIngrediente;
-    Ingredient ingredienteSeleccionado;
     ArrayList<IngredientCustom> ingredientCustom;
     ArrayList<Ingredient> ingredientesArray;
     ArrayList<Ingredient> ingredientesParaHacerRecetaSeleccionadoPorElUsuario;

@@ -28,6 +28,7 @@ public class RecipesCoincidentesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes_coincidentes);
         recipes = ManagerAllRecipes.getRecetasQueCoincidenDelTodo();
+        ManagerAllRecipes.buscarRecetasQueCoincidenConLosIngredientes();
         recyclerViewRecetas = (RecyclerView)findViewById(R.id.recyclerRecipe);
         recyclerViewRecetas.setLayoutManager(new GridLayoutManager(this,2));
 
@@ -53,6 +54,8 @@ public class RecipesCoincidentesActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        recipes = ManagerAllRecipes.getRecetasQueCoincidenDelTodo();
+        ManagerAllRecipes.buscarRecetasQueCoincidenConLosIngredientes();
         ocultarBarras();
         super.onResume();
     }
