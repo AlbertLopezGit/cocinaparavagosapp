@@ -9,6 +9,8 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.TextView;
+import android.widget.Toolbar;
 
 import com.albertlopez.cocinaparavagos.ingredients.IngredientDetailsActivity;
 import com.albertlopez.cocinaparavagos.ingredients.IngredientsSelected;
@@ -22,6 +24,8 @@ import com.albertlopez.cocinaparavagos.model.IngredientCustom;
 import com.albertlopez.cocinaparavagos.model.Recipe;
 import com.albertlopez.cocinaparavagos.model.RecipeIngredients;
 
+import org.w3c.dom.Text;
+
 import java.util.ArrayList;
 
 public class CreateRecipesActivity extends AppCompatActivity {
@@ -33,6 +37,8 @@ public class CreateRecipesActivity extends AppCompatActivity {
     ArrayList<IngredientCustom> ingredientCustom;
     ArrayList<Ingredient> ingredientesArray;
     ArrayList<Ingredient> ingredientesParaHacerRecetaSeleccionadoPorElUsuario;
+    TextView texto;
+
 
 
     @Override
@@ -40,7 +46,7 @@ public class CreateRecipesActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_create_recipes);
         ingredients = findViewById(R.id.ingedientsButtonInsert);
-
+        texto = findViewById(R.id.textView6);
         ocultarBarras();
         loading();
 
@@ -94,18 +100,16 @@ public class CreateRecipesActivity extends AppCompatActivity {
         decorView.setSystemUiVisibility(uiOptions);
     }
 
-    private void nosVamos() {
-        if (ManagerAllRecipesCustom.getIngredientesIntroducidosPorELUsuario().size() > 0) {
-            Intent intent = new Intent(this, CreateRecipesActivity.class);
-            startActivity(intent);
-        }
-    }
-
     @Override
     protected void onResume() {
         super.onResume();
         ingredientesParaHacerRecetaSeleccionadoPorElUsuario = ManagerAllRecipesCustom.getIngredientesIntroducidosPorELUsuario();
         cargarRecycler();
+        if (ingredientesParaHacerRecetaSeleccionadoPorElUsuario.size() >0) {
+            texto.setVisibility(View.VISIBLE);
+        } else {
+            texto.setVisibility(View.INVISIBLE);
+        }
 
     }
 
