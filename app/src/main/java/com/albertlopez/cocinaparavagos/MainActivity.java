@@ -148,6 +148,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 intent = new Intent (this, LoginActivity.class);
                 startActivity(intent);
                 UserValidation.restearIngredientesUltimos();
+                UserValidation.restearRecetasUltimas();
                 UserValidation.restearIngredientesUltimosDelete();
                 ManagerAllRecipes.resetarIngredientesIntroducidosPorElUsuario();
                 ManagerAllRecipesCustom.resetarIngredientesIntroducidosPorElUsuario();
@@ -177,6 +178,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             nombreUsuario.setVisibility(View.VISIBLE);
             nombreUsuario.setText(UserValidation.getUser().getName());
             gestionarIngredientesNuevos();
+            gestionarRecetasNuevas();
         } else {
             loadingIngredients();
             ingredienCustomButton.setVisibility(View.INVISIBLE);
@@ -211,6 +213,59 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
         queue.add(request);
+    }
+
+    private void gestionarRecetasNuevas(){
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest request = new StringRequest(
+                Request.Method.GET,
+                Bbdd.getRecetasCustom,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            managerRecetas.addRecetasCustom(response);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+        queue.add(request);
+        gestionarIngredietesDeRecetasCustom();
+    }
+
+    private void gestionarIngredietesDeRecetasCustom() {
+        RequestQueue queue = Volley.newRequestQueue(this);
+        StringRequest request = new StringRequest(
+                Request.Method.GET,
+                Bbdd.getRecetasCantidades,
+                new Response.Listener<String>() {
+                    @Override
+                    public void onResponse(String response) {
+                        try {
+                            managerRecetas.addCantidadesRecetasCustom(response);
+
+                        } catch (JSONException e) {
+                            e.printStackTrace();
+                        }
+                    }
+                },
+                new Response.ErrorListener() {
+                    @Override
+                    public void onErrorResponse(VolleyError error) {
+
+                    }
+                });
+        queue.add(request);
+
+        managerRecetas.parseadorRecetasCustom();
     }
 
     public void openIngredientsActivity() {

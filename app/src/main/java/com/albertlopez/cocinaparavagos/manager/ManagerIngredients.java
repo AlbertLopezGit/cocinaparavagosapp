@@ -49,6 +49,7 @@ public class ManagerIngredients implements Serializable {
         mezclarIngredientesConCustom();
     }
 
+
     public void setIngredientsArray(ArrayList<Ingredient> ingredientsArray) {
         this.ingredientsArray = ingredientsArray;
     }

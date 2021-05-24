@@ -9,6 +9,7 @@ public class UserValidation {
 
     static public ArrayList<String> ingredientesUltimosDelete = new ArrayList<>();
     static public ArrayList<String> ingredientesUltimos = new ArrayList<>();
+    static public ArrayList<String> recetasUltimas = new ArrayList<>();
     static public User user = new User();
     static public Boolean validado = false;
 
@@ -38,11 +39,24 @@ public class UserValidation {
         ingredientesUltimos.add(ultimoIngrediente);
     }
 
+    public static void addUltimaReceta(String ultimaReceta) {
+        recetasUltimas.add(ultimaReceta);
+    }
+
     public static ArrayList<String> getIngredientesUltimos() {
         return ingredientesUltimos;
     }
+
+    public static ArrayList<String> getRecetasUltimas() {
+        return recetasUltimas;
+    }
+
     public static void restearIngredientesUltimos() {
         ingredientesUltimos = new ArrayList<>();
+    }
+
+    public static void restearRecetasUltimas() {
+        recetasUltimas = new ArrayList<>();
     }
 
     public static ArrayList<String> getIngredientesUltimosDelete() {

@@ -2,7 +2,9 @@ package com.albertlopez.cocinaparavagos.manager;
 
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.albertlopez.cocinaparavagos.model.Recipe;
+import com.albertlopez.cocinaparavagos.model.RecipeCustom;
 import com.albertlopez.cocinaparavagos.model.RecipeIngredients;
+import com.albertlopez.cocinaparavagos.model.RecipesIngredientsCustom;
 import com.google.gson.Gson;
 import org.json.JSONArray;
 import org.json.JSONException;
@@ -16,6 +18,20 @@ public class ManagerRecetas implements Serializable{
     Gson gson = new Gson();
     ArrayList<Recipe> recipesArray;
     ArrayList<RecipeIngredients> recipesIngredientsArray;
+
+    ArrayList<RecipeCustom>recetasCustomArray;
+    ArrayList<RecipesIngredientsCustom>recetasIngredientsCustomArray;
+
+    public void addRecetasCustom(String response) throws JSONException {
+        JSONArray jsonResponse = new JSONArray(response);
+        recetasCustomArray = new ArrayList<>();
+
+        for (int i = 0; i < jsonResponse.length() ; i++) {
+            JSONObject recetas = jsonResponse.getJSONObject(i);
+            RecipeCustom recipe = gson.fromJson(String.valueOf(recetas),RecipeCustom.class);
+            recetasCustomArray.add(recipe);
+        }
+    }
 
     public void addRecetasBase(String response) throws JSONException {
         JSONArray jsonResponse = new JSONArray(response);
@@ -38,6 +54,18 @@ public class ManagerRecetas implements Serializable{
             recipesIngredientsArray.add(recipeIngredients);
         }
     }
+
+    public void addCantidadesRecetasCustom(String response) throws JSONException {
+        JSONArray jsonResponse = new JSONArray(response);
+        recetasIngredientsCustomArray = new ArrayList<>();
+
+        for (int i = 0; i < jsonResponse.length() ; i++) {
+            JSONObject recetasIngredientes = jsonResponse.getJSONObject(i);
+            RecipesIngredientsCustom recipeIngredients = gson.fromJson(String.valueOf(recetasIngredientes),RecipesIngredientsCustom.class);
+            recetasIngredientsCustomArray.add(recipeIngredients);
+        }
+    }
+
 
     public ArrayList<Recipe> getRecipesArray() {
         return recipesArray;
@@ -79,6 +107,25 @@ public class ManagerRecetas implements Serializable{
         }
 
         return recipes;
+    }
+
+
+    public void parseadorRecetasCustom(){
+        ArrayList<Recipe>recetasNuevasCustom = new ArrayList<>();
+        ArrayList<RecipeIngredients>recetasIngredientesNuevosCustom = new ArrayList<>();
+        for (RecipeCustom i:recetasCustomArray) {
+            Recipe recipe = new Recipe(i.getNombreReceta(), i.getDescripcion(),i.getIngredientesParaLaReceta(),i.getModoReceta(),i.getImagenReceta());
+            recetasNuevasCustom.add(recipe);
+        }
+
+        for (RecipesIngredientsCustom i:recetasIngredientsCustomArray) {
+            RecipeIngredients recipeIngredients = new RecipeIngredients(i.getNombreReceta(),i.getNombreIngrediente(),i.getCantidadIngrediente());
+            recetasIngredientesNuevosCustom.add(recipeIngredients);
+        }
+
+
+        recipesArray.addAll(recetasNuevasCustom);
+        recipesIngredientsArray.addAll(recetasIngredientesNuevosCustom);
     }
 
 }

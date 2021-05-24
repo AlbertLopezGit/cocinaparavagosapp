@@ -1,6 +1,5 @@
 package com.albertlopez.cocinaparavagos;
 
-import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
@@ -9,45 +8,50 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
+import android.widget.EditText;
 import android.widget.TextView;
-import android.widget.Toolbar;
+import android.widget.Toast;
 
+import com.albertlopez.cocinaparavagos.bbdd.RecetasCreator;
 import com.albertlopez.cocinaparavagos.ingredients.IngredientDetailsActivity;
-import com.albertlopez.cocinaparavagos.ingredients.IngredientsSelected;
 import com.albertlopez.cocinaparavagos.ingredients.RecyclerViewIngredientesAdaptador;
-import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipesCustom;
-import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
-import com.albertlopez.cocinaparavagos.manager.ManagerRecetas;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.albertlopez.cocinaparavagos.model.IngredientCustom;
-import com.albertlopez.cocinaparavagos.model.Recipe;
-import com.albertlopez.cocinaparavagos.model.RecipeIngredients;
-
-import org.w3c.dom.Text;
+import com.android.volley.RequestQueue;
+import com.android.volley.toolbox.Volley;
 
 import java.util.ArrayList;
 
 public class CreateRecipesActivity extends AppCompatActivity {
 
-    Button ingredients;
+    Button ingredients,insertarReceta;
     RecyclerView recyclerViewIngrediente;
     RecyclerViewIngredientesAdaptador adaptadorIngrediente;
     ArrayList<IngredientCustom> ingredientCustom;
     ArrayList<Ingredient> ingredientesArray;
     ArrayList<Ingredient> ingredientesParaHacerRecetaSeleccionadoPorElUsuario;
     TextView texto;
-
+    EditText nombreReceta,descripcion;
+    String nombreRecetaString,descripcionString;
+    RecetasCreator recetasCreator;
+    RequestQueue requestQueue;
 
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        recetasCreator = new RecetasCreator();
         setContentView(R.layout.activity_create_recipes);
         ingredients = findViewById(R.id.ingedientsButtonInsert);
         texto = findViewById(R.id.textView6);
+        nombreReceta = findViewById(R.id.nombreIngredienteCustom2);
+        descripcion = findViewById(R.id.editTextTextMultiLine3);
+        insertarReceta = findViewById(R.id.insertarIngredienteCustom3);
         ocultarBarras();
         loading();
+
+        requestQueue = Volley.newRequestQueue(this);
 
         ingredients.setOnClickListener(new View.OnClickListener() {
             @Override
@@ -55,6 +59,61 @@ public class CreateRecipesActivity extends AppCompatActivity {
                 openIngredientsActivity();
             }
         });
+
+        insertarReceta.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                if (checkAntesDeInsertar()) {
+                    insertarRecetaCustom();
+                }
+            }
+        });
+    }
+
+    private void insertarRecetaCustom() {
+        recetasCreator.createCustomRecetas(nombreRecetaString,descripcionString,requestQueue,this);
+    }
+
+    private boolean comprobarRecetasRepetidasLocal(String name) {
+        ArrayList<String> ultimos;
+        ultimos = UserValidation.getRecetasUltimas();
+        for (String i: ultimos) {
+            if (name.equals(i)) {
+                return true;
+            }
+        }
+        return false;
+    }
+
+    private boolean checkAntesDeInsertar() {
+        nombreRecetaString = nombreReceta.getText().toString().trim();
+        descripcionString = descripcion.getText().toString().trim();
+
+
+        if (comprobarRecetasRepetidasLocal(nombreRecetaString)) {
+            Toast.makeText(CreateRecipesActivity.this,
+                    "La receta ya existe",Toast.LENGTH_SHORT)
+                    .show();
+            return false;
+        }
+
+        if (nombreRecetaString.length() < 1) {
+            Toast.makeText(CreateRecipesActivity.this,
+                    "El nombre no puede estar vacío",Toast.LENGTH_SHORT)
+                    .show();
+            return false;
+        } else if (descripcionString.length() < 1) {
+            Toast.makeText(CreateRecipesActivity.this,
+                    "La descripcion no puede estar vacia",Toast.LENGTH_SHORT)
+                    .show();
+            return false;
+        } else if (ingredientesParaHacerRecetaSeleccionadoPorElUsuario.size() < 1) {
+            Toast.makeText(CreateRecipesActivity.this,
+                    "Debes insertar algun ingrediente",Toast.LENGTH_SHORT)
+                    .show();
+            return false;
+        }
+       return true;
 
     }
 
@@ -113,5 +172,17 @@ public class CreateRecipesActivity extends AppCompatActivity {
     }
 
 
+    public void recetaInsertada() {
+        Toast.makeText(CreateRecipesActivity.this,
+                "Receta Insertada",Toast.LENGTH_SHORT)
+                .show();
+        UserValidation.addUltimaReceta(nombreRecetaString);
+        nombreReceta.setText("");
+        descripcion.setText("");
+        ManagerAllRecipesCustom.resetarIngredientesIntroducidosPorElUsuario();
+        ingredientesParaHacerRecetaSeleccionadoPorElUsuario = ManagerAllRecipesCustom.getIngredientesIntroducidosPorELUsuario();
+        cargarRecycler();
+
+    }
 }
 

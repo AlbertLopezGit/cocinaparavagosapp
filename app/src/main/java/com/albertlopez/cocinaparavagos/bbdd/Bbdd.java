@@ -9,4 +9,9 @@ public class Bbdd {
     static public String ingredientesCustomGeneralImg = "http://80.32.104.188:8220/imatges/IngredientesCustomGeneral.png";
     static public String ingredientesCustom = "http://80.32.104.188:8220/ingredientescustom";
     static public String ingredientesCustomDelete = "http://80.32.104.188:8220/ingredientescustomdelete";
+    static public String getRecetasCustom = "http://80.32.104.188:8220/recetascustom";
+    static public String getRecetasCantidades = "http://80.32.104.188:8220/relacionrecetaingredientecustom";
+    static public String postRecetasCustom = "http://80.32.104.188:8220/recetascustompost";
+    static public String postRecetasCantidades = "http://80.32.104.188:8220/recetascustomunionpost";
+    static public String recetasCustomImg = "http://80.32.104.188:8220/imatgesRecepta/RecetaCustomGeneral.png";
 }
