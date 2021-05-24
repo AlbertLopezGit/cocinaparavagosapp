@@ -170,4 +170,11 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
         UserValidation.addUltimoIngrediente(nombre.getText().toString().trim());
         nombre.setText("");
     }
+
+
+    @Override
+    protected void onResume() {
+        super.onResume();
+
+    }
 }

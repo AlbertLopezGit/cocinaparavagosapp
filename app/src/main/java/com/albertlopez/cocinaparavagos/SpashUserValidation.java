@@ -115,6 +115,12 @@ public class SpashUserValidation extends AppCompatActivity implements Runnable{
                      ManagerAllRecipes.resetarIngredientesIntroducidosPorElUsuario();
                      ManagerAllRecipesCustom.resetarIngredientesIntroducidosPorElUsuario();
                      ManagerAllRecipes.resetearRecetas();
+                     Intent intent = new Intent(this, SplashActivity.class);
+                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK); intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                     startActivity(intent);
+
+
+
 
                  } else {
                      Toast.makeText(SpashUserValidation.this,
