@@ -48,7 +48,7 @@ public class ManagerAllRecipes{
                     if (x.equals(z.getNombreIngrediente())) {
                         contador++;
                         if (contador == ingredientes.size()) {
-                            //System.out.println("Puede hacer "+ i.getNombreReceta());
+                            System.out.println("Puede hacer "+ i.getNombreReceta());
                             ingredientesHash.add(i);
                             contador = 0;
                         }
@@ -65,12 +65,12 @@ public class ManagerAllRecipes{
         List<Recipe> recetas = new ArrayList<>(ingredientesHash);
         int contador = 0;
         for (Recipe i: recetas) {
-            //System.out.println("RECETAS QUE CONICIDEN "+i.getNombreReceta());
+            System.out.println("RECETAS QUE CONICIDEN "+i.getNombreReceta());
             ArrayList<String> arrayListString = i.getIngredientes();
             ArrayList<Integer> arrayListCantidades = i.getCantidadesDeLosIngredientes();
             for (int j = 0; j < arrayListString.size(); j++) {
-                //System.out.println("Ingrediente " + arrayListString.get(j));
-                //System.out.println("Cantidad " + arrayListCantidades.get(j));
+                System.out.println("Ingrediente " + arrayListString.get(j));
+                System.out.println("Cantidad " + arrayListCantidades.get(j));
                 for (Ingredient x :ingredientesIntroducidosPorELUsuario) {
                     if (arrayListString.get(j).equals(x.getNombreIngrediente()) && arrayListCantidades.get(j) <= x.getCantidad()) {
                         contador++;
@@ -86,9 +86,6 @@ public class ManagerAllRecipes{
         recetasQueCoincidenDelTodo = recetasQueCoinciden;
     }
 
-
-
-
     public static void resetarIngredientesIntroducidosPorElUsuario(){
         ArrayList<Ingredient> ingredientesIntroducidosPorELUsuarioVacio = new ArrayList<>();
         ingredientesIntroducidosPorELUsuario = ingredientesIntroducidosPorELUsuarioVacio;
@@ -103,10 +100,16 @@ public class ManagerAllRecipes{
     public static ArrayList<RecipeIngredients> getRecipesCantidades() {
         return recipesCantidades;
     }
+
     public static void setRecipes(ArrayList<Recipe> recipes) {
         ManagerAllRecipes.recipes = recipes;
     }
     public static void setRecipesCantidades(ArrayList<RecipeIngredients> recipesCantidades) {
         ManagerAllRecipes.recipesCantidades = recipesCantidades;
+    }
+
+    public static void resetearRecetas(){
+        recipes = new ArrayList<Recipe>();
+        recetasQueCoincidenDelTodo = new ArrayList<>();
     }
 }

@@ -114,6 +114,8 @@ public class SpashUserValidation extends AppCompatActivity implements Runnable{
                              .show();
                      ManagerAllRecipes.resetarIngredientesIntroducidosPorElUsuario();
                      ManagerAllRecipesCustom.resetarIngredientesIntroducidosPorElUsuario();
+                     ManagerAllRecipes.resetearRecetas();
+
                  } else {
                      Toast.makeText(SpashUserValidation.this,
                              "Usuario o Contraseña incorrectos X",Toast.LENGTH_SHORT)

@@ -10,6 +10,9 @@ import android.widget.ListView;
 import android.widget.TextView;
 
 import com.albertlopez.cocinaparavagos.R;
+import com.albertlopez.cocinaparavagos.manager.ManagerRecetas;
+import com.albertlopez.cocinaparavagos.model.Recipe;
+import com.albertlopez.cocinaparavagos.model.RecipeIngredients;
 import com.albertlopez.cocinaparavagos.recipes.RecipesCoincidentesActivity;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
 import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
@@ -19,6 +22,7 @@ import java.util.ArrayList;
 public class IngredientsBaseActivity extends AppCompatActivity{
 
     ManagerIngredients managerIngredient;
+    ManagerRecetas managerRecetas;
     ListView lista;
     AdaptadorIngredientesBase adapter;
     TextView botonRedondo,botonRedondoRecetas;;
@@ -28,7 +32,9 @@ public class IngredientsBaseActivity extends AppCompatActivity{
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
 
+        managerRecetas = new ManagerRecetas();
         managerIngredient = new ManagerIngredients();
+
         setContentView(R.layout.activity_ingredients_base);
         loadingIngredients();
 
@@ -94,7 +100,14 @@ public class IngredientsBaseActivity extends AppCompatActivity{
 
     private void loadingIngredients() {
         ArrayList<Ingredient> IngedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("Ingredientes");
+        ArrayList<Recipe> recipesArray = (ArrayList<Recipe>) getIntent().getSerializableExtra("Recetas");
+        ArrayList<RecipeIngredients> recipeIngredients = (ArrayList<RecipeIngredients>) getIntent().getSerializableExtra("RecetasCantidades");
+
         managerIngredient.setIngredientsArray(IngedientesArray);
+        managerRecetas.setRecipesArray(recipesArray);
+        managerRecetas.setRecipesIngredientsArray(recipeIngredients);
+
+        ManagerAllRecipes.setRecipes(recipesArray);
     }
 
     public void openIngredientsActivity(ArrayList<Ingredient> tiposIngredientes) {

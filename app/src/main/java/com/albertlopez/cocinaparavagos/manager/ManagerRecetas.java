@@ -1,5 +1,6 @@
 package com.albertlopez.cocinaparavagos.manager;
 
+import com.albertlopez.cocinaparavagos.UserValidation;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.albertlopez.cocinaparavagos.model.Recipe;
 import com.albertlopez.cocinaparavagos.model.RecipeCustom;
@@ -11,6 +12,7 @@ import org.json.JSONException;
 import org.json.JSONObject;
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
 import java.util.HashMap;
 
 public class ManagerRecetas implements Serializable{
@@ -19,17 +21,16 @@ public class ManagerRecetas implements Serializable{
     ArrayList<Recipe> recipesArray;
     ArrayList<RecipeIngredients> recipesIngredientsArray;
 
-    ArrayList<RecipeCustom>recetasCustomArray;
-    ArrayList<RecipesIngredientsCustom>recetasIngredientsCustomArray;
-
     public void addRecetasCustom(String response) throws JSONException {
         JSONArray jsonResponse = new JSONArray(response);
-        recetasCustomArray = new ArrayList<>();
 
         for (int i = 0; i < jsonResponse.length() ; i++) {
             JSONObject recetas = jsonResponse.getJSONObject(i);
             RecipeCustom recipe = gson.fromJson(String.valueOf(recetas),RecipeCustom.class);
-            recetasCustomArray.add(recipe);
+            if (String.valueOf(recipe.getIdUsuario()).equals(UserValidation.getUser().getIdUsuario())) {
+                UserValidation.addrecetasCustomArray(recipe);
+            }
+
         }
     }
 
@@ -57,12 +58,13 @@ public class ManagerRecetas implements Serializable{
 
     public void addCantidadesRecetasCustom(String response) throws JSONException {
         JSONArray jsonResponse = new JSONArray(response);
-        recetasIngredientsCustomArray = new ArrayList<>();
-
         for (int i = 0; i < jsonResponse.length() ; i++) {
             JSONObject recetasIngredientes = jsonResponse.getJSONObject(i);
             RecipesIngredientsCustom recipeIngredients = gson.fromJson(String.valueOf(recetasIngredientes),RecipesIngredientsCustom.class);
-            recetasIngredientsCustomArray.add(recipeIngredients);
+            if (String.valueOf(recipeIngredients.getIdusuario()).equals(UserValidation.getUser().getIdUsuario())) {
+                UserValidation.addCantidadrecetasCustomArray(recipeIngredients);
+            }
+
         }
     }
 
@@ -111,11 +113,25 @@ public class ManagerRecetas implements Serializable{
 
 
     public void parseadorRecetasCustom(){
+        HashMap<String, Recipe> recetasNuevasCustomMap = new HashMap<String, Recipe>();
+        HashMap<String, RecipeIngredients> recetasIngredientesNuevosCustomMap = new HashMap<String, RecipeIngredients>();
+
+        HashMap<String, Recipe> recetasMap = new HashMap<String, Recipe>();
+        HashMap<String, RecipeIngredients> recetasIngredientesMap = new HashMap<String, RecipeIngredients>();
+
         ArrayList<Recipe>recetasNuevasCustom = new ArrayList<>();
         ArrayList<RecipeIngredients>recetasIngredientesNuevosCustom = new ArrayList<>();
+
+        ArrayList<RecipeCustom> recetasCustomArray = UserValidation.getRecetasCustomArray();
+        ArrayList<RecipesIngredientsCustom> recetasIngredientsCustomArray = UserValidation.getRecetasIngredientsCustomArray();
+
         for (RecipeCustom i:recetasCustomArray) {
             Recipe recipe = new Recipe(i.getNombreReceta(), i.getDescripcion(),i.getIngredientesParaLaReceta(),i.getModoReceta(),i.getImagenReceta());
             recetasNuevasCustom.add(recipe);
+        }
+
+        for (int i = 0; i < recetasNuevasCustom.size() ; i++) {
+            recetasNuevasCustomMap.put(recetasNuevasCustom.get(i).getNombreReceta(),recetasNuevasCustom.get(i));
         }
 
         for (RecipesIngredientsCustom i:recetasIngredientsCustomArray) {
@@ -123,9 +139,38 @@ public class ManagerRecetas implements Serializable{
             recetasIngredientesNuevosCustom.add(recipeIngredients);
         }
 
+        for (int i = 0; i < recetasIngredientesNuevosCustom.size() ; i++) {
+            recetasIngredientesNuevosCustomMap.put(recetasIngredientesNuevosCustom.get(i).getNombreIngrediente(),recetasIngredientesNuevosCustom.get(i));
+        }
 
-        recipesArray.addAll(recetasNuevasCustom);
-        recipesIngredientsArray.addAll(recetasIngredientesNuevosCustom);
+        Collection<Recipe> values = recetasNuevasCustomMap.values();
+        Collection<RecipeIngredients> values2 = recetasIngredientesNuevosCustomMap.values();
+
+        ArrayList<Recipe> listOfRecetas = new ArrayList<>(values);
+        ArrayList<RecipeIngredients> listOfIngredient = new ArrayList<>(values2);
+
+        recipesArray.addAll(listOfRecetas);
+        recipesIngredientsArray.addAll(listOfIngredient);
+
+        for (int i = 0; i < recipesArray.size() ; i++) {
+            recetasMap.put(recipesArray.get(i).getNombreReceta(),recipesArray.get(i));
+        }
+
+        for (int i = 0; i < recipesIngredientsArray.size() ; i++) {
+            recetasIngredientesMap.put(recipesIngredientsArray.get(i).getNombreReceta(),recipesIngredientsArray.get(i));
+        }
+
+        Collection<Recipe> values3 = recetasMap.values();
+        Collection<RecipeIngredients> values4 = recetasIngredientesMap.values();
+
+        ArrayList<Recipe> listOfRecetas2 = new ArrayList<>(values3);
+        ArrayList<RecipeIngredients> listOfIngredient2 = new ArrayList<>(values4);
+
+        recipesArray = listOfRecetas2;
+        recipesIngredientsArray = listOfIngredient2;
+
     }
+
+
 
 }

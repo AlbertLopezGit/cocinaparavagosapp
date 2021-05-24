@@ -26,6 +26,7 @@ import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
 import com.albertlopez.cocinaparavagos.manager.ManagerRecetas;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.albertlopez.cocinaparavagos.model.Recipe;
+import com.albertlopez.cocinaparavagos.model.RecipeCustom;
 import com.albertlopez.cocinaparavagos.model.RecipeIngredients;
 import com.albertlopez.cocinaparavagos.recipes.RecipesBaseActivity;
 import com.android.volley.Request;
@@ -50,6 +51,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Button ingedientsButton, recipesButton, ingredienCustomButton;
     TextView nombreUsuario;
     Menu menu;
+    ArrayList<Ingredient> ingedientesArray;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -110,7 +112,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     private void loadingIngredients() {
-        ArrayList<Ingredient> ingedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("Ingredientes");
+        ingedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("Ingredientes");
 
         managerIngredient.setIngredientsArray(ingedientesArray);
         managerIngredient.setIngredientsArrayFijos(ingedientesArray);
@@ -152,6 +154,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 UserValidation.restearIngredientesUltimosDelete();
                 ManagerAllRecipes.resetarIngredientesIntroducidosPorElUsuario();
                 ManagerAllRecipesCustom.resetarIngredientesIntroducidosPorElUsuario();
+                ManagerAllRecipes.resetearRecetas();
                 managerIngredient.noUsuario();
                 break;
             case R.id.nav_ingredientsCustom:
@@ -171,6 +174,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         super.onResume();
         navigationView.setCheckedItem(R.id.nav_home);
         if (UserValidation.validado) {
+            loadingIngredients();
             menu.getItem(1).setVisible(false);
             menu.getItem(2).setVisible(true);
             menu.getItem(3).setVisible(true);
@@ -264,8 +268,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
         queue.add(request);
-
         managerRecetas.parseadorRecetasCustom();
+
+        ManagerAllRecipes.setRecipes(managerRecetas.mezclarRecetasConSusIngredientes(ManagerAllRecipes.getRecipes(),ManagerAllRecipes.getRecipesCantidades(),managerIngredient.getIngredientsArray()));
+
     }
 
     public void openIngredientsActivity() {
@@ -273,6 +279,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         ArrayList<Ingredient> ingredientesArray;
         ingredientesArray = managerIngredient.getIngredientsArray();
         intent.putExtra("Ingredientes", ingredientesArray);
+        intent.putExtra("Recetas", managerRecetas.getRecipesArray());
+        intent.putExtra("RecetasCantidades", managerRecetas.getRecipesIngredientsArray());
         startActivity(intent);
     }
 
@@ -293,4 +301,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         intent.putExtra("RecetasCantidades", recipeIngredientsArray);
         startActivity(intent);
     }
+
+
 }
