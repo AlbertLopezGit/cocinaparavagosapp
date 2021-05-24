@@ -156,6 +156,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 ManagerAllRecipesCustom.resetarIngredientesIntroducidosPorElUsuario();
                 ManagerAllRecipes.resetearRecetas();
                 managerIngredient.noUsuario();
+                intent = new Intent(this, SplashActivity.class);
+                intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK); intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(intent);
                 break;
             case R.id.nav_ingredientsCustom:
                 ArrayList<Ingredient>ingredienteCustomParse;

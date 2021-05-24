@@ -119,9 +119,6 @@ public class SpashUserValidation extends AppCompatActivity implements Runnable{
                      intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK); intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
                      startActivity(intent);
 
-
-
-
                  } else {
                      Toast.makeText(SpashUserValidation.this,
                              "Usuario o Contraseña incorrectos X",Toast.LENGTH_SHORT)
