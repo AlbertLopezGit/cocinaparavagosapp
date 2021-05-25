@@ -47,6 +47,7 @@ public class RecipesCoincidentesActivity extends AppCompatActivity {
     }
 
     private void openIngredientsActivity(Recipe recipeSeleccionado) {
+
         Intent intent = new Intent(this, RecipesDetail.class);
         intent.putExtra("recetaSeleccionada", recipeSeleccionado);
         startActivity(intent);

@@ -65,12 +65,12 @@ public class ManagerAllRecipes{
         List<Recipe> recetas = new ArrayList<>(ingredientesHash);
         int contador = 0;
         for (Recipe i: recetas) {
-            System.out.println("RECETAS QUE CONICIDEN "+i.getNombreReceta());
+            //System.out.println("RECETAS QUE CONICIDEN "+i.getNombreReceta());
             ArrayList<String> arrayListString = i.getIngredientes();
             ArrayList<Integer> arrayListCantidades = i.getCantidadesDeLosIngredientes();
             for (int j = 0; j < arrayListString.size(); j++) {
-                System.out.println("Ingrediente " + arrayListString.get(j));
-                System.out.println("Cantidad " + arrayListCantidades.get(j));
+                //System.out.println("Ingrediente " + arrayListString.get(j));
+                //System.out.println("Cantidad " + arrayListCantidades.get(j));
                 for (Ingredient x :ingredientesIntroducidosPorELUsuario) {
                     if (arrayListString.get(j).equals(x.getNombreIngrediente()) && arrayListCantidades.get(j) <= x.getCantidad()) {
                         contador++;

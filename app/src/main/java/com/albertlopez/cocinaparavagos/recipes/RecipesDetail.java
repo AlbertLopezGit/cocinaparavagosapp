@@ -39,7 +39,6 @@ public class RecipesDetail extends AppCompatActivity {
         loadingIngredients();
         adaptadorIngrediente = new RecyclerViewIngredientesAdaptador(this,ingedientesArray,0);
         ingredientesDetails.setAdapter(adaptadorIngrediente);
-
         insertDetails();
     }
 
@@ -53,7 +52,6 @@ public class RecipesDetail extends AppCompatActivity {
     private void loadingIngredients() {
         recetaSeleccionada = (Recipe) getIntent().getSerializableExtra("recetaSeleccionada");
         ingedientesArray = recetaSeleccionada.getIngredientsArray();
-
     }
 
     private void ocultarBarras(){

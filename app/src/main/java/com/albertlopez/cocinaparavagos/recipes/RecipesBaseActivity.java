@@ -4,11 +4,13 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 
 import com.albertlopez.cocinaparavagos.R;
 import com.albertlopez.cocinaparavagos.manager.ManagerRecetas;
+import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.albertlopez.cocinaparavagos.model.Recipe;
 import com.albertlopez.cocinaparavagos.model.RecipeIngredients;
 
@@ -19,6 +21,8 @@ public class RecipesBaseActivity extends AppCompatActivity {
     ManagerRecetas managerRecetas;
     RecyclerView recyclerViewRecetas;
     RecyclerViewRecipesAdaptador recyclerViewRecipesAdaptador;
+    ArrayList<Recipe> recipesCustom;
+    Recipe recipeSeleccionado;
 
 
     @Override
@@ -26,15 +30,39 @@ public class RecipesBaseActivity extends AppCompatActivity {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes_base);
         ocultarBarras();
+        recipesCustom = new ArrayList<>();
         managerRecetas = new ManagerRecetas();
         recyclerViewRecetas = findViewById(R.id.reciclerRecipes);
         recyclerViewRecetas.setLayoutManager(new GridLayoutManager(this,1));
 
         loadRecipes();
 
-        recyclerViewRecipesAdaptador = new RecyclerViewRecipesAdaptador(this,managerRecetas.getRecipesArray());
+        recyclerViewRecipesAdaptador = new RecyclerViewRecipesAdaptador(this,recipesCustom);
         recyclerViewRecetas.setAdapter(recyclerViewRecipesAdaptador);
+
+        recyclerViewRecipesAdaptador.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                recipeSeleccionado = recipesCustom.get(recyclerViewRecetas.getChildAdapterPosition(v));
+
+                ArrayList<Ingredient> ingredients = recipeSeleccionado.getIngredientsArray();
+
+                System.out.println("ÑOOOOOOO " + ingredients.size());
+
+
+                openIngredientsActivity(recipeSeleccionado);
+            }
+        });
+        recyclerViewRecetas.setAdapter(recyclerViewRecipesAdaptador);
+
     }
+
+    private void openIngredientsActivity(Recipe recipeSeleccionado) {
+        Intent intent = new Intent(this, RecipesDetail.class);
+        intent.putExtra("recetaSeleccionada", recipeSeleccionado);
+        startActivity(intent);
+    }
+
 
     private void loadRecipes() {
         ArrayList<Recipe> recipesArray = (ArrayList<Recipe>) getIntent().getSerializableExtra("Recetas");
@@ -42,7 +70,16 @@ public class RecipesBaseActivity extends AppCompatActivity {
 
         managerRecetas.setRecipesArray(recipesArray);
         managerRecetas.setRecipesIngredientsArray(recipeIngredients);
+
+        for (Recipe i: recipesArray) {
+            if (i.getModoReceta() == 1) {
+                recipesCustom.add(i);
+            }
+        }
+
     }
+
+
 
     private void ocultarBarras(){
         //Para esconder la barra superior

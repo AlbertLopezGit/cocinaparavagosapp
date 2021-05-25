@@ -295,6 +295,9 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void openRecipeActivity() {
+        loadingIngredients();
+        gestionarIngredientesNuevos();
+        gestionarRecetasNuevas();
         Intent intent = new Intent(this, RecipesBaseActivity.class);
         ArrayList<Recipe> recipesArray;
         ArrayList<RecipeIngredients> recipeIngredientsArray;
