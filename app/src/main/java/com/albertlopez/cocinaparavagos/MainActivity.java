@@ -24,10 +24,12 @@ import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipesCustom;
 import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
 import com.albertlopez.cocinaparavagos.manager.ManagerRecetas;
+import com.albertlopez.cocinaparavagos.manager.ManagerRecetasIngredientesCustom;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.albertlopez.cocinaparavagos.model.Recipe;
 import com.albertlopez.cocinaparavagos.model.RecipeCustom;
 import com.albertlopez.cocinaparavagos.model.RecipeIngredients;
+import com.albertlopez.cocinaparavagos.model.RecipesIngredientsCustom;
 import com.albertlopez.cocinaparavagos.recipes.RecipesBaseActivity;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
@@ -48,6 +50,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     Toolbar toolbar;
     ManagerIngredients managerIngredient;
     ManagerRecetas managerRecetas;
+    ManagerRecetasIngredientesCustom managerRecetasIngredientesCustom;
     Button ingedientsButton, recipesButton, ingredienCustomButton;
     TextView nombreUsuario;
     Menu menu;
@@ -58,6 +61,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
         super.onCreate(savedInstanceState);
         managerIngredient = new ManagerIngredients();
+        managerRecetasIngredientesCustom = new ManagerRecetasIngredientesCustom();
         managerRecetas = new ManagerRecetas();
         setContentView(R.layout.activity_main);
         drawerLayout = findViewById(R.id.drawer_layout);
@@ -120,7 +124,11 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         managerRecetas.setRecipesArray(ManagerAllRecipes.getRecipes());
         managerRecetas.setRecipesIngredientsArray(ManagerAllRecipes.getRecipesCantidades());
 
-        ManagerAllRecipes.setRecipes(managerRecetas.mezclarRecetasConSusIngredientes(ManagerAllRecipes.getRecipes(),ManagerAllRecipes.getRecipesCantidades(),ingedientesArray));
+        ManagerAllRecipes.setRecipes(managerRecetas.mezclarRecetasConSusIngredientes(ingedientesArray));
+
+        if (UserValidation.getValidado()) {
+            gestionarRecetasNuevas();
+        }
     }
 
     @Override
@@ -231,7 +239,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     @Override
                     public void onResponse(String response) {
                         try {
-                            managerRecetas.addRecetasCustom(response);
+                            managerRecetasIngredientesCustom.addRecetasCustom(response);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -248,6 +256,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         gestionarIngredietesDeRecetasCustom();
     }
 
+
     private void gestionarIngredietesDeRecetasCustom() {
         RequestQueue queue = Volley.newRequestQueue(this);
         StringRequest request = new StringRequest(
@@ -257,7 +266,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     @Override
                     public void onResponse(String response) {
                         try {
-                            managerRecetas.addCantidadesRecetasCustom(response);
+                            managerRecetasIngredientesCustom.addCantidadesRecetasCustom(response);
 
                         } catch (JSONException e) {
                             e.printStackTrace();
@@ -271,11 +280,24 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     }
                 });
         queue.add(request);
-        managerRecetas.parseadorRecetasCustom();
 
-        ManagerAllRecipes.setRecipes(managerRecetas.mezclarRecetasConSusIngredientes(ManagerAllRecipes.getRecipes(),ManagerAllRecipes.getRecipesCantidades(),managerIngredient.getIngredientsArray()));
+        ArrayList<RecipeCustom> recipeCustom = ManagerAllRecipesCustom.getRecipeCustoms();
+        ArrayList<RecipesIngredientsCustom> recipeCustomIngredinents = ManagerAllRecipesCustom.getRecipeIngredientsCustoms();
 
+
+        for (RecipeCustom i: recipeCustom) {
+            Recipe recipe = new Recipe(i.getNombreReceta(),i.getDescripcion(),i.getIngredientesParaLaReceta(),1,i.getImagenReceta());
+            managerRecetas.addRecipe(recipe);
+        }
+
+        for (RecipesIngredientsCustom i: recipeCustomIngredinents) {
+            RecipeIngredients recipe = new RecipeIngredients(i.getNombreReceta(),i.getNombreIngrediente(),Integer.parseInt(i.getCantidadIngrediente()));
+            managerRecetas.addRecipeIngredients(recipe);
+        }
+
+        ManagerAllRecipes.setRecipes(managerRecetas.mezclarRecetasConSusIngredientes(ingedientesArray));
     }
+
 
     public void openIngredientsActivity() {
         Intent intent = new Intent(this, IngredientsBaseActivity.class);
@@ -299,12 +321,8 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         gestionarIngredientesNuevos();
         gestionarRecetasNuevas();
         Intent intent = new Intent(this, RecipesBaseActivity.class);
-        ArrayList<Recipe> recipesArray;
-        ArrayList<RecipeIngredients> recipeIngredientsArray;
-        recipesArray = managerRecetas.getRecipesArray();
-        recipeIngredientsArray = managerRecetas.getRecipesIngredientsArray();
-        intent.putExtra("Recetas", recipesArray);
-        intent.putExtra("RecetasCantidades", recipeIngredientsArray);
+        intent.putExtra("Recetas", managerRecetas.getRecipesArray());
+        intent.putExtra("RecetasCantidades", managerRecetas.getRecipesIngredientsArray());
         startActivity(intent);
     }
 

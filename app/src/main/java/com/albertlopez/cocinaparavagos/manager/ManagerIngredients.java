@@ -49,7 +49,6 @@ public class ManagerIngredients implements Serializable {
         mezclarIngredientesConCustom();
     }
 
-
     public void setIngredientsArray(ArrayList<Ingredient> ingredientsArray) {
         this.ingredientsArray = ingredientsArray;
     }
@@ -58,9 +57,6 @@ public class ManagerIngredients implements Serializable {
     }
     public ArrayList<Ingredient> getIngredientsArray() {
         return ingredientsArray;
-    }
-    public ArrayList<Ingredient> getTiposIngredientsArray() {
-        return tiposIngredientsArray;
     }
 
     public ArrayList<String> viewAllIngredients(){ //aqui se retorna solo los tipos de ingredientes
@@ -143,18 +139,5 @@ public class ManagerIngredients implements Serializable {
 
         return ingredientesCustomParse;
     }
-
-    public ArrayList<Ingredient> getIngredientsArrayFijos() {
-        return ingredientsArrayFijos;
-    }
-
-    public void setIngredientsCustomArray(ArrayList<IngredientCustom> ingredientsCustomArray) {
-        this.ingredientsCustomArray = ingredientsCustomArray;
-    }
-
-    public void setTiposIngredientsArray(ArrayList<Ingredient> tiposIngredientsArray) {
-        this.tiposIngredientsArray = tiposIngredientsArray;
-    }
-
 
 }

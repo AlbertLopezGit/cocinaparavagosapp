@@ -12,8 +12,7 @@ public class UserValidation {
     static public ArrayList<String> ingredientesUltimosDelete = new ArrayList<>();
     static public ArrayList<String> ingredientesUltimos = new ArrayList<>();
     static public ArrayList<String> recetasUltimas = new ArrayList<>();
-    static public ArrayList<RecipeCustom>recetasCustomArray = new ArrayList<>();
-    static public ArrayList<RecipesIngredientsCustom>recetasIngredientsCustomArray = new ArrayList<>();
+
 
     static public User user = new User();
     static public Boolean validado = false;
@@ -47,9 +46,7 @@ public class UserValidation {
     public static void addUltimaReceta(String ultimaReceta) {
         recetasUltimas.add(ultimaReceta);
     }
-    public static void addrecetasCustomArray(RecipeCustom ultimaReceta) {
-        recetasCustomArray.add(ultimaReceta);
-    }
+
 
     public static ArrayList<String> getIngredientesUltimos() {
         return ingredientesUltimos;
@@ -80,15 +77,7 @@ public class UserValidation {
         ingredientesUltimosDelete.add(ultimoIngrediente);
     }
 
-    public static void addCantidadrecetasCustomArray(RecipesIngredientsCustom recipeIngredients) {
-        recetasIngredientsCustomArray.add(recipeIngredients);
-    }
 
-    public static ArrayList<RecipeCustom> getRecetasCustomArray() {
-        return recetasCustomArray;
-    }
 
-    public static ArrayList<RecipesIngredientsCustom> getRecetasIngredientsCustomArray() {
-        return recetasIngredientsCustomArray;
-    }
+
 }

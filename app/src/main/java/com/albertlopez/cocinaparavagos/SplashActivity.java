@@ -11,12 +11,16 @@ import android.widget.TextView;
 import android.widget.Toast;
 import com.albertlopez.cocinaparavagos.bbdd.Bbdd;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
+import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipesCustom;
 import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
 import com.albertlopez.cocinaparavagos.manager.ManagerRecetas;
+import com.albertlopez.cocinaparavagos.manager.ManagerRecetasIngredientesCustom;
 import com.albertlopez.cocinaparavagos.manager.ManagerUser;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.albertlopez.cocinaparavagos.model.Recipe;
+import com.albertlopez.cocinaparavagos.model.RecipeCustom;
 import com.albertlopez.cocinaparavagos.model.RecipeIngredients;
+import com.albertlopez.cocinaparavagos.model.RecipesIngredientsCustom;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
@@ -193,6 +197,7 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
             queue.add(request);
         }  else {
             if (!errorNetwork) {
+
                 Intent intent = new Intent(this, MainActivity.class);
                 finish();
                 ArrayList<Ingredient> ingredientesArray;
@@ -216,6 +221,7 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
             }
         }
     }
+
 
     private void comprobarContraseña(String pass) {
         if (siUsuarios) {

@@ -1,5 +1,6 @@
 package com.albertlopez.cocinaparavagos.manager;
 
+import com.albertlopez.cocinaparavagos.UserValidation;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.albertlopez.cocinaparavagos.model.Recipe;
 import com.albertlopez.cocinaparavagos.model.RecipeIngredients;
@@ -39,6 +40,7 @@ public class ManagerAllRecipes{
     }
 
     public static void buscarRecetasQueCoincidenConLosIngredientes() {
+
         int contador = 0;
         HashSet<Recipe> ingredientesHash = new HashSet<Recipe>();
         for (Recipe i: recipes) {
@@ -87,8 +89,7 @@ public class ManagerAllRecipes{
     }
 
     public static void resetarIngredientesIntroducidosPorElUsuario(){
-        ArrayList<Ingredient> ingredientesIntroducidosPorELUsuarioVacio = new ArrayList<>();
-        ingredientesIntroducidosPorELUsuario = ingredientesIntroducidosPorELUsuarioVacio;
+        ingredientesIntroducidosPorELUsuario = new ArrayList<>();
     }
 
     public static ArrayList<Recipe> getRecetasQueCoincidenDelTodo() {

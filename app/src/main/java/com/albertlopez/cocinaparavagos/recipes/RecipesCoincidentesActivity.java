@@ -9,8 +9,10 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.albertlopez.cocinaparavagos.R;
+import com.albertlopez.cocinaparavagos.UserValidation;
 import com.albertlopez.cocinaparavagos.ingredients.IngredientDetailsActivity;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
+import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipesCustom;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.albertlopez.cocinaparavagos.model.Recipe;
 
@@ -23,12 +25,13 @@ public class RecipesCoincidentesActivity extends AppCompatActivity {
     Recipe recipeSeleccionado;
     ArrayList<Recipe> recipes;
 
+
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_recipes_coincidentes);
-        recipes = ManagerAllRecipes.getRecetasQueCoincidenDelTodo();
         ManagerAllRecipes.buscarRecetasQueCoincidenConLosIngredientes();
+        recipes = ManagerAllRecipes.getRecetasQueCoincidenDelTodo();
         recyclerViewRecetas = (RecyclerView)findViewById(R.id.recyclerRecipe);
         recyclerViewRecetas.setLayoutManager(new GridLayoutManager(this,2));
 
@@ -56,7 +59,9 @@ public class RecipesCoincidentesActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         recipes = ManagerAllRecipes.getRecetasQueCoincidenDelTodo();
+
         ManagerAllRecipes.buscarRecetasQueCoincidenConLosIngredientes();
+
         ocultarBarras();
         super.onResume();
     }

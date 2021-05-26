@@ -4,6 +4,8 @@ import com.google.gson.annotations.SerializedName;
 
 import java.io.Serializable;
 import java.util.ArrayList;
+import java.util.Collection;
+import java.util.HashMap;
 
 public class RecipeCustom implements Serializable {
     @SerializedName("NOMBRERECETACUSTOM")
@@ -13,7 +15,7 @@ public class RecipeCustom implements Serializable {
     @SerializedName("NOMBREINGREDIENTESTOTALESCUSTOM")
     private String ingredientesParaLaReceta;
     @SerializedName("RECETADEBASECUSTOM")
-    private int modoReceta;
+    private String modoReceta;
     @SerializedName("IMAGEN_RECETA_CUSTOM")
     private String imagenReceta;
     @SerializedName("IDUSUARIO")
@@ -23,9 +25,9 @@ public class RecipeCustom implements Serializable {
     ArrayList<Integer>cantidadesDeLosIngredientes = new ArrayList<>();
     ArrayList<Ingredient>ingredients = new ArrayList<>();
 
-    public RecipeCustom () {}
+    public RecipeCustom() {}
 
-    public RecipeCustom(String nombreReceta, String descripcion, String ingredientesParaLaReceta, int modoReceta, String imagenReceta,int idUsuario) {
+    public RecipeCustom(String nombreReceta, String descripcion, String ingredientesParaLaReceta, String modoReceta, String imagenReceta,int idUsuario) {
         this.nombreReceta = nombreReceta;
         this.descripcion = descripcion;
         this.ingredientesParaLaReceta = ingredientesParaLaReceta;
@@ -46,6 +48,14 @@ public class RecipeCustom implements Serializable {
         return descripcion;
     }
 
+    public void addIngrediente(Ingredient ingrediente) {
+        ingredients.add(ingrediente);
+    }
+
+    public void addIngrediente(String ingrediente) {
+        ingredientes.add(ingrediente);
+    }
+
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
@@ -58,13 +68,6 @@ public class RecipeCustom implements Serializable {
         this.ingredientesParaLaReceta = ingredientesParaLaReceta;
     }
 
-    public int getModoReceta() {
-        return modoReceta;
-    }
-
-    public void setModoReceta(int modoReceta) {
-        this.modoReceta = modoReceta;
-    }
 
     public String getImagenReceta() {
         return imagenReceta;
@@ -105,4 +108,21 @@ public class RecipeCustom implements Serializable {
     public void setIngredients(ArrayList<Ingredient> ingredients) {
         this.ingredients = ingredients;
     }
+
+    public void addCantidadesDeLosIngredientes(int cantidadIngrediente) {
+        cantidadesDeLosIngredientes.add(cantidadIngrediente);
+    }
+
+    public void comprobarConsitenciaIngredientes(){
+        HashMap<String,Ingredient> mapIngredientes = new HashMap<>();
+
+        for (Ingredient i: ingredients) {
+            mapIngredientes.put(i.getNombreIngrediente(),i);
+        }
+
+        Collection<Ingredient> values = mapIngredientes.values();
+        ingredients = new ArrayList<>(values);
+    }
+
+
 }

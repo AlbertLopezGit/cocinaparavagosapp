@@ -84,14 +84,29 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
     }
 
     private boolean checkOptionsRegister(String name, String tipo,String medida) {
+        ArrayList<String>  ultimos;
+        ultimos = UserValidation.getIngredientesUltimos();
+
         for (IngredientCustom i: ingredientCustomArray) {
-            if (i.getNombreIngrediente().equals(name) || comprobarIngredientesRepetidosLocal(name)) {
+            if (i.getNombreIngrediente().equals(name)) {
                 Toast.makeText(CreateIngredientesActivity.this,
                         "El ingrediente ya esta creado",Toast.LENGTH_SHORT)
                         .show();
                 return false;
             }
         }
+
+        for (String x: ultimos) {
+            System.out.println("nombre ingrediente " + name);
+            System.out.println("ingredientes ultimos " + x);
+            if (x.trim().equals(name.trim())) {
+                Toast.makeText(CreateIngredientesActivity.this,
+                        "El ingrediente ya esta creado",Toast.LENGTH_SHORT)
+                        .show();
+                return false;
+            }
+        }
+
         if (name.length() < 1) {
             Toast.makeText(CreateIngredientesActivity.this,
                     "El nombre no puede estar vacío",Toast.LENGTH_SHORT)
@@ -111,16 +126,7 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
         return true;
     }
 
-    private boolean comprobarIngredientesRepetidosLocal(String name) {
-        ArrayList<String> ultimos;
-        ultimos = UserValidation.getIngredientesUltimos();
-        for (String i: ultimos) {
-            if (name.equals(i)) {
-                return true;
-            }
-        }
-        return false;
-    }
+
 
     private void ocultarBarras(){
         //Para esconder la barra superior
@@ -151,7 +157,6 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
         }
     }
 
-
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
@@ -167,10 +172,9 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
         Toast.makeText(CreateIngredientesActivity.this,
                 "Ingrediente Insertado",Toast.LENGTH_SHORT)
                 .show();
-        UserValidation.addUltimoIngrediente(nombre.getText().toString().trim());
+        UserValidation.addUltimoIngrediente(name);
         nombre.setText("");
     }
-
 
     @Override
     protected void onResume() {

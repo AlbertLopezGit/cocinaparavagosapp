@@ -10,16 +10,17 @@ public class RecipesIngredientsCustom implements Serializable {
     @SerializedName("NOMBREINGREDIENTECUSTOM")
     private String nombreIngrediente;
     @SerializedName("CANTIDAD_INGREDIENTE_CUSTOM")
-    private int cantidadIngrediente;
+    private String cantidadIngrediente;
     @SerializedName("IDUSUARIO")
     private int idusuario;
 
     public RecipesIngredientsCustom() {}
 
-    public RecipesIngredientsCustom(String nombreReceta, String nombreIngrediente, int cantidadIngrediente,int idusuario) {
+    public RecipesIngredientsCustom(String nombreReceta, String nombreIngrediente, String cantidadIngrediente,int idusuario) {
         this.nombreReceta = nombreReceta;
         this.nombreIngrediente = nombreIngrediente;
         this.cantidadIngrediente = cantidadIngrediente;
+        this.idusuario = idusuario;
     }
 
     public int getIdusuario() {
@@ -46,11 +47,7 @@ public class RecipesIngredientsCustom implements Serializable {
         this.nombreIngrediente = nombreIngrediente;
     }
 
-    public int getCantidadIngrediente() {
+    public String getCantidadIngrediente() {
         return cantidadIngrediente;
-    }
-
-    public void setCantidadIngrediente(int cantidadIngrediente) {
-        this.cantidadIngrediente = cantidadIngrediente;
     }
 }
