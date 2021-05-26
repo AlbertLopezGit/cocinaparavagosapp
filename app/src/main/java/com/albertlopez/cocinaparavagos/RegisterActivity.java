@@ -1,6 +1,9 @@
 package com.albertlopez.cocinaparavagos;
 
 import androidx.appcompat.app.AppCompatActivity;
+
+import android.app.AlertDialog;
+import android.content.DialogInterface;
 import android.os.Bundle;
 import android.view.View;
 import android.view.WindowManager;
@@ -47,20 +50,33 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
         userCreator = new UserCreator();
 
         if (id == R.id.buttonRegistrar){
-            String nombre = name.getText().toString().trim();
-            String pass = password.getText().toString().trim();
-            String passRepeat = repeatPassword.getText().toString().trim();
-            String email = mail.getText().toString().trim();
+            AlertDialog.Builder alerta = new AlertDialog.Builder(RegisterActivity.this);
+            alerta.setMessage(" ¡¡Atención!!, Tu información personal aplicada al registro solamente " +
+                    "va a ser usada para finalidades acordes a la aplicación. \n" +
+                    "Debes aceptar para poder acceder al registro principal.")
+                    .setPositiveButton("Aceptar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            String nombre = name.getText().toString().trim();
+                            String pass = password.getText().toString().trim();
+                            String passRepeat = repeatPassword.getText().toString().trim();
+                            String email = mail.getText().toString().trim();
 
-            //metodo para controlar todos los requisitos para registrar usuario
-            if (!checkOptionsRegister(pass,passRepeat,nombre,email)) {
-                return;}
+                            //metodo para controlar todos los requisitos para registrar usuario
+                            if (!checkOptionsRegister(pass,passRepeat,nombre,email)) {
+                                return;}
 
-            try {
-                userCreator.createUser(nombre,pass,email,requestQueue,this);
-            } catch (NoSuchAlgorithmException e) {
-                e.printStackTrace();
-            }
+                            try {
+                                userCreator.createUser(nombre,pass,email,requestQueue,RegisterActivity.this);
+                            } catch (NoSuchAlgorithmException e) {
+                                e.printStackTrace();
+                            }
+                        }
+                    });
+            AlertDialog titulo = alerta.create();
+            titulo.setTitle("Aviso de privacidad");
+            titulo.show();
+
         }
     }
 

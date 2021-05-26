@@ -45,8 +45,6 @@ public class Recipe implements Serializable {
         cantidadesDeLosIngredientes.add(cantidadIngrediente);
     }
 
-
-
     public ArrayList<Integer> getCantidadesDeLosIngredientes() {
         return cantidadesDeLosIngredientes;
     }
@@ -126,6 +124,5 @@ public class Recipe implements Serializable {
     public ArrayList<Ingredient> getIngredients() {
         return ingredients;
     }
-
 
 }
