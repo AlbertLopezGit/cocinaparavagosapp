@@ -60,8 +60,6 @@ public class RecyclerViewRecipesAdaptador extends RecyclerView.Adapter<RecyclerV
 
         holder.nombreReceta.setText(nombre);
         Picasso.with(context).load(image).fit().centerInside().into(holder.imagenReceta);
-
-
     }
 
     @Override
@@ -80,6 +78,5 @@ public class RecyclerViewRecipesAdaptador extends RecyclerView.Adapter<RecyclerV
             listener.onClick(v);
         }
     }
-
 
 }

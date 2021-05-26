@@ -69,8 +69,8 @@ public class SpashUserValidation extends AppCompatActivity implements Runnable{
     @Override
     public void run() {
         loading();
-         if (stepCounter == 0){
-            loadingText.setText("Buscando Usuario");
+        if (stepCounter == 0){
+            loadingText.setText("Buscando usuario");
             RequestQueue queue = Volley.newRequestQueue(this);
             StringRequest request = new StringRequest(
                     Request.Method.GET,
@@ -92,7 +92,7 @@ public class SpashUserValidation extends AppCompatActivity implements Runnable{
                         public void onErrorResponse(VolleyError error) {
                             String msg = "Network error (timeout or disconnected)";
                             Toast.makeText(SpashUserValidation.this,
-                                    "Usuario o Contraseña incorrectos",Toast.LENGTH_SHORT)
+                                    "Usuario o contraseña incorrectos",Toast.LENGTH_SHORT)
                                     .show();
                             errorNetwork = true;
                             if (error.networkResponse != null) {
@@ -105,28 +105,28 @@ public class SpashUserValidation extends AppCompatActivity implements Runnable{
                     });
             queue.add(request);
         }  else {
-             if (!errorNetwork) {
-                 UserValidation.comprobarPass(pass);
-                 if (UserValidation.getValidado()) {
-                     guardandoShared();
-                     Toast.makeText(SpashUserValidation.this,
-                             "Logueado",Toast.LENGTH_SHORT)
-                             .show();
-                     ManagerAllRecipes.resetarIngredientesIntroducidosPorElUsuario();
-                     ManagerAllRecipesCustom.resetarIngredientesIntroducidosPorElUsuario();
-                     ManagerAllRecipes.resetearRecetas();
-                     Intent intent = new Intent(this, SplashActivity.class);
-                     intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK); intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
-                     startActivity(intent);
+            if (!errorNetwork) {
+                UserValidation.comprobarPass(pass);
+                if (UserValidation.getValidado()) {
+                    guardandoShared();
+                    Toast.makeText(SpashUserValidation.this,
+                            "Logueado",Toast.LENGTH_SHORT)
+                            .show();
+                    ManagerAllRecipes.resetarIngredientesIntroducidosPorElUsuario();
+                    ManagerAllRecipesCustom.resetarIngredientesIntroducidosPorElUsuario();
+                    ManagerAllRecipes.resetearRecetas();
+                    Intent intent = new Intent(this, SplashActivity.class);
+                    intent.addFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK); intent.addFlags(Intent.FLAG_ACTIVITY_NEW_TASK);
+                    startActivity(intent);
 
-                 } else {
-                     Toast.makeText(SpashUserValidation.this,
-                             "Usuario o Contraseña incorrectos X",Toast.LENGTH_SHORT)
-                             .show();
-                 }
-             }
+                } else {
+                    Toast.makeText(SpashUserValidation.this,
+                            "Usuario o contraseña incorrectos",Toast.LENGTH_SHORT)
+                            .show();
+                }
+            }
             finish();
-         }
+        }
     }
 
     private void guardandoShared() {

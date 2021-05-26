@@ -24,7 +24,6 @@ public class RecipesBaseActivity extends AppCompatActivity {
     ArrayList<Recipe> recipesCustom;
     Recipe recipeSeleccionado;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,14 +46,10 @@ public class RecipesBaseActivity extends AppCompatActivity {
 
                 ArrayList<Ingredient> ingredients = recipeSeleccionado.getIngredientsArray();
 
-                System.out.println("ÑOOOOOOO " + ingredients.size());
-
-
                 openIngredientsActivity(recipeSeleccionado);
             }
         });
         recyclerViewRecetas.setAdapter(recyclerViewRecipesAdaptador);
-
     }
 
     private void openIngredientsActivity(Recipe recipeSeleccionado) {
@@ -62,7 +57,6 @@ public class RecipesBaseActivity extends AppCompatActivity {
         intent.putExtra("recetaSeleccionada", recipeSeleccionado);
         startActivity(intent);
     }
-
 
     private void loadRecipes() {
         ArrayList<Recipe> recipesArray = (ArrayList<Recipe>) getIntent().getSerializableExtra("Recetas");
@@ -78,8 +72,6 @@ public class RecipesBaseActivity extends AppCompatActivity {
         }
 
     }
-
-
 
     private void ocultarBarras(){
         //Para esconder la barra superior

@@ -99,6 +99,4 @@ public class RecyclerViewIngredientesAdaptador extends RecyclerView.Adapter<Recy
         }
     }
 
-
-
 }

@@ -31,17 +31,12 @@ public class IngredientsSettingsCustom extends AppCompatActivity {
 
         loading();
 
-
-
-
         borraIngredientes.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
                 borrarIngredientes();
             }
         });
-
-
 
     }
 
@@ -59,9 +54,7 @@ public class IngredientsSettingsCustom extends AppCompatActivity {
                     "No hay ingredientes propios que gestionar",Toast.LENGTH_SHORT)
                     .show();
         }
-
     }
-
 
     private void ocultarBarras(){
         //Para esconder la barra superior

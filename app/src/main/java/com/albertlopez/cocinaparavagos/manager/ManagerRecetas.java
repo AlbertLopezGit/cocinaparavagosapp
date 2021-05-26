@@ -175,7 +175,5 @@ public class ManagerRecetas implements Serializable{
 
     }
 
-
-
 }
 

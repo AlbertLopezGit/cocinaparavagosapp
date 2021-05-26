@@ -158,7 +158,6 @@ public class IngredientsSelected extends AppCompatActivity {
             }
         }
 
-
     }
 
     public void openIngredientsActivity(Ingredient ingredienteSeleccionado) {
@@ -185,9 +184,5 @@ public class IngredientsSelected extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
     }
-
-
-
-
 
 }

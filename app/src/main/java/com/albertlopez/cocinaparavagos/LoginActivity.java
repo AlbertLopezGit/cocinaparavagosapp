@@ -81,12 +81,12 @@ public class LoginActivity extends AppCompatActivity {
     private boolean checkOptionsLogout(String pass, String correo) {
         if (pass.length() <= 0) {
             Toast.makeText(LoginActivity.this,
-                    "El Campo de la contraseña no puede estar vacio",Toast.LENGTH_SHORT)
+                    "El campo de la contraseña no puede estar vacío",Toast.LENGTH_SHORT)
                     .show();
             return false;
         } else if (email.length() <= 0) {
             Toast.makeText(LoginActivity.this,
-                    "El Campo del correo no puede estar vacio",Toast.LENGTH_SHORT)
+                    "El campo del correo no puede estar vacío",Toast.LENGTH_SHORT)
                     .show();
             return false;
         }

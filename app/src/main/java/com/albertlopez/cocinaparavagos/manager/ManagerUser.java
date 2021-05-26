@@ -47,5 +47,4 @@ public class ManagerUser implements Serializable {
         UserValidation.setUser(user);
     }
 
-
 }

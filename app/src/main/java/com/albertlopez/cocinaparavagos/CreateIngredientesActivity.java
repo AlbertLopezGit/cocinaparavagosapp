@@ -72,7 +72,6 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
                 }
             }
         });
-
     }
 
     private void loading() {
@@ -84,13 +83,13 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
     }
 
     private boolean checkOptionsRegister(String name, String tipo,String medida) {
-        ArrayList<String>  ultimos;
+        ArrayList<String> ultimos;
         ultimos = UserValidation.getIngredientesUltimos();
 
         for (IngredientCustom i: ingredientCustomArray) {
             if (i.getNombreIngrediente().equals(name)) {
                 Toast.makeText(CreateIngredientesActivity.this,
-                        "El ingrediente ya esta creado",Toast.LENGTH_SHORT)
+                        "El ingrediente ya está creado",Toast.LENGTH_SHORT)
                         .show();
                 return false;
             }
@@ -101,7 +100,7 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
             System.out.println("ingredientes ultimos " + x);
             if (x.trim().equals(name.trim())) {
                 Toast.makeText(CreateIngredientesActivity.this,
-                        "El ingrediente ya esta creado",Toast.LENGTH_SHORT)
+                        "El ingrediente ya está creado",Toast.LENGTH_SHORT)
                         .show();
                 return false;
             }
@@ -114,12 +113,12 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
             return false;
         } else if (tipo.length() != 0 && tipo.equals("Tipo")) {
             Toast.makeText(CreateIngredientesActivity.this,
-                    "Selecciona un Tipo de Ingrediente",Toast.LENGTH_SHORT)
+                    "Selecciona un tipo de ingrediente",Toast.LENGTH_SHORT)
                     .show();
             return false;
         } else if (medida.length() != 0 && medida.equals("Masa")) {
             Toast.makeText(CreateIngredientesActivity.this,
-                    "Selecciona un Tipo de Masa",Toast.LENGTH_SHORT)
+                    "Selecciona un tipo de masa",Toast.LENGTH_SHORT)
                     .show();
             return false;
         }
@@ -148,7 +147,6 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
         decorView.setSystemUiVisibility(uiOptions);
     }
 
-
     @Override
     public void onItemSelected(AdapterView<?> parent, View view, int position, long id) {
 
@@ -157,35 +155,29 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
         if(spiner.getId() == R.id.spinner)
         {
             medida = parent.getItemAtPosition(position).toString();
-
         }
         if(spiner2.getId() == R.id.spinner2)
         {
             tipo = parent.getItemAtPosition(position).toString();
-
         }
     }
 
-
     @Override
-    public void onNothingSelected(AdapterView<?> parent) {
-
-    }
+    public void onNothingSelected(AdapterView<?> parent) {}
 
     public void ingredienteRepetido() {
         Toast.makeText(CreateIngredientesActivity.this,
-                "El Ingrediente que intentas insertar ya existe en la base de datos",Toast.LENGTH_SHORT)
+                "El ingrediente que intentas insertar ya existe",Toast.LENGTH_SHORT)
                 .show();
     }
 
     public void ingredienteInsertado() {
         Toast.makeText(CreateIngredientesActivity.this,
-                "Ingrediente Insertado",Toast.LENGTH_SHORT)
+                "Ingrediente insertado",Toast.LENGTH_SHORT)
                 .show();
         UserValidation.addUltimoIngrediente(nombre.getText().toString().trim());
         nombre.setText("");
     }
-
 
     @Override
     protected void onResume() {

@@ -95,7 +95,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
             }
         });
 
-
         recipesButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
@@ -103,7 +102,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                     openRecipeActivity();
                 } else {
                     Toast.makeText(MainActivity.this,
-                            "Opción para usuarios registrados ",Toast.LENGTH_SHORT)
+                            "Opción para usuarios registrados",Toast.LENGTH_SHORT)
                             .show();
                 }
             }
@@ -307,6 +306,5 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         intent.putExtra("RecetasCantidades", recipeIngredientsArray);
         startActivity(intent);
     }
-
 
 }

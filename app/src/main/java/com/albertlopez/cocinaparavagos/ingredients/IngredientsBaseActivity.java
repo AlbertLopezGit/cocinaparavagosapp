@@ -52,8 +52,10 @@ public class IngredientsBaseActivity extends AppCompatActivity{
             @Override
             public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
 
-                //Toast.makeText(getApplicationContext(),String.valueOf(position),Toast.LENGTH_SHORT).show(); //chuleta para ver la posicion de la lista
-                ArrayList<Ingredient> tiposIngredientes = managerIngredient.returnIngredientsForTipeIngredients(position);
+                //Toast.makeText(getApplicationContext(),String.valueOf(position),Toast.LENGTH_SHORT)
+                // .show(); //chuleta para ver la posicion de la lista
+                ArrayList<Ingredient> tiposIngredientes =
+                        managerIngredient.returnIngredientsForTipeIngredients(position);
                 openIngredientsActivity(tiposIngredientes);
             }
         });
@@ -99,9 +101,12 @@ public class IngredientsBaseActivity extends AppCompatActivity{
     }
 
     private void loadingIngredients() {
-        ArrayList<Ingredient> IngedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("Ingredientes");
-        ArrayList<Recipe> recipesArray = (ArrayList<Recipe>) getIntent().getSerializableExtra("Recetas");
-        ArrayList<RecipeIngredients> recipeIngredients = (ArrayList<RecipeIngredients>) getIntent().getSerializableExtra("RecetasCantidades");
+        ArrayList<Ingredient> IngedientesArray =
+                (ArrayList<Ingredient>) getIntent().getSerializableExtra("Ingredientes");
+        ArrayList<Recipe> recipesArray =
+                (ArrayList<Recipe>) getIntent().getSerializableExtra("Recetas");
+        ArrayList<RecipeIngredients> recipeIngredients =
+                (ArrayList<RecipeIngredients>) getIntent().getSerializableExtra("RecetasCantidades");
 
         managerIngredient.setIngredientsArray(IngedientesArray);
         managerRecetas.setRecipesArray(recipesArray);

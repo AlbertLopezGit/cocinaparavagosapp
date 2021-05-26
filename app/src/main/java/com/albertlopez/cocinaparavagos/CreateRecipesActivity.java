@@ -104,16 +104,16 @@ public class CreateRecipesActivity extends AppCompatActivity {
             return false;
         } else if (descripcionString.length() < 1) {
             Toast.makeText(CreateRecipesActivity.this,
-                    "La descripcion no puede estar vacia",Toast.LENGTH_SHORT)
+                    "La descripción no puede estar vacía",Toast.LENGTH_SHORT)
                     .show();
             return false;
         } else if (ingredientesParaHacerRecetaSeleccionadoPorElUsuario.size() < 1) {
             Toast.makeText(CreateRecipesActivity.this,
-                    "Debes insertar algun ingrediente",Toast.LENGTH_SHORT)
+                    "Debes insertar algún ingrediente",Toast.LENGTH_SHORT)
                     .show();
             return false;
         }
-       return true;
+        return true;
 
     }
 
@@ -144,7 +144,6 @@ public class CreateRecipesActivity extends AppCompatActivity {
     private void loading() {
         ingredientCustom = (ArrayList<IngredientCustom>) getIntent().getSerializableExtra("customIngredients");
         ingredientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("ingredientsArray");
-
     }
 
     private void ocultarBarras(){
@@ -168,12 +167,11 @@ public class CreateRecipesActivity extends AppCompatActivity {
         } else {
             texto.setVisibility(View.INVISIBLE);
         }
-
     }
 
     public void recetaInsertada() {
         Toast.makeText(CreateRecipesActivity.this,
-                "Receta Insertada",Toast.LENGTH_SHORT)
+                "Receta insertada",Toast.LENGTH_SHORT)
                 .show();
         UserValidation.addUltimaReceta(nombreRecetaString);
         nombreReceta.setText("");

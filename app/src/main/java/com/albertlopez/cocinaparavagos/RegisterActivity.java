@@ -82,7 +82,6 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             AlertDialog titulo = alerta.create();
             titulo.setTitle("Aviso de privacidad");
             titulo.show();
-
         }
     }
 
@@ -100,12 +99,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
             return false;
         } else if (!pass.equals(passRepeat)) {
             Toast.makeText(RegisterActivity.this,
-                "La contraseña y repetir contraseña no coinciden.",Toast.LENGTH_SHORT)
-                .show();
+                    "La contraseña y repetir contraseña no coinciden.",Toast.LENGTH_SHORT)
+                    .show();
             return false;
         } else if (pass.length() < 5) {
             Toast.makeText(RegisterActivity.this,
-                    "La contraseña debe tener 5 caracteres como mínimo.",Toast.LENGTH_SHORT)
+                    "La contraseña debe tener 5 carácteres como mínimo.",Toast.LENGTH_SHORT)
                     .show();
             return false;
         }
@@ -120,7 +119,7 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
 
     public void exit(){
         Toast.makeText(RegisterActivity.this,
-                "Registro Completado ",Toast.LENGTH_SHORT)
+                "Registro completado ",Toast.LENGTH_SHORT)
                 .show();
         finish();
     }

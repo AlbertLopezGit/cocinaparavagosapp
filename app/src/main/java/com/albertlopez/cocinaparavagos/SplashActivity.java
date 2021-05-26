@@ -78,14 +78,14 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
             stepCounter++;
             handler.postDelayed(this,1000);
         } else if (stepCounter == 1){
-            loadingText.setText("Despertando al Capibara");
+            loadingText.setText("Despertando al capibara");
             stepCounter++;
             if (pass.length() > 0) {
                 comprobarContraseña(pass);
             }
             handler.postDelayed(this,1000);
         } else if (stepCounter == 2){
-            loadingText.setText("Cargando Datos");
+            loadingText.setText("Cargando datos");
             RequestQueue queue = Volley.newRequestQueue(this);
             StringRequest request = new StringRequest(
                     Request.Method.GET,
@@ -107,7 +107,7 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
                         public void onErrorResponse(VolleyError error) {
                             String msg = "Network error (timeout or disconnected)";
                             Toast.makeText(SplashActivity.this,
-                                    "Error al Conectar con el Servidor ",Toast.LENGTH_SHORT)
+                                    "Error al conectar con el servidor ",Toast.LENGTH_SHORT)
                                     .show();
                             errorNetwork = true;
                             if (error.networkResponse != null) {
@@ -121,7 +121,7 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
                     });
             queue.add(request);
         } else if (stepCounter == 3){
-            loadingText.setText("Cargando Recetas");
+            loadingText.setText("Cargando recetas");
             RequestQueue queue = Volley.newRequestQueue(this);
             StringRequest request = new StringRequest(
                     Request.Method.GET,
@@ -143,7 +143,7 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
                         public void onErrorResponse(VolleyError error) {
                             String msg = "Network error (timeout or disconnected)";
                             Toast.makeText(SplashActivity.this,
-                                    "Error al Conectar con el Servidor ",Toast.LENGTH_SHORT)
+                                    "Error al conectar con el servidor ",Toast.LENGTH_SHORT)
                                     .show();
                             errorNetwork = true;
                             if (error.networkResponse != null) {
@@ -156,7 +156,7 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
                     });
             queue.add(request);
         } else if (stepCounter == 4){
-            loadingText.setText("Descargando Ingredientes");
+            loadingText.setText("Descargando ingredientes");
             RequestQueue queue = Volley.newRequestQueue(this);
             StringRequest request = new StringRequest(
                     Request.Method.GET,
@@ -178,7 +178,7 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
                         public void onErrorResponse(VolleyError error) {
                             String msg = "Network error (timeout or disconnected)";
                             Toast.makeText(SplashActivity.this,
-                                    "Error al Conectar con el Servidor ",Toast.LENGTH_SHORT)
+                                    "Error al conectar con el servidor ",Toast.LENGTH_SHORT)
                                     .show();
                             errorNetwork = true;
                             if (error.networkResponse != null) {
@@ -227,7 +227,6 @@ public class SplashActivity extends AppCompatActivity implements Runnable{
             ed.putString("email", "");
             ed.apply();
         }
-
     }
 
     private void descargarUsuario(String email) {

@@ -75,7 +75,6 @@ public class UserValidation {
         ingredientesUltimosDelete = new ArrayList<>();
     }
 
-
     public static void addUltimoIngredienteDelete(String ultimoIngrediente) {
         ingredientesUltimosDelete.add(ultimoIngrediente);
     }
