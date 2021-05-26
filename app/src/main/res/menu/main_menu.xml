@@ -12,7 +12,7 @@
 
         <item
             android:id="@+id/nav_ingredientsCustom"
-            android:icon="@drawable/ic_vol_type_tv_light"
+            android:icon="@drawable/mr_group_expand"
             android:title="SETTINGS" />
 
         <item

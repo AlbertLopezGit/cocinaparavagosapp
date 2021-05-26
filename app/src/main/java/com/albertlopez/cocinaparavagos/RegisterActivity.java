@@ -72,6 +72,12 @@ public class RegisterActivity extends AppCompatActivity implements View.OnClickL
                                 e.printStackTrace();
                             }
                         }
+                    })
+                    .setNegativeButton("Denegar", new DialogInterface.OnClickListener() {
+                        @Override
+                        public void onClick(DialogInterface dialog, int which) {
+                            dialog.cancel();
+                        }
                     });
             AlertDialog titulo = alerta.create();
             titulo.setTitle("Aviso de privacidad");

@@ -171,7 +171,6 @@ public class CreateRecipesActivity extends AppCompatActivity {
 
     }
 
-
     public void recetaInsertada() {
         Toast.makeText(CreateRecipesActivity.this,
                 "Receta Insertada",Toast.LENGTH_SHORT)

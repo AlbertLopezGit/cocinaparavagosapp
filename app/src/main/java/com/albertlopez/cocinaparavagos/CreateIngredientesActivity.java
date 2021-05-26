@@ -126,7 +126,16 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
         return true;
     }
 
-
+    private boolean comprobarIngredientesRepetidosLocal(String name) {
+        ArrayList<String> ultimos;
+        ultimos = UserValidation.getIngredientesUltimos();
+        for (String i: ultimos) {
+            if (name.equals(i)) {
+                return true;
+            }
+        }
+        return false;
+    }
 
     private void ocultarBarras(){
         //Para esconder la barra superior
@@ -157,6 +166,7 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
         }
     }
 
+
     @Override
     public void onNothingSelected(AdapterView<?> parent) {
 
@@ -172,9 +182,10 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
         Toast.makeText(CreateIngredientesActivity.this,
                 "Ingrediente Insertado",Toast.LENGTH_SHORT)
                 .show();
-        UserValidation.addUltimoIngrediente(name);
+        UserValidation.addUltimoIngrediente(nombre.getText().toString().trim());
         nombre.setText("");
     }
+
 
     @Override
     protected void onResume() {

@@ -9,22 +9,21 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.albertlopez.cocinaparavagos.R;
-import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipesCustom;
 import com.albertlopez.cocinaparavagos.manager.ManagerRecetas;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.albertlopez.cocinaparavagos.model.Recipe;
-import com.albertlopez.cocinaparavagos.model.RecipeCustom;
 import com.albertlopez.cocinaparavagos.model.RecipeIngredients;
-import com.albertlopez.cocinaparavagos.model.RecipesIngredientsCustom;
 
 import java.util.ArrayList;
 
 public class RecipesBaseActivity extends AppCompatActivity {
 
+    ManagerRecetas managerRecetas;
     RecyclerView recyclerViewRecetas;
     RecyclerViewRecipesAdaptador recyclerViewRecipesAdaptador;
     ArrayList<Recipe> recipesCustom;
     Recipe recipeSeleccionado;
+
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -32,6 +31,7 @@ public class RecipesBaseActivity extends AppCompatActivity {
         setContentView(R.layout.activity_recipes_base);
         ocultarBarras();
         recipesCustom = new ArrayList<>();
+        managerRecetas = new ManagerRecetas();
         recyclerViewRecetas = findViewById(R.id.reciclerRecipes);
         recyclerViewRecetas.setLayoutManager(new GridLayoutManager(this,1));
 
@@ -44,6 +44,11 @@ public class RecipesBaseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 recipeSeleccionado = recipesCustom.get(recyclerViewRecetas.getChildAdapterPosition(v));
+
+                ArrayList<Ingredient> ingredients = recipeSeleccionado.getIngredientsArray();
+
+                System.out.println("ÑOOOOOOO " + ingredients.size());
+
 
                 openIngredientsActivity(recipeSeleccionado);
             }
@@ -60,8 +65,11 @@ public class RecipesBaseActivity extends AppCompatActivity {
 
 
     private void loadRecipes() {
-
         ArrayList<Recipe> recipesArray = (ArrayList<Recipe>) getIntent().getSerializableExtra("Recetas");
+        ArrayList<RecipeIngredients> recipeIngredients = (ArrayList<RecipeIngredients>) getIntent().getSerializableExtra("RecetasCantidades");
+
+        managerRecetas.setRecipesArray(recipesArray);
+        managerRecetas.setRecipesIngredientsArray(recipeIngredients);
 
         for (Recipe i: recipesArray) {
             if (i.getModoReceta() == 1) {

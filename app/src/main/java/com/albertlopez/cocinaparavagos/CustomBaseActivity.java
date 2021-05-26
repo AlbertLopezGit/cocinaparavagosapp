@@ -72,7 +72,6 @@ public class CustomBaseActivity extends AppCompatActivity {
     }
 
     private void openIngredientsCustomActivity() {
-        finish();
         Intent intent = new Intent (this, CreateIngredientesActivity.class);
         intent.putExtra("customIngredients",ingredientCustom);
         startActivity(intent);

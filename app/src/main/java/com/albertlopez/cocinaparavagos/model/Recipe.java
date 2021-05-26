@@ -18,12 +18,11 @@ public class Recipe implements Serializable {
     private int modoReceta;
     @SerializedName("IMAGEN_RECETA")
     private String imagenReceta;
-
     ArrayList<String>ingredientes = new ArrayList<>();
     ArrayList<Integer>cantidadesDeLosIngredientes = new ArrayList<>();
     ArrayList<Ingredient>ingredients = new ArrayList<>();
 
-    public Recipe(){}
+    public Recipe () {}
 
     public Recipe(String nombreReceta, String descripcion, String ingredientesParaLaReceta, int modoReceta, String imagenReceta) {
         this.nombreReceta = nombreReceta;
@@ -37,12 +36,12 @@ public class Recipe implements Serializable {
         ingredientes.add(ingrediente);
     }
 
-    public void addIngrediente(Ingredient ingrediente) {
-        ingredients.add(ingrediente);
-    }
-
     public void addCantidadesDeLosIngredientes(int cantidadIngrediente) {
         cantidadesDeLosIngredientes.add(cantidadIngrediente);
+    }
+
+    public void addIngrediente(Ingredient ingrediente) {
+        ingredients.add(ingrediente);
     }
 
     public ArrayList<Integer> getCantidadesDeLosIngredientes() {
@@ -116,13 +115,4 @@ public class Recipe implements Serializable {
         Collection<Ingredient> values = mapIngredientes.values();
         ingredients = new ArrayList<>(values);
     }
-
-    public void setIngredients(ArrayList<Ingredient> ingredients) {
-        this.ingredients = ingredients;
-    }
-
-    public ArrayList<Ingredient> getIngredients() {
-        return ingredients;
-    }
-
 }
