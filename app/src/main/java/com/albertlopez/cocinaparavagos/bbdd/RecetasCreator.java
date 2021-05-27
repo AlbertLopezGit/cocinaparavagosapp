@@ -27,7 +27,6 @@ public class RecetasCreator {
     CreateRecipesActivity createRecipesActivityHome;
 
     public void createCustomRecetas(final String nombreRecetaString, final String descripcionString, final RequestQueue requestQueue, CreateRecipesActivity createRecipesActivity) {
-        System.out.println("INTENTO INSERTAR");
         createRecipesActivityHome = createRecipesActivity;
         requestQueueRecipe =  requestQueue;
         nombreReceta = nombreRecetaString;

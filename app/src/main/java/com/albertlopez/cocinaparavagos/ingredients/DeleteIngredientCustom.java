@@ -101,7 +101,6 @@ public class DeleteIngredientCustom extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
     }
-
     private void nosVamos() {
         finish();
     }

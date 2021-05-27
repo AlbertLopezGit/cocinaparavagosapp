@@ -165,6 +165,4 @@ public class IngredientsBaseActivity extends AppCompatActivity{
                 | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
     }
-
-
 }

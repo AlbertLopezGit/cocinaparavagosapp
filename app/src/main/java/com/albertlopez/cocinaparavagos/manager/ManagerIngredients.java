@@ -22,6 +22,37 @@ public class ManagerIngredients implements Serializable {
     ArrayList<Ingredient> ingredientsArrayFijos;
     ArrayList<IngredientCustom> ingredientsCustomArray;
 
+    public ArrayList<Ingredient> getIngredientsArrayFijos() {
+        return ingredientsArrayFijos;
+    }
+    public void setIngredientsCustomArray(ArrayList<IngredientCustom> ingredientsCustomArray) {
+        this.ingredientsCustomArray = ingredientsCustomArray;
+    }
+    public void setTiposIngredientsArray(ArrayList<Ingredient> tiposIngredientsArray) {
+        this.tiposIngredientsArray = tiposIngredientsArray;
+    }
+    public void setIngredientsArrayFijos(ArrayList<Ingredient> ingredientsArrayFijos) {
+        this.ingredientsArrayFijos = ingredientsArrayFijos;
+    }
+    public void noUsuario(){
+        setIngredientsArray(ingredientsArrayFijos);
+    }
+    public ArrayList<IngredientCustom> getIngredientsCustomArray() {
+        return ingredientsCustomArray;
+    }
+    public void setIngredientsArray(ArrayList<Ingredient> ingredientsArray) {
+        this.ingredientsArray = ingredientsArray;
+    }
+    public void settiposIngredientsArray(ArrayList<Ingredient> ingredientsArray) {
+        this.tiposIngredientsArray = ingredientsArray;
+    }
+    public ArrayList<Ingredient> getIngredientsArray() {
+        return ingredientsArray;
+    }
+    public ArrayList<Ingredient> getTiposIngredientsArray() {
+        return tiposIngredientsArray;
+    }
+
     public void addIngredientsBase(String response) throws JSONException {
         JSONArray jsonResponse = new JSONArray(response);
         ingredientsArray = new ArrayList<>();
@@ -47,20 +78,6 @@ public class ManagerIngredients implements Serializable {
             }
         }
         mezclarIngredientesConCustom();
-    }
-
-
-    public void setIngredientsArray(ArrayList<Ingredient> ingredientsArray) {
-        this.ingredientsArray = ingredientsArray;
-    }
-    public void settiposIngredientsArray(ArrayList<Ingredient> ingredientsArray) {
-        this.tiposIngredientsArray = ingredientsArray;
-    }
-    public ArrayList<Ingredient> getIngredientsArray() {
-        return ingredientsArray;
-    }
-    public ArrayList<Ingredient> getTiposIngredientsArray() {
-        return tiposIngredientsArray;
     }
 
     public ArrayList<String> viewAllIngredients(){ //aqui se retorna solo los tipos de ingredientes
@@ -121,18 +138,6 @@ public class ManagerIngredients implements Serializable {
         setIngredientsArray(mezclado);
     }
 
-    public void setIngredientsArrayFijos(ArrayList<Ingredient> ingredientsArrayFijos) {
-        this.ingredientsArrayFijos = ingredientsArrayFijos;
-    }
-
-    public void noUsuario(){
-        setIngredientsArray(ingredientsArrayFijos);
-    }
-
-    public ArrayList<IngredientCustom> getIngredientsCustomArray() {
-        return ingredientsCustomArray;
-    }
-
     public ArrayList<Ingredient> conversorCustomIngredientes() {
         ArrayList<Ingredient> ingredientesCustomParse = new ArrayList<>();
         for (IngredientCustom i:ingredientsCustomArray) {
@@ -143,18 +148,5 @@ public class ManagerIngredients implements Serializable {
 
         return ingredientesCustomParse;
     }
-
-    public ArrayList<Ingredient> getIngredientsArrayFijos() {
-        return ingredientsArrayFijos;
-    }
-
-    public void setIngredientsCustomArray(ArrayList<IngredientCustom> ingredientsCustomArray) {
-        this.ingredientsCustomArray = ingredientsCustomArray;
-    }
-
-    public void setTiposIngredientsArray(ArrayList<Ingredient> tiposIngredientsArray) {
-        this.tiposIngredientsArray = tiposIngredientsArray;
-    }
-
 
 }

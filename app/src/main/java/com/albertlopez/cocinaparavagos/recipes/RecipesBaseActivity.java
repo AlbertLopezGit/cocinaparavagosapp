@@ -9,10 +9,13 @@ import android.os.Bundle;
 import android.view.View;
 
 import com.albertlopez.cocinaparavagos.R;
+import com.albertlopez.cocinaparavagos.UserValidation;
 import com.albertlopez.cocinaparavagos.manager.ManagerRecetas;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
+import com.albertlopez.cocinaparavagos.model.IngredientCustom;
 import com.albertlopez.cocinaparavagos.model.Recipe;
 import com.albertlopez.cocinaparavagos.model.RecipeIngredients;
+import com.albertlopez.cocinaparavagos.model.RecipesIngredientsCustom;
 
 import java.util.ArrayList;
 
@@ -44,7 +47,6 @@ public class RecipesBaseActivity extends AppCompatActivity {
             public void onClick(View v) {
                 recipeSeleccionado = recipesCustom.get(recyclerViewRecetas.getChildAdapterPosition(v));
 
-                ArrayList<Ingredient> ingredients = recipeSeleccionado.getIngredientsArray();
 
                 openIngredientsActivity(recipeSeleccionado);
             }

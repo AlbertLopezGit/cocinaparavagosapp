@@ -23,23 +23,18 @@ public class RecipeIngredients implements Serializable {
     public String getNombreReceta() {
         return nombreReceta;
     }
-
     public void setNombreReceta(String nombreReceta) {
         this.nombreReceta = nombreReceta;
     }
-
     public String getNombreIngrediente() {
         return nombreIngrediente;
     }
-
     public void setNombreIngrediente(String nombreIngrediente) {
         this.nombreIngrediente = nombreIngrediente;
     }
-
     public int getCantidadIngrediente() {
         return cantidadIngrediente;
     }
-
     public void setCantidadIngrediente(int cantidadIngrediente) {
         this.cantidadIngrediente = cantidadIngrediente;
     }

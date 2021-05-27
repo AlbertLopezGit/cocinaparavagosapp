@@ -5,9 +5,11 @@ import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import com.albertlopez.cocinaparavagos.R;
+import com.albertlopez.cocinaparavagos.UserValidation;
 import com.albertlopez.cocinaparavagos.ingredients.RecyclerViewIngredientesAdaptador;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.albertlopez.cocinaparavagos.model.Recipe;
+import com.albertlopez.cocinaparavagos.model.RecipesIngredientsCustom;
 import com.squareup.picasso.Picasso;
 
 import android.os.Bundle;

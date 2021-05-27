@@ -127,17 +127,6 @@ public class CreateIngredientesActivity extends AppCompatActivity implements Ada
         return true;
     }
 
-    private boolean comprobarIngredientesRepetidosLocal(String name) {
-        ArrayList<String> ultimos;
-        ultimos = UserValidation.getIngredientesUltimos();
-        for (String i: ultimos) {
-            if (name.equals(i)) {
-                return true;
-            }
-        }
-        return false;
-    }
-
     private void ocultarBarras(){
         //Para esconder la barra superior
         View decorView = getWindow().getDecorView();

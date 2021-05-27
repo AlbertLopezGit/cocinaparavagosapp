@@ -24,7 +24,6 @@ public class IngredientDetailsActivity extends AppCompatActivity {
     TextView numeros;
     int cantidad = 0;
     Boolean recipesCustom = false;
-    String vacio = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {

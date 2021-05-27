@@ -26,7 +26,6 @@ import com.android.volley.toolbox.Volley;
 import org.json.JSONException;
 import java.util.ArrayList;
 
-
 public class SplashActivity extends AppCompatActivity implements Runnable{
 
     TextView loadingText;

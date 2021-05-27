@@ -1,6 +1,5 @@
 package com.albertlopez.cocinaparavagos;
 
-
 import com.albertlopez.cocinaparavagos.model.RecipeCustom;
 import com.albertlopez.cocinaparavagos.model.RecipesIngredientsCustom;
 import com.albertlopez.cocinaparavagos.model.User;

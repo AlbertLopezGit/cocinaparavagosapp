@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.Collection;
 import java.util.HashMap;
 
-
 public class ManagerAllRecipesCustom {
     static public ArrayList<Recipe> recetasQueCoincidenDelTodo = new ArrayList<>();
     static public ArrayList<Recipe> recipes = new ArrayList<>();
@@ -22,6 +21,36 @@ public class ManagerAllRecipesCustom {
 
     public static ArrayList<Ingredient> getIngredientesIntroducidosPorELUsuario() {
         return  ingredientesIntroducidosPorELUsuario =  sumarIngredientes();
+    }
+    public static ArrayList<Recipe> getRecipes() {
+        return recipes;
+    }
+    public static void setRecipeCustoms(ArrayList<RecipeCustom> recipeCustoms) {
+        ManagerAllRecipesCustom.recipeCustoms = recipeCustoms;
+    }
+    public static void setRecipeIngredientsCustoms(ArrayList<RecipesIngredientsCustom> recipeIngredientsCustoms) {
+        ManagerAllRecipesCustom.recipeIngredientsCustoms = recipeIngredientsCustoms;
+    }
+    public static ArrayList<RecipesIngredientsCustom> getRecipeIngredientsCustoms() {
+        return recipeIngredientsCustoms;
+    }
+    public static ArrayList<RecipeCustom> getRecipeCustoms() {
+        return recipeCustoms;
+    }
+    public static void addRecipeCustomFuntion(RecipeCustom recipe) {
+        recipeCustoms.add(recipe);
+    }
+    public static void resetearRecipeCustom() {
+        recipeCustoms = new ArrayList<>();
+    }
+    public static void addCantidadesRecetasCustom(RecipesIngredientsCustom recipe) {
+        recipeIngredientsCustoms.add(recipe);
+    }
+    public static void resetearCantidadesRecetasCustom() {
+        recipeIngredientsCustoms = new ArrayList<>();
+    }
+    public static ArrayList<RecipeIngredients> getRecipesCantidades() {
+        return recipesCantidades;
     }
 
     private static ArrayList<Ingredient> sumarIngredientes() {
@@ -39,7 +68,6 @@ public class ManagerAllRecipesCustom {
         ingredientesIntroducidosPorELUsuario.remove(ingredienteSeleccionado);
     }
 
-
     public static void setRecipesCantidades(ArrayList<RecipeIngredients> recipesCantidades) {
         ManagerAllRecipesCustom.recipesCantidades = recipesCantidades;
     }
@@ -52,47 +80,4 @@ public class ManagerAllRecipesCustom {
         ArrayList<Ingredient> ingredientesIntroducidosPorELUsuarioVacio = new ArrayList<>();
         ingredientesIntroducidosPorELUsuario = ingredientesIntroducidosPorELUsuarioVacio;
     }
-
-    public static ArrayList<Recipe> getRecipes() {
-        return recipes;
-    }
-
-
-    public static void setRecipeCustoms(ArrayList<RecipeCustom> recipeCustoms) {
-        ManagerAllRecipesCustom.recipeCustoms = recipeCustoms;
-    }
-
-    public static void setRecipeIngredientsCustoms(ArrayList<RecipesIngredientsCustom> recipeIngredientsCustoms) {
-        ManagerAllRecipesCustom.recipeIngredientsCustoms = recipeIngredientsCustoms;
-    }
-
-    public static ArrayList<RecipesIngredientsCustom> getRecipeIngredientsCustoms() {
-        return recipeIngredientsCustoms;
-    }
-
-    public static ArrayList<RecipeCustom> getRecipeCustoms() {
-        return recipeCustoms;
-    }
-
-    public static void addRecipeCustomFuntion(RecipeCustom recipe) {
-        recipeCustoms.add(recipe);
-    }
-
-    public static void resetearRecipeCustom() {
-        recipeCustoms = new ArrayList<>();
-    }
-
-    public static void addCantidadesRecetasCustom(RecipesIngredientsCustom recipe) {
-        recipeIngredientsCustoms.add(recipe);
-    }
-
-    public static void resetearCantidadesRecetasCustom() {
-        recipeIngredientsCustoms = new ArrayList<>();
-    }
-
-    public static ArrayList<RecipeIngredients> getRecipesCantidades() {
-        return recipesCantidades;
-    }
-
-
 }

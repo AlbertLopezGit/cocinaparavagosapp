@@ -41,7 +41,6 @@ public class IngredientsActivity extends AppCompatActivity {
         botonRedondo = findViewById(R.id.botonIngredientes3);
         textoRecetasUsuario = findViewById(R.id.textoRecetasUsuario);
         textoIngredientes = findViewById(R.id.textoIngredientesUsuario3);
-
         textoRecetasUsuario.setVisibility(View.INVISIBLE);
         textoIngredientes.setVisibility(View.INVISIBLE);
         recyclerViewIngrediente = (RecyclerView)findViewById(R.id.recyclerIngredientes);

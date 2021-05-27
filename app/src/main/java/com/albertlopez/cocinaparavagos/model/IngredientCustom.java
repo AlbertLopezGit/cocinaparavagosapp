@@ -74,7 +74,6 @@ public class IngredientCustom implements Serializable{
     public void setCantidad(int cantidad) {
         this.cantidad = cantidad;
     }
-
     public String getIdUsuario() {
         return idUsuario;
     }

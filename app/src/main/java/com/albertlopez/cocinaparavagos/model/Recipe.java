@@ -35,75 +35,57 @@ public class Recipe implements Serializable {
     public void addIngrediente(String ingrediente) {
         ingredientes.add(ingrediente);
     }
-
     public void addCantidadesDeLosIngredientes(int cantidadIngrediente) {
         cantidadesDeLosIngredientes.add(cantidadIngrediente);
     }
-
     public void addIngrediente(Ingredient ingrediente) {
         ingredients.add(ingrediente);
     }
-
     public ArrayList<Integer> getCantidadesDeLosIngredientes() {
         return cantidadesDeLosIngredientes;
     }
-
     public ArrayList<Ingredient> getIngredientsArray() {
         return ingredients;
     }
-
     public ArrayList<String> getIngredientes() {
         return ingredientes;
     }
-
     public void setCantidadesDeLosIngredientes(ArrayList<Integer> cantidadesDeLosIngredientes) {
         this.cantidadesDeLosIngredientes = cantidadesDeLosIngredientes;
     }
-
     public void setIngredientes(ArrayList<String> ingredientes) {
         this.ingredientes = ingredientes;
     }
-
     public String getNombreReceta() {
         return nombreReceta;
     }
-
     public void setNombreReceta(String nombreReceta) {
         this.nombreReceta = nombreReceta;
     }
-
     public String getDescripcion() {
         return descripcion;
     }
-
     public void setDescripcion(String descripcion) {
         this.descripcion = descripcion;
     }
-
     public String getIngredientesParaLaReceta() {
         return ingredientesParaLaReceta;
     }
-
     public void setIngredientesParaLaReceta(String ingredientesParaLaReceta) {
         this.ingredientesParaLaReceta = ingredientesParaLaReceta;
     }
-
     public int getModoReceta() {
         return modoReceta;
     }
-
     public void setModoReceta(int modoReceta) {
         this.modoReceta = modoReceta;
     }
-
     public String getImagenReceta() {
         return imagenReceta;
     }
-
     public void setImagenReceta(String imagenReceta) {
         this.imagenReceta = imagenReceta;
     }
-
 
     public void comprobarConsitenciaIngredientes(){
         HashMap<String,Ingredient> mapIngredientes = new HashMap<>();

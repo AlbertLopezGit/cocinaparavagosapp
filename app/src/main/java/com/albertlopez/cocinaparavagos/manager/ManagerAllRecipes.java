@@ -21,6 +21,29 @@ public class ManagerAllRecipes{
     public static ArrayList<Ingredient> getIngredientesIntroducidosPorELUsuario() {
         return  ingredientesIntroducidosPorELUsuario =  sumarIngredientes();
     }
+    public static void resetarIngredientesIntroducidosPorElUsuario(){
+        ArrayList<Ingredient> ingredientesIntroducidosPorELUsuarioVacio = new ArrayList<>();
+        ingredientesIntroducidosPorELUsuario = ingredientesIntroducidosPorELUsuarioVacio;
+    }
+    public static ArrayList<Recipe> getRecetasQueCoincidenDelTodo() {
+        return recetasQueCoincidenDelTodo;
+    }
+    public static ArrayList<Recipe> getRecipes() {
+        return recipes;
+    }
+    public static ArrayList<RecipeIngredients> getRecipesCantidades() {
+        return recipesCantidades;
+    }
+    public static void setRecipes(ArrayList<Recipe> recipes) {
+        ManagerAllRecipes.recipes = recipes;
+    }
+    public static void setRecipesCantidades(ArrayList<RecipeIngredients> recipesCantidades) {
+        ManagerAllRecipes.recipesCantidades = recipesCantidades;
+    }
+    public static void resetearRecetas(){
+        recipes = new ArrayList<Recipe>();
+        recetasQueCoincidenDelTodo = new ArrayList<>();
+    }
 
     private static ArrayList<Ingredient> sumarIngredientes() {
         HashMap<String,Ingredient> ingredientesMap = new HashMap<>();
@@ -32,7 +55,6 @@ public class ManagerAllRecipes{
         Collection<Ingredient> values = ingredientesMap.values();
         return new ArrayList<>(values);
     }
-
 
     public static void borrarIngredientes(Ingredient ingredienteSeleccionado){
         ingredientesIntroducidosPorELUsuario.remove(ingredienteSeleccionado);
@@ -86,30 +108,5 @@ public class ManagerAllRecipes{
         recetasQueCoincidenDelTodo = recetasQueCoinciden;
     }
 
-    public static void resetarIngredientesIntroducidosPorElUsuario(){
-        ArrayList<Ingredient> ingredientesIntroducidosPorELUsuarioVacio = new ArrayList<>();
-        ingredientesIntroducidosPorELUsuario = ingredientesIntroducidosPorELUsuarioVacio;
-    }
 
-    public static ArrayList<Recipe> getRecetasQueCoincidenDelTodo() {
-        return recetasQueCoincidenDelTodo;
-    }
-    public static ArrayList<Recipe> getRecipes() {
-        return recipes;
-    }
-    public static ArrayList<RecipeIngredients> getRecipesCantidades() {
-        return recipesCantidades;
-    }
-
-    public static void setRecipes(ArrayList<Recipe> recipes) {
-        ManagerAllRecipes.recipes = recipes;
-    }
-    public static void setRecipesCantidades(ArrayList<RecipeIngredients> recipesCantidades) {
-        ManagerAllRecipes.recipesCantidades = recipesCantidades;
-    }
-
-    public static void resetearRecetas(){
-        recipes = new ArrayList<Recipe>();
-        recetasQueCoincidenDelTodo = new ArrayList<>();
-    }
 }
