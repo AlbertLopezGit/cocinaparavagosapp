@@ -50,6 +50,10 @@ public class UserValidation {
         recetasCustomArray.add(ultimaReceta);
     }
 
+    public static void restearRecetasArrayCustom() {
+        recetasCustomArray = new ArrayList<>();
+    }
+
     public static ArrayList<String> getIngredientesUltimos() {
         return ingredientesUltimos;
     }
@@ -80,6 +84,10 @@ public class UserValidation {
 
     public static void addCantidadrecetasCustomArray(RecipesIngredientsCustom recipeIngredients) {
         recetasIngredientsCustomArray.add(recipeIngredients);
+    }
+
+    public static void esetearCantidadrecetasCustomArray() {
+        recetasIngredientsCustomArray = new ArrayList<>();
     }
 
     public static ArrayList<RecipeCustom> getRecetasCustomArray() {

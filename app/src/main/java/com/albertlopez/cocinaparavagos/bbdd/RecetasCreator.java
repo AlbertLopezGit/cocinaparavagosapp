@@ -25,13 +25,17 @@ public class RecetasCreator {
     RequestQueue requestQueueRecipe;
     String nombreReceta;
     CreateRecipesActivity createRecipesActivityHome;
+    String ingredientes = " ";
 
-    public void createCustomRecetas(final String nombreRecetaString, final String descripcionString, final RequestQueue requestQueue, CreateRecipesActivity createRecipesActivity) {
+    public void createCustomRecetas(final String nombreRecetaString, final String descripcionString, final RequestQueue requestQueue, CreateRecipesActivity createRecipesActivity, ArrayList<Ingredient> ingredientesParaHacerRecetaSeleccionadoPorElUsuario) {
         createRecipesActivityHome = createRecipesActivity;
         requestQueueRecipe =  requestQueue;
         nombreReceta = nombreRecetaString;
         idUsuario = UserValidation.getUser().getIdUsuario();
         ingredienteInsertadosPorElUsuario = ManagerAllRecipesCustom.getIngredientesIntroducidosPorELUsuario();
+        for (Ingredient i: ingredientesParaHacerRecetaSeleccionadoPorElUsuario) {
+            ingredientes += i.getNombreIngrediente();
+        }
 
         StringRequest stringRequest = new StringRequest(
                 Request.Method.POST,
@@ -53,7 +57,7 @@ public class RecetasCreator {
                 Map<String, String> params = new HashMap<>();
                 params.put("NOMBRERECETACUSTOM",nombreRecetaString);
                 params.put("DESCRIPCIONRECETACUSTOM",descripcionString);
-                params.put("NOMBREINGREDIENTESTOTALESCUSTOM","ingredientes");
+                params.put("NOMBREINGREDIENTESTOTALESCUSTOM",ingredientes);
                 params.put("RECETADEBASECUSTOM","1");
                 params.put("IMAGEN_RECETA_CUSTOM",recetasCustomImg);
                 params.put("IDUSUARIO",idUsuario);

@@ -41,7 +41,8 @@ public class ManagerAllRecipes{
         ManagerAllRecipes.recipesCantidades = recipesCantidades;
     }
     public static void resetearRecetas(){
-        recipes = new ArrayList<Recipe>();
+        recipes = new ArrayList<>();
+        recipesCantidades = new ArrayList<>();
         recetasQueCoincidenDelTodo = new ArrayList<>();
     }
 

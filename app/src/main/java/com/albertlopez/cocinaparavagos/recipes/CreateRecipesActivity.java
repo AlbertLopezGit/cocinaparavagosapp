@@ -74,7 +74,7 @@ public class CreateRecipesActivity extends AppCompatActivity {
     }
 
     private void insertarRecetaCustom() {
-        recetasCreator.createCustomRecetas(nombreRecetaString,descripcionString,requestQueue,this);
+        recetasCreator.createCustomRecetas(nombreRecetaString,descripcionString,requestQueue,this,ingredientesParaHacerRecetaSeleccionadoPorElUsuario);
     }
 
     private boolean comprobarRecetasRepetidasLocal(String name) {

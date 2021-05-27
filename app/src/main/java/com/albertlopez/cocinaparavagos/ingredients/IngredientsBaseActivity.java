@@ -101,12 +101,9 @@ public class IngredientsBaseActivity extends AppCompatActivity{
     }
 
     private void loadingIngredients() {
-        ArrayList<Ingredient> IngedientesArray =
-                (ArrayList<Ingredient>) getIntent().getSerializableExtra("Ingredientes");
-        ArrayList<Recipe> recipesArray =
-                (ArrayList<Recipe>) getIntent().getSerializableExtra("Recetas");
-        ArrayList<RecipeIngredients> recipeIngredients =
-                (ArrayList<RecipeIngredients>) getIntent().getSerializableExtra("RecetasCantidades");
+        ArrayList<Ingredient> IngedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("Ingredientes");
+        ArrayList<Recipe> recipesArray = (ArrayList<Recipe>) getIntent().getSerializableExtra("Recetas");
+        ArrayList<RecipeIngredients> recipeIngredients = (ArrayList<RecipeIngredients>) getIntent().getSerializableExtra("RecetasCantidades");
 
         managerIngredient.setIngredientsArray(IngedientesArray);
         managerRecetas.setRecipesArray(recipesArray);

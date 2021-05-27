@@ -36,6 +36,7 @@ public class ManagerRecetas implements Serializable{
 
     public void addRecetasCustom(String response) throws JSONException {
         JSONArray jsonResponse = new JSONArray(response);
+        UserValidation.restearRecetasArrayCustom();
 
         for (int i = 0; i < jsonResponse.length() ; i++) {
             JSONObject recetas = jsonResponse.getJSONObject(i);
@@ -70,7 +71,9 @@ public class ManagerRecetas implements Serializable{
     }
 
     public void addCantidadesRecetasCustom(String response) throws JSONException {
+        UserValidation.esetearCantidadrecetasCustomArray();
         JSONArray jsonResponse = new JSONArray(response);
+
         for (int i = 0; i < jsonResponse.length() ; i++) {
             JSONObject recetasIngredientes = jsonResponse.getJSONObject(i);
             RecipesIngredientsCustom recipeIngredients =
@@ -82,9 +85,7 @@ public class ManagerRecetas implements Serializable{
     }
 
     public ArrayList<Recipe>
-    mezclarRecetasConSusIngredientes(
-            ArrayList<Recipe> recipes, ArrayList<RecipeIngredients>
-            recipesCantidades, ArrayList<Ingredient> ingredientes){
+    mezclarRecetasConSusIngredientes(ArrayList<Recipe> recipes, ArrayList<RecipeIngredients> recipesCantidades, ArrayList<Ingredient> ingredientes){
 
         for (Recipe i: recipes) {
             for (RecipeIngredients x:recipesCantidades) {
@@ -109,7 +110,6 @@ public class ManagerRecetas implements Serializable{
 
         return recipes;
     }
-
 
     public void parseadorRecetasCustom(){
         HashMap<String, Recipe> recetasNuevasCustomMap = new HashMap<String, Recipe>();
@@ -173,6 +173,9 @@ public class ManagerRecetas implements Serializable{
 
         ArrayList<Recipe> listOfRecetas2 = new ArrayList<>(values3);
         ArrayList<RecipeIngredients> listOfIngredient2 = new ArrayList<>(values4);
+
+        recipesArray = new ArrayList<>();
+        recipesIngredientsArray = new ArrayList<>();
 
         recipesArray = listOfRecetas2;
         recipesIngredientsArray = listOfIngredient2;
