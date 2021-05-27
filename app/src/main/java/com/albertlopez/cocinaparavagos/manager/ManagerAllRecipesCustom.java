@@ -80,4 +80,8 @@ public class ManagerAllRecipesCustom {
         ArrayList<Ingredient> ingredientesIntroducidosPorELUsuarioVacio = new ArrayList<>();
         ingredientesIntroducidosPorELUsuario = ingredientesIntroducidosPorELUsuarioVacio;
     }
+
+
+
+
 }

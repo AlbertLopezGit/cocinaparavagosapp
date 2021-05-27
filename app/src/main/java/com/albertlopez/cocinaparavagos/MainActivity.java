@@ -105,7 +105,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
                 }
             }
         });
-
     }
 
     private void loadingIngredients() {
@@ -271,7 +270,6 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         managerRecetas.parseadorRecetasCustom();
 
         ManagerAllRecipes.setRecipes(managerRecetas.mezclarRecetasConSusIngredientes(ManagerAllRecipes.getRecipes(),ManagerAllRecipes.getRecipesCantidades(),managerIngredient.getIngredientsArray()));
-
     }
 
     public void openIngredientsActivity() {

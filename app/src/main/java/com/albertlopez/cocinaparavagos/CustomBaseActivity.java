@@ -20,7 +20,6 @@ public class CustomBaseActivity extends AppCompatActivity {
     ArrayList<IngredientCustom> ingredientCustom;
     ArrayList<Ingredient> ingredientesArray;
 
-
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -29,7 +28,6 @@ public class CustomBaseActivity extends AppCompatActivity {
         loading();
         ingredientes = findViewById(R.id.ingedientsButton);
         recetas = findViewById(R.id.recetasButton);
-
 
         ingredientes.setOnClickListener(new View.OnClickListener() {
             @Override
