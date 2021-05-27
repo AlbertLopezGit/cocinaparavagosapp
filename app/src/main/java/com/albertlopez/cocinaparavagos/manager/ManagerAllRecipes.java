@@ -22,8 +22,7 @@ public class ManagerAllRecipes{
         return  ingredientesIntroducidosPorELUsuario =  sumarIngredientes();
     }
     public static void resetarIngredientesIntroducidosPorElUsuario(){
-        ArrayList<Ingredient> ingredientesIntroducidosPorELUsuarioVacio = new ArrayList<>();
-        ingredientesIntroducidosPorELUsuario = ingredientesIntroducidosPorELUsuarioVacio;
+        ingredientesIntroducidosPorELUsuario = new ArrayList<>();
     }
     public static ArrayList<Recipe> getRecetasQueCoincidenDelTodo() {
         return recetasQueCoincidenDelTodo;

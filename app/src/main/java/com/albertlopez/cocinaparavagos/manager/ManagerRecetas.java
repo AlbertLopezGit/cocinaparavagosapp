@@ -111,17 +111,20 @@ public class ManagerRecetas implements Serializable{
         return recipes;
     }
 
-    public void parseadorRecetasCustom(){
-        HashMap<String, Recipe> recetasNuevasCustomMap = new HashMap<String, Recipe>();
-        HashMap<String, RecipeIngredients> recetasIngredientesNuevosCustomMap = new HashMap<String, RecipeIngredients>();
 
-        HashMap<String, Recipe> recetasMap = new HashMap<String, Recipe>();
-        HashMap<String, RecipeIngredients> recetasIngredientesMap = new HashMap<String, RecipeIngredients>();
+    public void parseadorRecetasCustom(){
+        HashMap<String, Recipe> recetasNuevasCustomMap = new HashMap<>();
+        HashMap<String, RecipeIngredients> recetasIngredientesNuevosCustomMap = new HashMap<>();
+
+        HashMap<String, Recipe> recetasMap = new HashMap<>();
+        HashMap<String, RecipeIngredients> recetasIngredientesMap = new HashMap<>();
 
         ArrayList<Recipe>recetasNuevasCustom = new ArrayList<>();
         ArrayList<RecipeIngredients>recetasIngredientesNuevosCustom = new ArrayList<>();
 
         ArrayList<RecipeCustom> recetasCustomArray = UserValidation.getRecetasCustomArray();
+
+
         ArrayList<RecipesIngredientsCustom> recetasIngredientsCustomArray =
                 UserValidation.getRecetasIngredientsCustomArray();
 
@@ -154,18 +157,23 @@ public class ManagerRecetas implements Serializable{
         Collection<Recipe> values = recetasNuevasCustomMap.values();
         Collection<RecipeIngredients> values2 = recetasIngredientesNuevosCustomMap.values();
 
+
         ArrayList<Recipe> listOfRecetas = new ArrayList<>(values);
         ArrayList<RecipeIngredients> listOfIngredient = new ArrayList<>(values2);
 
+
+
         recipesArray.addAll(listOfRecetas);
         recipesIngredientsArray.addAll(listOfIngredient);
+
+        System.out.println("Lista ingredientes 1 " + recipesIngredientsArray.size());
 
         for (int i = 0; i < recipesArray.size() ; i++) {
             recetasMap.put(recipesArray.get(i).getNombreReceta(),recipesArray.get(i));
         }
 
         for (int i = 0; i < recipesIngredientsArray.size() ; i++) {
-            recetasIngredientesMap.put(recipesIngredientsArray.get(i).getNombreReceta(),recipesIngredientsArray.get(i));
+            recetasIngredientesMap.put(recipesIngredientsArray.get(i).getNombreIngrediente(),recipesIngredientsArray.get(i));
         }
 
         Collection<Recipe> values3 = recetasMap.values();
@@ -173,6 +181,7 @@ public class ManagerRecetas implements Serializable{
 
         ArrayList<Recipe> listOfRecetas2 = new ArrayList<>(values3);
         ArrayList<RecipeIngredients> listOfIngredient2 = new ArrayList<>(values4);
+
 
         recipesArray = new ArrayList<>();
         recipesIngredientsArray = new ArrayList<>();
