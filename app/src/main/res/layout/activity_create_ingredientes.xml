@@ -9,7 +9,7 @@
     android:foregroundGravity="center"
     android:textAlignment="center"
     app:layout_anchorGravity="center"
-    tools:context=".CreateIngredientesActivity">
+    tools:context=".ingredients.CreateIngredientesActivity">
 
     <EditText
         android:id="@+id/nombreIngredienteCustom"

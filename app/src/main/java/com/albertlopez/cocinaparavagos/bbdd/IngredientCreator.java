@@ -2,7 +2,7 @@ package com.albertlopez.cocinaparavagos.bbdd;
 
 import android.util.Log;
 
-import com.albertlopez.cocinaparavagos.CreateIngredientesActivity;
+import com.albertlopez.cocinaparavagos.ingredients.CreateIngredientesActivity;
 import com.albertlopez.cocinaparavagos.UserValidation;
 import com.albertlopez.cocinaparavagos.model.IngredientCustom;
 import com.android.volley.AuthFailureError;

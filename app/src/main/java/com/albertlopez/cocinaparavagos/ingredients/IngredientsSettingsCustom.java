@@ -1,17 +1,15 @@
-package com.albertlopez.cocinaparavagos;
+package com.albertlopez.cocinaparavagos.ingredients;
 
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.os.Parcelable;
 import android.view.View;
 import android.widget.Button;
 import android.widget.Toast;
 
+import com.albertlopez.cocinaparavagos.R;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
-import com.albertlopez.cocinaparavagos.model.IngredientCustom;
-import com.albertlopez.cocinaparavagos.model.RecipeIngredients;
 
 import java.util.ArrayList;
 

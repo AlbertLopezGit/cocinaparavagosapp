@@ -1,4 +1,4 @@
-package com.albertlopez.cocinaparavagos;
+package com.albertlopez.cocinaparavagos.ingredients;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -11,6 +11,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.Toast;
 
+import com.albertlopez.cocinaparavagos.R;
+import com.albertlopez.cocinaparavagos.UserValidation;
 import com.albertlopez.cocinaparavagos.bbdd.IngredientCreator;
 import com.albertlopez.cocinaparavagos.model.IngredientCustom;
 import com.android.volley.RequestQueue;

@@ -1,11 +1,9 @@
 package com.albertlopez.cocinaparavagos.bbdd;
 
-import android.util.Log;
-
-import com.albertlopez.cocinaparavagos.CreateRecipesActivity;
 import com.albertlopez.cocinaparavagos.UserValidation;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipesCustom;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
+import com.albertlopez.cocinaparavagos.recipes.CreateRecipesActivity;
 import com.android.volley.AuthFailureError;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;

@@ -1,4 +1,4 @@
-package com.albertlopez.cocinaparavagos;
+package com.albertlopez.cocinaparavagos.recipes;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
@@ -12,8 +12,11 @@ import android.widget.EditText;
 import android.widget.TextView;
 import android.widget.Toast;
 
+import com.albertlopez.cocinaparavagos.R;
+import com.albertlopez.cocinaparavagos.UserValidation;
 import com.albertlopez.cocinaparavagos.bbdd.RecetasCreator;
 import com.albertlopez.cocinaparavagos.ingredients.IngredientDetailsActivity;
+import com.albertlopez.cocinaparavagos.ingredients.IngredientsCustomRecipeBaseActivity;
 import com.albertlopez.cocinaparavagos.ingredients.RecyclerViewIngredientesAdaptador;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipesCustom;
 import com.albertlopez.cocinaparavagos.model.Ingredient;

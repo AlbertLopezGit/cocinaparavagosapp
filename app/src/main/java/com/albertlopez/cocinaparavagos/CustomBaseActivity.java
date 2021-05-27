@@ -7,22 +7,10 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 
-import com.albertlopez.cocinaparavagos.bbdd.Bbdd;
-import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
-import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
-import com.albertlopez.cocinaparavagos.manager.ManagerRecetas;
+import com.albertlopez.cocinaparavagos.ingredients.CreateIngredientesActivity;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.albertlopez.cocinaparavagos.model.IngredientCustom;
-import com.albertlopez.cocinaparavagos.model.Recipe;
-import com.albertlopez.cocinaparavagos.model.RecipeIngredients;
-import com.android.volley.Request;
-import com.android.volley.RequestQueue;
-import com.android.volley.Response;
-import com.android.volley.VolleyError;
-import com.android.volley.toolbox.StringRequest;
-import com.android.volley.toolbox.Volley;
-
-import org.json.JSONException;
+import com.albertlopez.cocinaparavagos.recipes.CreateRecipesActivity;
 
 import java.util.ArrayList;
 

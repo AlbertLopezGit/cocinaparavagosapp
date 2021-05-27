@@ -1,4 +1,4 @@
-package com.albertlopez.cocinaparavagos;
+package com.albertlopez.cocinaparavagos.ingredients;
 
 import androidx.appcompat.app.AppCompatActivity;
 
@@ -9,14 +9,10 @@ import android.widget.AdapterView;
 import android.widget.ListView;
 import android.widget.TextView;
 
-import com.albertlopez.cocinaparavagos.ingredients.AdaptadorIngredientesBase;
-import com.albertlopez.cocinaparavagos.ingredients.IngredientsActivity;
-import com.albertlopez.cocinaparavagos.ingredients.IngredientsSelected;
-import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
+import com.albertlopez.cocinaparavagos.R;
 import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipesCustom;
 import com.albertlopez.cocinaparavagos.manager.ManagerIngredients;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
-import com.albertlopez.cocinaparavagos.model.IngredientCustom;
 
 import java.util.ArrayList;
 

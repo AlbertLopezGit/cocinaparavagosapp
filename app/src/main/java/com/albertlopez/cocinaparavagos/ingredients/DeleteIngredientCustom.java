@@ -1,28 +1,23 @@
-package com.albertlopez.cocinaparavagos;
+package com.albertlopez.cocinaparavagos.ingredients;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.recyclerview.widget.GridLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
-import android.content.Intent;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.Toast;
 
+import com.albertlopez.cocinaparavagos.R;
+import com.albertlopez.cocinaparavagos.UserValidation;
 import com.albertlopez.cocinaparavagos.bbdd.Bbdd;
-import com.albertlopez.cocinaparavagos.ingredients.IngredientsSelected;
-import com.albertlopez.cocinaparavagos.ingredients.RecyclerViewIngredientesAdaptador;
-import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
-import com.albertlopez.cocinaparavagos.model.IngredientCustom;
 import com.android.volley.Request;
 import com.android.volley.RequestQueue;
 import com.android.volley.Response;
 import com.android.volley.VolleyError;
 import com.android.volley.toolbox.StringRequest;
 import com.android.volley.toolbox.Volley;
-
-import org.json.JSONException;
 
 import java.util.ArrayList;
 

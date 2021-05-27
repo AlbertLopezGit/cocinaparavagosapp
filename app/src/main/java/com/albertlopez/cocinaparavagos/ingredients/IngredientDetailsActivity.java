@@ -24,6 +24,7 @@ public class IngredientDetailsActivity extends AppCompatActivity {
     TextView numeros;
     int cantidad = 0;
     Boolean recipesCustom = false;
+    String vacio = "";
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -81,7 +82,13 @@ public class IngredientDetailsActivity extends AppCompatActivity {
     }
 
     private void parsearCantidadYNumeros() {
-        cantidad = Integer.parseInt(numeros.getText().toString());
+        if (numeros.getText().length() > 0) {
+            cantidad = Integer.parseInt(numeros.getText().toString());
+        } else {
+            cantidad = 0;
+        }
+
+
     }
 
     private void insertar() {

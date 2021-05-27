@@ -1,4 +1,4 @@
-package com.albertlopez.cocinaparavagos;
+package com.albertlopez.cocinaparavagos.ingredients;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
@@ -10,6 +10,7 @@ import android.os.Bundle;
 import android.view.View;
 import android.widget.TextView;
 
+import com.albertlopez.cocinaparavagos.R;
 import com.albertlopez.cocinaparavagos.ingredients.IngredientDetailsActivity;
 import com.albertlopez.cocinaparavagos.ingredients.IngredientsSelected;
 import com.albertlopez.cocinaparavagos.ingredients.RecyclerViewIngredientesAdaptador;
