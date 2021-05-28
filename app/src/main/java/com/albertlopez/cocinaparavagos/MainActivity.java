@@ -273,6 +273,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void openIngredientsActivity() {
+        if (UserValidation.getValidado()) {
+            gestionarIngredientesNuevos();
+            gestionarRecetasNuevas();
+        }
         Intent intent = new Intent(this, IngredientsBaseActivity.class);
         ArrayList<Ingredient> ingredientesArray;
         ingredientesArray = managerIngredient.getIngredientsArray();
@@ -283,6 +287,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void openCustomIngredientsActivity() {
+        if (UserValidation.getValidado()) {
+            gestionarIngredientesNuevos();
+            gestionarRecetasNuevas();
+        }
         Intent intent = new Intent(this, CustomBaseActivity.class);
         intent.putExtra("customIngredients",managerIngredient.getIngredientsCustomArray());
         intent.putExtra("ingredientsArray",managerIngredient.getIngredientsArray());
@@ -290,9 +298,10 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
     }
 
     public void openRecipeActivity() {
-        loadingIngredients();
-        gestionarIngredientesNuevos();
-        gestionarRecetasNuevas();
+        if (UserValidation.getValidado()) {
+            gestionarIngredientesNuevos();
+            gestionarRecetasNuevas();
+        }
         Intent intent = new Intent(this, RecipesBaseActivity.class);
         ArrayList<Recipe> recipesArray;
         ArrayList<RecipeIngredients> recipeIngredientsArray;
