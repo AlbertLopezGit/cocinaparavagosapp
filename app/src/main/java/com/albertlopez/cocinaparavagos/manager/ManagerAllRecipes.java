@@ -17,16 +17,6 @@ public class ManagerAllRecipes{
     static public ArrayList<Recipe> recipes = new ArrayList<>();
     static public ArrayList<RecipeIngredients> recipesCantidades = new ArrayList<>();
     static public ArrayList<Ingredient> ingredientesIntroducidosPorELUsuario = new ArrayList<>();
-    static public ArrayList<Ingredient> ingredientsArray = new ArrayList<>();
-
-
-    public static ArrayList<Ingredient> getIngredientsArray() {
-        return ingredientsArray;
-    }
-
-    public static void setIngredientsArray(ArrayList<Ingredient> ingredientsArray) {
-        ManagerAllRecipes.ingredientsArray = ingredientsArray;
-    }
 
     public static ArrayList<Ingredient> getIngredientesIntroducidosPorELUsuario() {
         return  ingredientesIntroducidosPorELUsuario =  sumarIngredientes();

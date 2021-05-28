@@ -20,7 +20,6 @@ public class RecipesIngredientsCustom implements Serializable {
         this.nombreReceta = nombreReceta;
         this.nombreIngrediente = nombreIngrediente;
         this.cantidadIngrediente = cantidadIngrediente;
-        this.idusuario = idusuario;
     }
 
     public int getIdusuario() {
