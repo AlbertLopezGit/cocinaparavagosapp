@@ -124,7 +124,6 @@ public class ManagerRecetas implements Serializable{
 
         ArrayList<RecipeCustom> recetasCustomArray = UserValidation.getRecetasCustomArray();
 
-
         ArrayList<RecipesIngredientsCustom> recetasIngredientsCustomArray =
                 UserValidation.getRecetasIngredientsCustomArray();
 
@@ -160,7 +159,6 @@ public class ManagerRecetas implements Serializable{
 
         ArrayList<Recipe> listOfRecetas = new ArrayList<>(values);
         ArrayList<RecipeIngredients> listOfIngredient = new ArrayList<>(values2);
-
 
         recipesArray.addAll(listOfRecetas);
         recipesIngredientsArray.addAll(listOfIngredient);

@@ -45,6 +45,7 @@ public class Recipe implements Serializable {
         return cantidadesDeLosIngredientes;
     }
     public ArrayList<Ingredient> getIngredientsArray() {
+        comprobarConsitenciaIngredientes();
         return ingredients;
     }
     public ArrayList<String> getIngredientes() {
@@ -96,5 +97,11 @@ public class Recipe implements Serializable {
 
         Collection<Ingredient> values = mapIngredientes.values();
         ingredients = new ArrayList<>(values);
+    }
+
+
+
+    public void addIngredientRecipe(Ingredient ingreient) {
+        ingredients.add(ingreient);
     }
 }

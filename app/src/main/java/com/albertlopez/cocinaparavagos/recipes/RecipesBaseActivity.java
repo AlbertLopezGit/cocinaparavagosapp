@@ -47,8 +47,20 @@ public class RecipesBaseActivity extends AppCompatActivity {
             public void onClick(View v) {
                 recipeSeleccionado = recipesCustom.get(recyclerViewRecetas.getChildAdapterPosition(v));
 
+                ArrayList<String> recipeString = recipeSeleccionado.getIngredientes();
+                if (UserValidation.getValidado()) {
+                    ArrayList<Ingredient> ingredientes = UserValidation.getIngredientParse();
+                    for (String i :recipeString) {
+                        for (Ingredient x: ingredientes) {
+                            if (i.equals(x.getNombreIngrediente())) {
+                                recipeSeleccionado.addIngredientRecipe(x);
+                            }
+                        }
+                    }
+                }
 
                 openIngredientsActivity(recipeSeleccionado);
+
             }
         });
         recyclerViewRecetas.setAdapter(recyclerViewRecipesAdaptador);
@@ -72,7 +84,6 @@ public class RecipesBaseActivity extends AppCompatActivity {
                 recipesCustom.add(i);
             }
         }
-
     }
 
     private void ocultarBarras(){
@@ -85,6 +96,4 @@ public class RecipesBaseActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
     }
-
-
 }
