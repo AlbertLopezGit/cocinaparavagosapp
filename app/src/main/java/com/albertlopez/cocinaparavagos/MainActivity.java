@@ -269,7 +269,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
         queue.add(request);
         managerRecetas.parseadorRecetasCustom();
 
-        ManagerAllRecipes.setRecipes(managerRecetas.mezclarRecetasConSusIngredientes(ManagerAllRecipes.getRecipes(),ManagerAllRecipes.getRecipesCantidades(),managerIngredient.getIngredientsArray()));
+        ManagerAllRecipes.setRecipes(managerRecetas.mezclarRecetasConSusIngredientes(managerRecetas.getRecipesArray(),managerRecetas.getRecipesIngredientsArray(),managerIngredient.getIngredientsArray()));
     }
 
     public void openIngredientsActivity() {
