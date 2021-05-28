@@ -109,7 +109,7 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     private void loadingIngredients() {
         ingedientesArray = (ArrayList<Ingredient>) getIntent().getSerializableExtra("Ingredientes");
-
+        ManagerAllRecipes.setIngredientsArray(ingedientesArray);
         managerIngredient.setIngredientsArray(ingedientesArray);
         managerIngredient.setIngredientsArrayFijos(ingedientesArray);
 

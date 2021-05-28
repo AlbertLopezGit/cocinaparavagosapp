@@ -99,8 +99,6 @@ public class Recipe implements Serializable {
         ingredients = new ArrayList<>(values);
     }
 
-
-
     public void addIngredientRecipe(Ingredient ingreient) {
         ingredients.add(ingreient);
     }

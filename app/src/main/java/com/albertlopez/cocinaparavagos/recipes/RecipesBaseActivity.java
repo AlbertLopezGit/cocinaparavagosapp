@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.albertlopez.cocinaparavagos.R;
 import com.albertlopez.cocinaparavagos.UserValidation;
+import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
 import com.albertlopez.cocinaparavagos.manager.ManagerRecetas;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.albertlopez.cocinaparavagos.model.IngredientCustom;
@@ -48,6 +49,7 @@ public class RecipesBaseActivity extends AppCompatActivity {
                 recipeSeleccionado = recipesCustom.get(recyclerViewRecetas.getChildAdapterPosition(v));
                Recipe recipeParse;
                 ArrayList<String> recipeString = recipeSeleccionado.getIngredientes();
+                ArrayList<Ingredient> ingredientsAll = ManagerAllRecipes.getIngredientsArray();
 
                 recipeParse = recipeSeleccionado;
 
@@ -56,10 +58,19 @@ public class RecipesBaseActivity extends AppCompatActivity {
 
                     for (String i :recipeString) {
                         for (Ingredient x: ingredientes) {
+                            if (i.equals(x.getNombreIngrediente()) && x.getIngredienteBase() == 1) {
+                                recipeParse.addIngredientRecipe(x);
+                            }
+                        }
+                    }
+
+                    for (String i: recipeString) {
+                        for (Ingredient x:ingredientsAll) {
                             if (i.equals(x.getNombreIngrediente())) {
                                 recipeParse.addIngredientRecipe(x);
                             }
                         }
+
                     }
                 }
                 openIngredientsActivity(recipeParse);
