@@ -10,6 +10,7 @@ import android.view.View;
 
 import com.albertlopez.cocinaparavagos.R;
 import com.albertlopez.cocinaparavagos.UserValidation;
+import com.albertlopez.cocinaparavagos.manager.ManagerAllRecipes;
 import com.albertlopez.cocinaparavagos.manager.ManagerRecetas;
 import com.albertlopez.cocinaparavagos.model.Ingredient;
 import com.albertlopez.cocinaparavagos.model.IngredientCustom;
@@ -46,8 +47,32 @@ public class RecipesBaseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 recipeSeleccionado = recipesCustom.get(recyclerViewRecetas.getChildAdapterPosition(v));
+                Recipe recipeParse;
+                recipeParse = recipeSeleccionado;
+                ArrayList<String> recipeString = recipeSeleccionado.getIngredientes();
+                ArrayList<Ingredient> ingredientsAll = ManagerAllRecipes.getIngredientsArray();
 
 
+                if (UserValidation.getValidado()) {
+                    ArrayList<Ingredient> ingredientes = UserValidation.getIngredientParse();
+
+                    for (String i :recipeString) {
+                        for (Ingredient x: ingredientes) {
+                            if (i.equals(x.getNombreIngrediente()) && x.getIngredienteBase() == 1) {
+                                recipeParse.addIngredientRecipe(x);
+                            }
+                        }
+                    }
+
+                    for (String i: recipeString) {
+                        for (Ingredient x:ingredientsAll) {
+                            if (i.equals(x.getNombreIngrediente())) {
+                                recipeParse.addIngredientRecipe(x);
+                            }
+                        }
+
+                    }
+                }
                 openIngredientsActivity(recipeSeleccionado);
             }
         });
@@ -72,7 +97,6 @@ public class RecipesBaseActivity extends AppCompatActivity {
                 recipesCustom.add(i);
             }
         }
-
     }
 
     private void ocultarBarras(){
@@ -85,6 +109,4 @@ public class RecipesBaseActivity extends AppCompatActivity {
                 | View.SYSTEM_UI_FLAG_FULLSCREEN;
         decorView.setSystemUiVisibility(uiOptions);
     }
-
-
 }

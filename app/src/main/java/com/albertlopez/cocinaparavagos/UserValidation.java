@@ -1,5 +1,8 @@
 package com.albertlopez.cocinaparavagos;
 
+import com.albertlopez.cocinaparavagos.bbdd.Bbdd;
+import com.albertlopez.cocinaparavagos.model.Ingredient;
+import com.albertlopez.cocinaparavagos.model.Recipe;
 import com.albertlopez.cocinaparavagos.model.RecipeCustom;
 import com.albertlopez.cocinaparavagos.model.RecipesIngredientsCustom;
 import com.albertlopez.cocinaparavagos.model.User;
@@ -13,6 +16,8 @@ public class UserValidation {
     static public ArrayList<String> recetasUltimas = new ArrayList<>();
     static public ArrayList<RecipeCustom>recetasCustomArray = new ArrayList<>();
     static public ArrayList<RecipesIngredientsCustom>recetasIngredientsCustomArray = new ArrayList<>();
+    static public ArrayList<Ingredient> ingredientParse;
+    static public ArrayList<Recipe> recipesParse;
 
     static public User user = new User();
     static public Boolean validado = false;
@@ -29,6 +34,10 @@ public class UserValidation {
         if (user.getPass().equals(pass)) {
             validado = true;
         }
+    }
+
+    public static ArrayList<Ingredient> getIngredientParse() {
+        return ingredientParse;
     }
 
     public static Boolean getValidado() {
@@ -49,6 +58,8 @@ public class UserValidation {
     public static void addrecetasCustomArray(RecipeCustom ultimaReceta) {
         recetasCustomArray.add(ultimaReceta);
     }
+
+
 
     public static void restearRecetasArrayCustom() {
         recetasCustomArray = new ArrayList<>();
@@ -84,6 +95,14 @@ public class UserValidation {
 
     public static void addCantidadrecetasCustomArray(RecipesIngredientsCustom recipeIngredients) {
         recetasIngredientsCustomArray.add(recipeIngredients);
+        parse(recipeIngredients);
+    }
+
+    private static void parse(RecipesIngredientsCustom recipeIngredients) {
+        ingredientParse = new ArrayList<>();
+
+        Ingredient ingredientParseReal = new Ingredient(recipeIngredients.getNombreIngrediente(),"cualquiercosa",1, Bbdd.ingredientesCustomGeneralImg,"cosa");
+        ingredientParse.add(ingredientParseReal);
     }
 
     public static void esetearCantidadrecetasCustomArray() {
