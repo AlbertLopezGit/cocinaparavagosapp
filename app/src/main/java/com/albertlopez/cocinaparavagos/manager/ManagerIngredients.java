@@ -40,8 +40,8 @@ public class ManagerIngredients implements Serializable {
     public ArrayList<IngredientCustom> getIngredientsCustomArray() {
         return ingredientsCustomArray;
     }
-    public void setIngredientsArray(ArrayList<Ingredient> ingredientsArray) {
-        this.ingredientsArray = ingredientsArray;
+    public void setIngredientsArray(ArrayList<Ingredient> ingredientsArrays) {
+        ingredientsArray = ingredientsArrays;
     }
     public void settiposIngredientsArray(ArrayList<Ingredient> ingredientsArray) {
         this.tiposIngredientsArray = ingredientsArray;

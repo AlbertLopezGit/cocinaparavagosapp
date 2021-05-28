@@ -119,8 +119,6 @@ public class ManagerRecetas implements Serializable{
         HashMap<String, Recipe> recetasMap = new HashMap<>();
         HashMap<String, RecipeIngredients> recetasIngredientesMap = new HashMap<>();
 
-        HashMap<String, RecipeIngredients> recetasIngredientsMap = new HashMap<>();
-
         ArrayList<Recipe>recetasNuevasCustom = new ArrayList<>();
         ArrayList<RecipeIngredients>recetasIngredientesNuevosCustom = new ArrayList<>();
 
