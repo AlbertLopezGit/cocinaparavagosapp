@@ -46,21 +46,23 @@ public class RecipesBaseActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 recipeSeleccionado = recipesCustom.get(recyclerViewRecetas.getChildAdapterPosition(v));
-
+               Recipe recipeParse;
                 ArrayList<String> recipeString = recipeSeleccionado.getIngredientes();
+
+                recipeParse = recipeSeleccionado;
+
                 if (UserValidation.getValidado()) {
                     ArrayList<Ingredient> ingredientes = UserValidation.getIngredientParse();
+
                     for (String i :recipeString) {
                         for (Ingredient x: ingredientes) {
                             if (i.equals(x.getNombreIngrediente())) {
-                                recipeSeleccionado.addIngredientRecipe(x);
+                                recipeParse.addIngredientRecipe(x);
                             }
                         }
                     }
                 }
-
-                openIngredientsActivity(recipeSeleccionado);
-
+                openIngredientsActivity(recipeParse);
             }
         });
         recyclerViewRecetas.setAdapter(recyclerViewRecipesAdaptador);

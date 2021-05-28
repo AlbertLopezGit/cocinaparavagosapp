@@ -40,19 +40,22 @@ public class RecipesCoincidentesActivity extends AppCompatActivity {
             @Override
             public void onClick(View v) {
                 recipeSeleccionado = recipes.get(recyclerViewRecetas.getChildAdapterPosition(v));
-
+                Recipe recipeParse;
+                recipeParse = recipeSeleccionado;
                 ArrayList<String> recipeString = recipeSeleccionado.getIngredientes();
+
+
                 if (UserValidation.getValidado()) {
                     ArrayList<Ingredient> ingredientes = UserValidation.getIngredientParse();
                     for (String i :recipeString) {
                         for (Ingredient x: ingredientes) {
                             if (i.equals(x.getNombreIngrediente())) {
-                                recipeSeleccionado.addIngredientRecipe(x);
+                                recipeParse.addIngredientRecipe(x);
                             }
                         }
                     }
                 }
-                openIngredientsActivity(recipeSeleccionado);
+                openIngredientsActivity(recipeParse);
             }
         });
         recyclerViewRecetas.setAdapter(recyclerViewRecipesAdaptador);
