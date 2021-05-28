@@ -44,7 +44,6 @@ public class ManagerRecetas implements Serializable{
             if (String.valueOf(recipe.getIdUsuario()).equals(UserValidation.getUser().getIdUsuario())) {
                 UserValidation.addrecetasCustomArray(recipe);
             }
-
         }
     }
 
@@ -68,6 +67,8 @@ public class ManagerRecetas implements Serializable{
             RecipeIngredients recipeIngredients = gson.fromJson(String.valueOf(recetasIngredientes),RecipeIngredients.class);
             recipesIngredientsArray.add(recipeIngredients);
         }
+
+        System.out.println("EL LIO INICIO "+recipesIngredientsArray.size() );
     }
 
     public void addCantidadesRecetasCustom(String response) throws JSONException {
@@ -119,6 +120,8 @@ public class ManagerRecetas implements Serializable{
         HashMap<String, Recipe> recetasMap = new HashMap<>();
         HashMap<String, RecipeIngredients> recetasIngredientesMap = new HashMap<>();
 
+        HashMap<String, RecipeIngredients> recetasIngredientsMap = new HashMap<>();
+
         ArrayList<Recipe>recetasNuevasCustom = new ArrayList<>();
         ArrayList<RecipeIngredients>recetasIngredientesNuevosCustom = new ArrayList<>();
 
@@ -161,6 +164,14 @@ public class ManagerRecetas implements Serializable{
         ArrayList<Recipe> listOfRecetas = new ArrayList<>(values);
         ArrayList<RecipeIngredients> listOfIngredient = new ArrayList<>(values2);
 
+
+        for (RecipeIngredients i: recipesIngredientsArray) {
+            recetasIngredientsMap.put(i.getNombreIngrediente(),i);
+        }
+
+        Collection<RecipeIngredients> valuesx = recetasIngredientsMap.values();
+
+        recipesIngredientsArray = new ArrayList<>(valuesx);
 
 
         recipesArray.addAll(listOfRecetas);
