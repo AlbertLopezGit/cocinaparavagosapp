@@ -116,7 +116,6 @@ public class ManagerRecetas implements Serializable{
         HashMap<String, Recipe> recetasNuevasCustomMap = new HashMap<>();
         HashMap<String, Recipe> recetasMap = new HashMap<>();
 
-
         ArrayList<Recipe>recetasNuevasCustom = new ArrayList<>();
         ArrayList<RecipeIngredients>recetasIngredientesNuevosCustom = new ArrayList<>();
         ArrayList<RecipeCustom> recetasCustomArray = UserValidation.getRecetasCustomArray();

@@ -25,19 +25,24 @@ public class UserValidation {
     public static void setUser(User user) {
         UserValidation.user = user;
     }
-
+    public static ArrayList<String> getIngredientesUltimos() {
+        return ingredientesUltimos;
+    }
+    public static ArrayList<String> getRecetasUltimas() {
+        return recetasUltimas;
+    }
     public static User getUser() {
         return user;
     }
+    public static ArrayList<Ingredient> getIngredientParse() {
+        return ingredientParse;
+    }
+
 
     public static void comprobarPass(String pass){
         if (user.getPass().equals(pass)) {
             validado = true;
         }
-    }
-
-    public static ArrayList<Ingredient> getIngredientParse() {
-        return ingredientParse;
     }
 
     public static Boolean getValidado() {
@@ -59,19 +64,11 @@ public class UserValidation {
         recetasCustomArray.add(ultimaReceta);
     }
 
-
-
     public static void restearRecetasArrayCustom() {
         recetasCustomArray = new ArrayList<>();
     }
 
-    public static ArrayList<String> getIngredientesUltimos() {
-        return ingredientesUltimos;
-    }
 
-    public static ArrayList<String> getRecetasUltimas() {
-        return recetasUltimas;
-    }
 
     public static void restearIngredientesUltimos() {
         ingredientesUltimos = new ArrayList<>();
