@@ -111,7 +111,6 @@ public class ManagerRecetas implements Serializable{
         return recipes;
     }
 
-
     public void parseadorRecetasCustom(){
         HashMap<String, Recipe> recetasNuevasCustomMap = new HashMap<>();
         HashMap<String, Recipe> recetasMap = new HashMap<>();

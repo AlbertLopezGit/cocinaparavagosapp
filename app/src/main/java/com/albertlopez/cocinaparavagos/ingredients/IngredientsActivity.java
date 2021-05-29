@@ -116,16 +116,18 @@ public class IngredientsActivity extends AppCompatActivity {
 
     @Override
     protected void onResume() {
+        super.onResume();
         ManagerAllRecipes.buscarRecetasQueCoincidenConLosIngredientes();
         ocultarBarras();
-        super.onResume();
         comprobarIngredientesBoton();
         comprobarRecetasBoton();
     }
 
     private void comprobarRecetasBoton() {
+        ManagerAllRecipes.buscarRecetasQueCoincidenConLosIngredientes();
         int recetasQueCoinciden = ManagerAllRecipes.getRecetasQueCoincidenDelTodo().size();
-        if (recetasQueCoinciden != 0) {
+        System.out.println("RECETAS COINCIDEN + " + recetasQueCoinciden);
+        if (ManagerAllRecipes.getRecetasQueCoincidenDelTodo().size() > 0) {
             textoRecetasUsuario.setVisibility(View.VISIBLE);
             botonRedondoRecetas.setVisibility(View.VISIBLE);
             ManagerAllRecipes.buscarRecetasQueCoincidenConLosIngredientes();

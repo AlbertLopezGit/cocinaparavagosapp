@@ -130,7 +130,8 @@ public class IngredientsBaseActivity extends AppCompatActivity{
 
     private void comprobarRecetasBoton() {
         int recetasQueCoinciden = ManagerAllRecipes.getRecetasQueCoincidenDelTodo().size();
-        if (recetasQueCoinciden != 0) {
+        System.out.println("RECETAS COINCIDEN + " + recetasQueCoinciden);
+        if (ManagerAllRecipes.getRecetasQueCoincidenDelTodo().size() > 0) {
             textoRecetasUsuario.setVisibility(View.VISIBLE);
             botonRedondoRecetas.setVisibility(View.VISIBLE);
             botonRedondoRecetas.setText(String.valueOf(ManagerAllRecipes.getRecetasQueCoincidenDelTodo().size()));
