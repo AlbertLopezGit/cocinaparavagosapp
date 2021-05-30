@@ -53,25 +53,29 @@ public class RecipesBaseActivity extends AppCompatActivity {
                 ArrayList<Ingredient> ingredientsAll = ManagerAllRecipes.getIngredientsArray();
 
 
-                if (UserValidation.getValidado()) {
-                    ArrayList<Ingredient> ingredientes = UserValidation.getIngredientParse();
+                if (UserValidation.getValidado() && UserValidation.getRecetasParse()) {
+                    ArrayList<Ingredient> ingredientes = new ArrayList<>();
+                    ingredientes = UserValidation.getIngredientParse();
 
-                    for (String i :recipeString) {
-                        for (Ingredient x: ingredientes) {
-                            if (i.equals(x.getNombreIngrediente()) && x.getIngredienteBase() == 1) {
-                                recipeParse.addIngredientRecipe(x);
-                            }
-                        }
-                    }
-
-                    for (String i: recipeString) {
-                        for (Ingredient x:ingredientsAll) {
-                            if (i.equals(x.getNombreIngrediente())) {
-                                recipeParse.addIngredientRecipe(x);
+                    if (ingredientes.size() > 0) {
+                        for (String i :recipeString) {
+                            for (Ingredient x: ingredientes) {
+                                if (i.equals(x.getNombreIngrediente()) && x.getIngredienteBase() == 1) {
+                                    recipeParse.addIngredientRecipe(x);
+                                }
                             }
                         }
 
+                        for (String i: recipeString) {
+                            for (Ingredient x:ingredientsAll) {
+                                if (i.equals(x.getNombreIngrediente())) {
+                                    recipeParse.addIngredientRecipe(x);
+                                }
+                            }
+
+                        }
                     }
+
                 }
                 openIngredientsActivity(recipeSeleccionado);
             }

@@ -21,6 +21,8 @@ public class UserValidation {
 
     static public User user = new User();
     static public Boolean validado = false;
+    static public Boolean recetasParse = false;
+
 
     public static void setUser(User user) {
         UserValidation.user = user;
@@ -45,8 +47,14 @@ public class UserValidation {
         }
     }
 
+
+
     public static Boolean getValidado() {
         return validado;
+    }
+
+    public static Boolean getRecetasParse() {
+        return recetasParse;
     }
 
     public static void logout() {
@@ -96,6 +104,7 @@ public class UserValidation {
     }
 
     private static void parse(RecipesIngredientsCustom recipeIngredients) {
+        recetasParse = true;
         ingredientParse = new ArrayList<>();
 
         Ingredient ingredientParseReal = new Ingredient(recipeIngredients.getNombreIngrediente(),"cualquiercosa",1, Bbdd.ingredientesCustomGeneralImg,"cosa");

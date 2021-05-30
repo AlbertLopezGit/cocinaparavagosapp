@@ -46,7 +46,7 @@ public class RecipesCoincidentesActivity extends AppCompatActivity {
                 ArrayList<Ingredient> ingredientsAll = ManagerAllRecipes.getIngredientsArray();
 
 
-                if (UserValidation.getValidado()) {
+                if (UserValidation.getValidado() && UserValidation.getRecetasParse()) {
                     ArrayList<Ingredient> ingredientes = UserValidation.getIngredientParse();
 
                     for (String i :recipeString) {
