@@ -288,6 +288,12 @@ public class MainActivity extends AppCompatActivity implements NavigationView.On
 
     public void openCustomIngredientsActivity() {
         if (UserValidation.getValidado()) {
+            UserValidation.restearIngredientesUltimos();
+            UserValidation.restearRecetasUltimas();
+            UserValidation.restearIngredientesUltimosDelete();
+            ManagerAllRecipes.resetarIngredientesIntroducidosPorElUsuario();
+            ManagerAllRecipesCustom.resetarIngredientesIntroducidosPorElUsuario();
+            ManagerAllRecipes.resetearRecetas();
             gestionarIngredientesNuevos();
             gestionarRecetasNuevas();
         }
