@@ -49,6 +49,7 @@ public class RecipesBaseActivity extends AppCompatActivity {
                 recipeSeleccionado = recipesCustom.get(recyclerViewRecetas.getChildAdapterPosition(v));
                 Recipe recipeParse;
                 recipeParse = recipeSeleccionado;
+                recipeParse.resetIngredientRecipe();
                 ArrayList<String> recipeString = recipeSeleccionado.getIngredientes();
                 ArrayList<Ingredient> ingredientsAll = ManagerAllRecipes.getIngredientsArray();
 

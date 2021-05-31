@@ -102,4 +102,10 @@ public class Recipe implements Serializable {
     public void addIngredientRecipe(Ingredient ingreient) {
         ingredients.add(ingreient);
     }
+
+    public void resetIngredientRecipe() {
+        ingredients = new ArrayList<>();
+    }
+
+
 }

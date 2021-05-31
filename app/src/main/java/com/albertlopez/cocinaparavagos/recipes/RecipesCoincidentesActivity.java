@@ -42,6 +42,7 @@ public class RecipesCoincidentesActivity extends AppCompatActivity {
                 recipeSeleccionado = recipes.get(recyclerViewRecetas.getChildAdapterPosition(v));
                 Recipe recipeParse;
                 recipeParse = recipeSeleccionado;
+                recipeParse.resetIngredientRecipe();
                 ArrayList<String> recipeString = recipeSeleccionado.getIngredientes();
                 ArrayList<Ingredient> ingredientsAll = ManagerAllRecipes.getIngredientsArray();
 
